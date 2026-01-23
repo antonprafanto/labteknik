@@ -21,34 +21,34 @@
                     <!-- Name -->
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('Name') }}</label>
-                        <input type="text" id="name" wire:model="name" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
+                        <input type="text" id="name" wire:model="name" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
                         @error('name') <span class="text-red-500 dark:text-red-400 text-sm mt-1">{{ $message }}</span> @enderror
                     </div>
 
                     <!-- Email -->
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('Email') }}</label>
-                        <input type="email" id="email" wire:model="email" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
+                        <input type="email" id="email" wire:model="email" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
                         @error('email') <span class="text-red-500 dark:text-red-400 text-sm mt-1">{{ $message }}</span> @enderror
                     </div>
 
                     <!-- Password -->
                     <div>
                         <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('Password (Leave blank to keep current)') }}</label>
-                        <input type="password" id="password" wire:model="password" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
+                        <input type="password" id="password" wire:model="password" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
                         @error('password') <span class="text-red-500 dark:text-red-400 text-sm mt-1">{{ $message }}</span> @enderror
                     </div>
 
                     <!-- Password Confirmation -->
                     <div>
                         <label for="password_confirmation" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('Confirm Password') }}</label>
-                        <input type="password" id="password_confirmation" wire:model="password_confirmation" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
+                        <input type="password" id="password_confirmation" wire:model="password_confirmation" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
                     </div>
 
                     <!-- Role -->
                     <div>
                         <label for="role" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('Role') }}</label>
-                        <select id="role" wire:model.live="role" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
+                        <select id="role" wire:model.live="role" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
                             <option value="student">{{ __('Student') }}</option>
                             <option value="lecturer">{{ __('Lecturer') }}</option>
                             <option value="lab_assistant">{{ __('Lab Assistant') }}</option>
@@ -61,21 +61,21 @@
                     <!-- NIP/NIM -->
                     <div>
                         <label for="nip_nim" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('NIP / NIM') }}</label>
-                        <input type="text" id="nip_nim" wire:model="nip_nim" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
+                        <input type="text" id="nip_nim" wire:model="nip_nim" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
                         @error('nip_nim') <span class="text-red-500 dark:text-red-400 text-sm mt-1">{{ $message }}</span> @enderror
                     </div>
 
                     <!-- Phone -->
                     <div>
                         <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('Phone') }}</label>
-                        <input type="text" id="phone" wire:model="phone" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
+                        <input type="text" id="phone" wire:model="phone" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
                         @error('phone') <span class="text-red-500 dark:text-red-400 text-sm mt-1">{{ $message }}</span> @enderror
                     </div>
 
                     <!-- Study Program -->
                     <div>
                         <label for="study_program" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('Study Program') }}</label>
-                        <input type="text" id="study_program" wire:model="study_program" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
+                        <input type="text" id="study_program" wire:model="study_program" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
                         @error('study_program') <span class="text-red-500 dark:text-red-400 text-sm mt-1">{{ $message }}</span> @enderror
                     </div>
 
@@ -83,7 +83,7 @@
                     @if($role === 'head_of_lab' || $role === 'lab_assistant')
                         <div>
                             <label for="laboratory_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('Assigned Laboratory') }}</label>
-                            <select id="laboratory_id" wire:model="laboratory_id" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
+                            <select id="laboratory_id" wire:model="laboratory_id" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
                                 <option value="">{{ __('Select Laboratory') }}</option>
                                 @foreach($laboratories as $lab)
                                     <option value="{{ $lab->id }}">{{ $lab->name }}</option>
