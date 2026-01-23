@@ -24,6 +24,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Public Schedule Table
+Route::get('/jadwal-praktikum', \App\Livewire\Schedules\PublicTable::class)->name('schedules.public');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
