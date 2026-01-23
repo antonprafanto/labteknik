@@ -31,11 +31,11 @@
                         @error('laboratory_id') <span class="flex items-center text-red-600 dark:text-red-400 text-sm mt-1 font-medium">{{ $message }}</span> @enderror
                     </div>
 
-                    <!-- Lecturer -->
+                    <!-- Nama Peminjam -->
                     <div>
-                        <label for="lecturer_id" class="block font-bold text-sm text-gray-900 dark:text-white mb-2">{{ __('Lecturer') }}</label>
+                        <label for="lecturer_id" class="block font-bold text-sm text-gray-900 dark:text-white mb-2">{{ __('Nama Peminjam') }}</label>
                         <select id="lecturer_id" wire:model="lecturer_id" class="w-full px-4 py-3 bg-white border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-white rounded-xl focus:border-indigo-500 focus:ring-indigo-500 shadow-sm transition-all duration-200 font-medium">
-                            <option value="">{{ __('Select Lecturer') }}</option>
+                            <option value="">{{ __('Pilih Peminjam') }}</option>
                             @foreach($lecturers as $lecturer)
                                 <option value="{{ $lecturer->id }}">{{ $lecturer->name }}</option>
                             @endforeach

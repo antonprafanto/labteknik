@@ -15,6 +15,8 @@ class Create extends Component
     public $return_date;
     public $purpose;
     public $participants = 0;
+    public $phone;
+    public $address;
     public $selectedItems = [];
 
     protected $rules = [
@@ -22,6 +24,8 @@ class Create extends Component
         'return_date' => 'required|date|after_or_equal:borrow_date',
         'purpose' => 'required|string',
         'participants' => 'required|integer|min:0',
+        'phone' => 'required|string|max:20',
+        'address' => 'required|string',
         'selectedItems' => 'required|array|min:1',
         'selectedItems.*.id' => 'required|exists:inventory_items,id',
         'selectedItems.*.quantity' => 'required|integer|min:1',
@@ -68,6 +72,8 @@ class Create extends Component
             'return_date' => $this->return_date,
             'purpose' => $this->purpose,
             'participants' => $this->participants,
+            'phone' => $this->phone,
+            'address' => $this->address,
             'status' => 'pending',
         ]);
 

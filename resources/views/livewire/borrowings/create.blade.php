@@ -57,6 +57,20 @@
                                 @error('participants') <span class="flex items-center text-red-600 dark:text-red-400 text-sm mt-1 font-medium">{{ $message }}</span> @enderror
                             </div>
 
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="block font-bold text-sm text-gray-900 dark:text-white">{{ __('No. WhatsApp') }} <span class="text-red-500">*</span></label>
+                                    <input wire:model="phone" type="text" placeholder="{{ __('08xxxxxxxxxx') }}" class="w-full px-4 py-3 bg-white border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-white rounded-xl focus:border-indigo-500 focus:ring-indigo-500 shadow-sm transition-all duration-200 placeholder-gray-400 font-medium" />
+                                    @error('phone') <span class="flex items-center text-red-600 dark:text-red-400 text-sm mt-1 font-medium">{{ $message }}</span> @enderror
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label class="block font-bold text-sm text-gray-900 dark:text-white">{{ __('Alamat Tempat Tinggal') }} <span class="text-red-500">*</span></label>
+                                    <input wire:model="address" type="text" placeholder="{{ __('Alamat lengkap...') }}" class="w-full px-4 py-3 bg-white border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-white rounded-xl focus:border-indigo-500 focus:ring-indigo-500 shadow-sm transition-all duration-200 placeholder-gray-400 font-medium" />
+                                    @error('address') <span class="flex items-center text-red-600 dark:text-red-400 text-sm mt-1 font-medium">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+
                             <!-- Selected Items List -->
                             <div>
                                 <h4 class="font-bold text-gray-900 dark:text-white mb-4 flex items-center text-lg">

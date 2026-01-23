@@ -16,6 +16,8 @@ class BorrowingRequest extends Model
         'return_date',
         'purpose',
         'participants',
+        'phone',
+        'address',
         'status',
         'rejection_reason',
         'approved_at',

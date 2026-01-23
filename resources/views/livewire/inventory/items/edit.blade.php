@@ -135,12 +135,6 @@
                         </div>
 
                         <div class="space-y-2">
-                            <label class="block text-sm font-bold text-gray-900 dark:text-white">{{ __('Price') }}</label>
-                            <input wire:model="price" type="number" step="0.01" class="w-full px-4 py-3 bg-white border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-xl focus:border-indigo-500 focus:ring-indigo-500 shadow-sm transition-all duration-200 placeholder-gray-400 font-medium" />
-                            @error('price') <span class="flex items-center text-red-600 dark:text-red-400 text-sm mt-1 font-medium">{{ $message }}</span> @enderror
-                        </div>
-
-                        <div class="space-y-2">
                             <label class="block text-sm font-bold text-gray-900 dark:text-white">{{ __('Image') }}</label>
                             <input wire:model="image" type="file" class="w-full px-3 py-3 bg-white border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-xl focus:border-indigo-500 focus:ring-indigo-500 shadow-sm transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 dark:file:bg-indigo-900/30 file:text-indigo-700 dark:file:text-indigo-300 hover:file:bg-indigo-100 dark:hover:file:bg-indigo-900/50 file:transition-colors" />
                              @if($current_image)
