@@ -57,11 +57,18 @@
                         @error('class_name') <span class="flex items-center text-red-600 dark:text-red-400 text-sm mt-1 font-medium">{{ $message }}</span> @enderror
                     </div>
 
-                    <!-- Date -->
+                    <!-- Hari -->
                     <div>
-                        <label for="schedule_date" class="block font-bold text-sm text-gray-900 dark:text-white mb-2">{{ __('Date') }}</label>
-                        <input type="date" id="schedule_date" wire:model="schedule_date" class="w-full px-4 py-3 bg-white border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-white rounded-xl focus:border-indigo-500 focus:ring-indigo-500 shadow-sm transition-all duration-200 font-medium">
-                        @error('schedule_date') <span class="flex items-center text-red-600 dark:text-red-400 text-sm mt-1 font-medium">{{ $message }}</span> @enderror
+                        <label for="day_of_week" class="block font-bold text-sm text-gray-900 dark:text-white mb-2">{{ __('Hari') }}</label>
+                        <select id="day_of_week" wire:model="day_of_week" class="w-full px-4 py-3 bg-white border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-white rounded-xl focus:border-indigo-500 focus:ring-indigo-500 shadow-sm transition-all duration-200 font-medium">
+                            <option value="">{{ __('Pilih Hari') }}</option>
+                            <option value="1">Senin</option>
+                            <option value="2">Selasa</option>
+                            <option value="3">Rabu</option>
+                            <option value="4">Kamis</option>
+                            <option value="5">Jumat</option>
+                        </select>
+                        @error('day_of_week') <span class="flex items-center text-red-600 dark:text-red-400 text-sm mt-1 font-medium">{{ $message }}</span> @enderror
                     </div>
 
                     <!-- Participants -->

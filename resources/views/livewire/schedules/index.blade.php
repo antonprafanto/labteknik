@@ -32,7 +32,14 @@
                         </select>
                     </div>
                     <div>
-                        <input wire:model.live="dateFilter" type="date" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-800 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
+                        <select wire:model.live="dayFilter" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-800 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
+                            <option value="">{{ __('All Days') }}</option>
+                            <option value="1">Senin</option>
+                            <option value="2">Selasa</option>
+                            <option value="3">Rabu</option>
+                            <option value="4">Kamis</option>
+                            <option value="5">Jumat</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -47,7 +54,7 @@
                 <table class="min-w-full divide-y divide-gray-100 dark:divide-gray-700">
                     <thead class="bg-gray-50/50 dark:bg-gray-900/50">
                         <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Date & Time') }}</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Day & Time') }}</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Laboratory') }}</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Course Info') }}</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Lecturer') }}</th>
@@ -66,7 +73,7 @@
                                             </svg>
                                         </div>
                                         <div>
-                                            <div class="text-sm font-medium text-gray-900 dark:text-white">{{ $schedule->schedule_date->format('D, d M Y') }}</div>
+                                            <div class="text-sm font-medium text-gray-900 dark:text-white">{{ $schedule->day_name }}</div>
                                             <div class="text-xs text-gray-500 dark:text-gray-400">{{ \Carbon\Carbon::parse($schedule->start_time)->format('H:i') }} - {{ \Carbon\Carbon::parse($schedule->end_time)->format('H:i') }}</div>
                                         </div>
                                     </div>

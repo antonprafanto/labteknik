@@ -48,42 +48,51 @@
                     </thead>
                     <tbody class="divide-y divide-white/10">
                         @foreach($days as $dayNum => $dayName)
-                            @foreach($timeSlots as $index => $timeSlot)
+                            @php
+                                $currentSlots = ($dayNum == 5) ? $this->fridayTimeSlots : $timeSlots;
+                            @endphp
+                            @foreach($currentSlots as $index => $timeSlot)
                                 @php
                                     $schedule = $this->getScheduleForSlot($dayNum, $timeSlot);
-                                    $isBreak = ($dayNum == 5 && $timeSlot == '10:50 - 12:20'); // Jumat sholat
+                                    // Logic Break Jumat: Slot ke-3 (index 2) di array fridayTimeSlots
+                                    $isBreak = ($dayNum == 5 && $index == 2); 
                                 @endphp
                                 <tr class="{{ $index % 2 == 0 ? 'bg-white/5' : 'bg-transparent' }} hover:bg-white/10 transition-colors">
                                     @if($index == 0)
-                                        <td rowspan="{{ count($timeSlots) }}" class="px-4 py-3 text-sm font-bold text-amber-400 border-r border-white/10 align-top bg-white/5">
+                                        <td rowspan="{{ count($currentSlots) }}" class="px-4 py-3 text-sm font-bold text-amber-400 border-r border-white/10 align-top bg-white/5">
                                             {{ $dayName }}
                                         </td>
                                     @endif
-                                    <td class="px-4 py-3 text-sm text-gray-300 border-r border-white/10 whitespace-nowrap">
-                                        {{ $timeSlot }}
-                                    </td>
                                     @if($isBreak)
-                                        <td colspan="4" class="px-4 py-3 text-center bg-red-500/80 text-white font-bold">
-                                            🕌 SHOLAT JUMAT
+                                        <td class="px-4 py-3 text-sm text-gray-300 border-r border-white/10 whitespace-nowrap">
+                                            {{ $timeSlot }}
                                         </td>
-                                    @elseif($schedule)
-                                        <td class="px-4 py-3 text-sm text-white border-r border-white/10">
-                                            {{ $schedule->class_name }}
-                                        </td>
-                                        <td class="px-4 py-3 text-sm text-white border-r border-white/10">
-                                            {{ $schedule->schedule_date ? $schedule->schedule_date->format('Y') : '-' }}
-                                        </td>
-                                        <td class="px-4 py-3 text-sm text-white border-r border-white/10">
-                                            {{ $schedule->laboratory->name ?? '-' }}
-                                        </td>
-                                        <td class="px-4 py-3 text-sm text-amber-300 font-medium">
-                                            {{ $schedule->course_name }}
+                                        <td colspan="4" class="px-4 py-3 text-center bg-emerald-600/80 text-white font-bold tracking-widest border-r border-white/10">
+                                            🕌 ISTIRAHAT SHOLAT JUM'AT
                                         </td>
                                     @else
-                                        <td class="px-4 py-3 text-sm text-gray-500 border-r border-white/10">-</td>
-                                        <td class="px-4 py-3 text-sm text-gray-500 border-r border-white/10">-</td>
-                                        <td class="px-4 py-3 text-sm text-gray-500 border-r border-white/10">-</td>
-                                        <td class="px-4 py-3 text-sm text-gray-500">-</td>
+                                        <td class="px-4 py-3 text-sm text-gray-300 border-r border-white/10 whitespace-nowrap">
+                                            {{ $timeSlot }}
+                                        </td>
+                                        @if($schedule)
+                                            <td class="px-4 py-3 text-sm text-white border-r border-white/10">
+                                                {{ $schedule->class_name }}
+                                            </td>
+                                            <td class="px-4 py-3 text-sm text-white border-r border-white/10">
+                                                {{ $schedule->schedule_date ? $schedule->schedule_date->format('Y') : '-' }}
+                                            </td>
+                                            <td class="px-4 py-3 text-sm text-white border-r border-white/10">
+                                                {{ $schedule->laboratory->name ?? '-' }}
+                                            </td>
+                                            <td class="px-4 py-3 text-sm text-amber-300 font-medium">
+                                                {{ $schedule->course_name }}
+                                            </td>
+                                        @else
+                                            <td class="px-4 py-3 text-sm text-gray-500 border-r border-white/10">-</td>
+                                            <td class="px-4 py-3 text-sm text-gray-500 border-r border-white/10">-</td>
+                                            <td class="px-4 py-3 text-sm text-gray-500 border-r border-white/10">-</td>
+                                            <td class="px-4 py-3 text-sm text-gray-500">-</td>
+                                        @endif
                                     @endif
                                 </tr>
                             @endforeach

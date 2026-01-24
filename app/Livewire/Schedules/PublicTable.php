@@ -11,13 +11,21 @@ class PublicTable extends Component
     public $selectedLab = '';
     public $laboratories = [];
     
-    // Time slots standar praktikum
+    // Time slots standar praktikum (Senin - Kamis)
     public $timeSlots = [
         '07:30 - 09:00',
         '09:10 - 10:40',
         '10:50 - 12:20',
         '13:00 - 14:30',
-        '14:40 - 16:10',
+        '14:40 - 16:00',
+    ];
+
+    // Time slots khusus Jumat
+    public $fridayTimeSlots = [
+        '07:30 - 09:00',
+        '09:10 - 10:40',
+        '11:00 - 13:00', // Slot Istirahat / Sholat Jumat placeholder width
+        '13:30 - 15:00',
         '15:10 - 16:40',
     ];
     
@@ -51,12 +59,10 @@ class PublicTable extends Component
         return PracticumSchedule::with(['laboratory', 'lecturer'])
             ->where('laboratory_id', $this->selectedLab)
             ->where('status', '!=', 'cancelled')
-            ->orderBy('schedule_date')
+            ->orderBy('day_of_week')
             ->orderBy('start_time')
             ->get()
-            ->groupBy(function ($schedule) {
-                return $schedule->schedule_date->dayOfWeek;
-            });
+            ->groupBy('day_of_week');
     }
 
     public function getScheduleForSlot($dayNumber, $timeSlot)

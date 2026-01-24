@@ -140,14 +140,14 @@
                                         <div class="text-indigo-400 mb-1">
                                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
                                         </div>
-                                        <div class="text-2xl font-bold text-white">1,240</div>
+                                        <div class="text-2xl font-bold text-white">{{ number_format($itemsCount) }}</div>
                                         <div class="text-xs text-indigo-300/60">Total Inventaris</div>
                                     </div>
                                     <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-4">
                                         <div class="text-emerald-400 mb-1">
                                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                                         </div>
-                                        <div class="text-2xl font-bold text-white">48</div>
+                                        <div class="text-2xl font-bold text-white">{{ number_format($activeSchedulesCount) }}</div>
                                         <div class="text-xs text-emerald-300/60">Jadwal Aktif</div>
                                     </div>
                                 </div>
@@ -189,15 +189,15 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center divide-x divide-slate-800/50">
                 <div class="p-4 group">
-                    <div class="text-4xl lg:text-5xl font-black text-white mb-2 group-hover:scale-110 transition-transform duration-300">50<span class="text-indigo-500">+</span></div>
+                    <div class="text-4xl lg:text-5xl font-black text-white mb-2 group-hover:scale-110 transition-transform duration-300">{{ $labsCount }}<span class="text-indigo-500">+</span></div>
                     <div class="text-sm font-semibold text-slate-500 uppercase tracking-widest">Laboratorium</div>
                 </div>
                 <div class="p-4 group">
-                    <div class="text-4xl lg:text-5xl font-black text-white mb-2 group-hover:scale-110 transition-transform duration-300">500<span class="text-emerald-500">+</span></div>
+                    <div class="text-4xl lg:text-5xl font-black text-white mb-2 group-hover:scale-110 transition-transform duration-300">{{ ($itemsCount > 500 ? '500+' : $itemsCount) }}<span class="text-emerald-500">+</span></div>
                     <div class="text-sm font-semibold text-slate-500 uppercase tracking-widest">Alat & Bahan</div>
                 </div>
                 <div class="p-4 group">
-                    <div class="text-4xl lg:text-5xl font-black text-white mb-2 group-hover:scale-110 transition-transform duration-300">1.2<span class="text-purple-500">k</span></div>
+                    <div class="text-4xl lg:text-5xl font-black text-white mb-2 group-hover:scale-110 transition-transform duration-300">{{ ($studentsCount > 1000 ? number_format($studentsCount/1000, 1) . 'k' : $studentsCount) }}<span class="text-purple-500">+</span></div>
                     <div class="text-sm font-semibold text-slate-500 uppercase tracking-widest">Mahasiswa</div>
                 </div>
                 <div class="p-4 group">

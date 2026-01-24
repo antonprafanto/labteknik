@@ -15,7 +15,7 @@ class Edit extends Component
     public $lecturer_id;
     public $course_name;
     public $class_name;
-    public $schedule_date;
+    public $day_of_week;
     public $start_time;
     public $end_time;
     public $participants;
@@ -27,7 +27,7 @@ class Edit extends Component
         'lecturer_id' => 'required|exists:users,id',
         'course_name' => 'required|string|max:255',
         'class_name' => 'required|string|max:100',
-        'schedule_date' => 'required|date',
+        'day_of_week' => 'required|integer|min:1|max:5',
         'start_time' => 'required|date_format:H:i',
         'end_time' => 'required|date_format:H:i|after:start_time',
         'participants' => 'required|integer|min:1',
@@ -42,7 +42,7 @@ class Edit extends Component
         $this->lecturer_id = $schedule->lecturer_id;
         $this->course_name = $schedule->course_name;
         $this->class_name = $schedule->class_name;
-        $this->schedule_date = $schedule->schedule_date->format('Y-m-d');
+        $this->day_of_week = $schedule->day_of_week;
         // Handle time format, might need H:i
         $this->start_time = \Carbon\Carbon::parse($schedule->start_time)->format('H:i');
         $this->end_time = \Carbon\Carbon::parse($schedule->end_time)->format('H:i');
@@ -58,12 +58,12 @@ class Edit extends Component
         // Check for conflicts excluding current schedule
         if (PracticumSchedule::hasConflict(
             $this->laboratory_id,
-            $this->schedule_date,
+            $this->day_of_week,
             $this->start_time,
             $this->end_time,
             $this->schedule->id
         )) {
-            $this->addError('start_time', 'There is a scheduling conflict for this time slot in the selected laboratory.');
+            $this->addError('start_time', 'Jadwal bentrok dengan jadwal lain di laboratorium ini pada hari dan jam yang sama.');
             return;
         }
 
@@ -72,7 +72,7 @@ class Edit extends Component
             'lecturer_id' => $this->lecturer_id,
             'course_name' => $this->course_name,
             'class_name' => $this->class_name,
-            'schedule_date' => $this->schedule_date,
+            'day_of_week' => $this->day_of_week,
             'start_time' => $this->start_time,
             'end_time' => $this->end_time,
             'participants' => $this->participants,

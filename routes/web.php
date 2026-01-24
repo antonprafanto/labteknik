@@ -21,7 +21,12 @@ Route::get('/lang/{locale}', function ($locale) {
 })->name('lang.switch');
 
 Route::get('/', function () {
-    return view('welcome');
+    $labsCount = \App\Models\Laboratory::count();
+    $itemsCount = \App\Models\InventoryItem::count();
+    $studentsCount = \App\Models\User::where('role', 'student')->count();
+    $activeSchedulesCount = \App\Models\PracticumSchedule::where('status', '!=', 'cancelled')->count();
+
+    return view('welcome', compact('labsCount', 'itemsCount', 'studentsCount', 'activeSchedulesCount'));
 });
 
 // Public Schedule Table

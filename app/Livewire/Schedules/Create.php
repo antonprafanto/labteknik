@@ -13,7 +13,7 @@ class Create extends Component
     public $lecturer_id;
     public $course_name;
     public $class_name;
-    public $schedule_date;
+    public $day_of_week;
     public $start_time;
     public $end_time;
     public $participants;
@@ -24,7 +24,7 @@ class Create extends Component
         'lecturer_id' => 'required|exists:users,id',
         'course_name' => 'required|string|max:255',
         'class_name' => 'required|string|max:100',
-        'schedule_date' => 'required|date|after_or_equal:today',
+        'day_of_week' => 'required|integer|min:1|max:5',
         'start_time' => 'required|date_format:H:i',
         'end_time' => 'required|date_format:H:i|after:start_time',
         'participants' => 'required|integer|min:1',
@@ -43,11 +43,11 @@ class Create extends Component
         // Check for conflicts
         if (PracticumSchedule::hasConflict(
             $this->laboratory_id,
-            $this->schedule_date,
+            $this->day_of_week,
             $this->start_time,
             $this->end_time
         )) {
-            $this->addError('start_time', 'There is a scheduling conflict for this time slot in the selected laboratory.');
+            $this->addError('start_time', 'Jadwal bentrok dengan jadwal lain di laboratorium ini pada hari dan jam yang sama.');
             return;
         }
 
@@ -56,7 +56,7 @@ class Create extends Component
             'lecturer_id' => $this->lecturer_id,
             'course_name' => $this->course_name,
             'class_name' => $this->class_name,
-            'schedule_date' => $this->schedule_date,
+            'day_of_week' => $this->day_of_week,
             'start_time' => $this->start_time,
             'end_time' => $this->end_time,
             'participants' => $this->participants,

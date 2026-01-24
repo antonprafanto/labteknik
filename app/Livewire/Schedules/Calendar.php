@@ -33,11 +33,19 @@ class Calendar extends Component
         $schedules = $query->with(['laboratory', 'lecturer'])->get();
 
         return $schedules->map(function ($schedule) {
+            // Map recurring day (1-7) to a real date in the current week
+            // Carbon's dayOfWeek: 0 (Sun) - 6 (Sat). My day_of_week: 1 (Mon) - 7 (Sun)
+            // Carbon setISODate uses year, week, day (1=Mon, 7=Sun). Perfect match!
+            
+            $now = now();
+            $date = $now->setISODate($now->year, $now->weekOfYear, $schedule->day_of_week);
+            $dateStr = $date->format('Y-m-d');
+
             return [
                 'id' => $schedule->id,
                 'title' => $schedule->course_name . ' (' . $schedule->class_name . ')',
-                'start' => $schedule->schedule_date->format('Y-m-d') . 'T' . $schedule->start_time,
-                'end' => $schedule->schedule_date->format('Y-m-d') . 'T' . $schedule->end_time,
+                'start' => $dateStr . 'T' . $schedule->start_time,
+                'end' => $dateStr . 'T' . $schedule->end_time,
                 'color' => $this->getColor($schedule->laboratory_id),
                 'extendedProps' => [
                     'laboratory' => $schedule->laboratory->name,

@@ -14,7 +14,8 @@ class PracticumSchedule extends Model
         'lecturer_id',
         'course_name',
         'class_name',
-        'schedule_date',
+        'day_of_week', // Added
+        'schedule_date', // Kept for legacy reference or specific dates if needed
         'start_time',
         'end_time',
         'participants',
@@ -25,9 +26,25 @@ class PracticumSchedule extends Model
 
     protected $casts = [
         'schedule_date' => 'date',
-        // 'start_time' => 'datetime', // Time casting might need format depending on usage
-        // 'end_time' => 'datetime',
+        'day_of_week' => 'integer',
     ];
+
+    protected $appends = ['day_name'];
+
+    public function getDayNameAttribute()
+    {
+        $days = [
+            1 => 'Senin',
+            2 => 'Selasa',
+            3 => 'Rabu',
+            4 => 'Kamis',
+            5 => 'Jumat',
+            6 => 'Sabtu',
+            7 => 'Minggu',
+        ];
+
+        return $days[$this->day_of_week] ?? '-';
+    }
 
     public function laboratory()
     {
@@ -44,10 +61,11 @@ class PracticumSchedule extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    public static function hasConflict($laboratoryId, $date, $startTime, $endTime, $ignoreId = null)
+    public static function hasConflict($laboratoryId, $dayOfWeek, $startTime, $endTime, $ignoreId = null)
     {
         return self::where('laboratory_id', $laboratoryId)
-            ->whereDate('schedule_date', $date)
+            ->where('day_of_week', $dayOfWeek)
+            ->where('status', '!=', 'cancelled') // Ignore cancelled schedules
             ->where(function ($query) use ($startTime, $endTime) {
                 $query->where(function ($q) use ($startTime, $endTime) {
                     $q->where('start_time', '>=', $startTime)

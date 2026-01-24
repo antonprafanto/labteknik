@@ -13,12 +13,12 @@ class Index extends Component
 
     public $search = '';
     public $selectedLab = '';
-    public $dateFilter = '';
+    public $dayFilter = '';
 
     protected $queryString = [
         'search' => ['except' => ''],
         'selectedLab' => ['except' => ''],
-        'dateFilter' => ['except' => ''],
+        'dayFilter' => ['except' => ''],
     ];
 
     public function updatingSearch()
@@ -31,7 +31,7 @@ class Index extends Component
         $this->resetPage();
     }
 
-    public function updatingDateFilter()
+    public function updatingDayFilter()
     {
         $this->resetPage();
     }
@@ -53,10 +53,10 @@ class Index extends Component
             ->when($this->selectedLab, function ($query) {
                 $query->where('laboratory_id', $this->selectedLab);
             })
-            ->when($this->dateFilter, function ($query) {
-                $query->whereDate('schedule_date', $this->dateFilter);
+            ->when($this->dayFilter, function ($query) {
+                $query->where('day_of_week', $this->dayFilter);
             })
-            ->orderBy('schedule_date', 'asc')
+            ->orderBy('day_of_week', 'asc')
             ->orderBy('start_time', 'asc')
             ->paginate(10);
 
