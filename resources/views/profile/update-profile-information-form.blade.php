@@ -48,6 +48,10 @@
                     </x-secondary-button>
                 @endif
 
+                <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                    <strong>Ketentuan foto:</strong> Format JPG, JPEG, atau PNG. Maksimal 1MB. Disarankan menggunakan foto formal dengan latar belakang polos.
+                </p>
+
                 <x-input-error for="photo" class="mt-2" />
             </div>
         @endif
