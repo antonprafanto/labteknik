@@ -9,7 +9,7 @@ class Create extends Component
 {
     public $name;
     public $description;
-    public $color;
+    public $color = '#6366f1'; // Default indigo color
 
     protected $rules = [
         'name' => 'required|string|max:255|unique:inventory_categories,name',
