@@ -56,6 +56,7 @@
                             <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Barang') }}</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Kategori') }}</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Lokasi') }}</th>
+                            <th scope="col" class="px-6 py-3 text-center text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Jumlah') }}</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Kondisi') }}</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Status') }}</th>
                             <th scope="col" class="px-6 py-3 text-right text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Aksi') }}</th>
@@ -89,6 +90,11 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-300">
                                 <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">
                                     {{ $item->laboratory->name }}
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-center">
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-sm font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-400">
+                                    {{ $item->available_quantity }}/{{ $item->quantity }}
                                 </span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm">
@@ -168,7 +174,7 @@
                             </span>
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 gap-4 text-sm text-gray-500 dark:text-gray-400 mb-4">
+                    <div class="grid grid-cols-3 gap-4 text-sm text-gray-500 dark:text-gray-400 mb-4">
                         <div>
                             <span class="block text-xs text-gray-400 uppercase">Kategori</span>
                             <span class="font-medium text-gray-700 dark:text-gray-300">{{ $item->category->name }}</span>
@@ -176,6 +182,10 @@
                         <div>
                             <span class="block text-xs text-gray-400 uppercase">Lokasi</span>
                             <span class="font-medium text-gray-700 dark:text-gray-300">{{ $item->laboratory->name }}</span>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-gray-400 uppercase">Jumlah</span>
+                            <span class="font-bold text-indigo-600 dark:text-indigo-400">{{ $item->available_quantity }}/{{ $item->quantity }}</span>
                         </div>
                     </div>
                     <div class="flex justify-end gap-2 pt-3 border-t border-gray-100 dark:border-gray-700">

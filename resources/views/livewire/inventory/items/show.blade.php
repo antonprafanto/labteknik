@@ -125,6 +125,15 @@
                                         </span>
                                     </dd>
                                 </div>
+                                <div>
+                                    <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('Quantity') }}</dt>
+                                    <dd class="mt-1">
+                                        <span class="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-400">
+                                            {{ $this->item->available_quantity }} / {{ $this->item->quantity }}
+                                        </span>
+                                        <span class="ml-2 text-xs text-gray-500 dark:text-gray-400">{{ __('Available') }} / {{ __('Total') }}</span>
+                                    </dd>
+                                </div>
                             </dl>
                         </div>
 
