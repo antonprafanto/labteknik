@@ -32,27 +32,6 @@ Route::get('/', function () {
 // Public Schedule Table
 Route::get('/jadwal-praktikum', \App\Livewire\Schedules\PublicTable::class)->name('schedules.public');
 
-// === DEBUG ROUTES (HAPUS SETELAH SELESAI) ===
-Route::get('/test-mail', function () {
-    try {
-        \Illuminate\Support\Facades\Mail::raw('Test email dari Sistem Informasi Laboratorium FT UNMUL', function ($message) {
-            $message->to('anton.prafanto@gmail.com')
-                    ->subject('Test Email - Lab Teknik');
-        });
-        return 'Email berhasil dikirim! Cek inbox anton.prafanto@gmail.com';
-    } catch (\Exception $e) {
-        return 'Error: ' . $e->getMessage();
-    }
-});
-
-Route::get('/clear-cache', function () {
-    \Illuminate\Support\Facades\Artisan::call('config:clear');
-    \Illuminate\Support\Facades\Artisan::call('cache:clear');
-    \Illuminate\Support\Facades\Artisan::call('route:clear');
-    return 'Cache cleared successfully!';
-});
-// === END DEBUG ROUTES ===
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
