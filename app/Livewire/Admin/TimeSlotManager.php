@@ -44,8 +44,7 @@ class TimeSlotManager extends Component
     public function loadSlots()
     {
         $query = TimeSlot::active()
-            ->where('is_friday', $this->is_friday)
-            ->ordered();
+            ->where('is_friday', $this->is_friday);
 
         if ($this->laboratory_id) {
             $query->where('laboratory_id', $this->laboratory_id);
@@ -53,7 +52,7 @@ class TimeSlotManager extends Component
             $query->whereNull('laboratory_id');
         }
 
-        $this->timeSlotsList = $query->get()->toArray();
+        $this->timeSlotsList = $query->ordered()->get()->toArray();
     }
 
     public function createSlot()
