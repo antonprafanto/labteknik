@@ -59,11 +59,18 @@
             <x-input-error for="name" class="mt-2" />
         </div>
 
-        <!-- NIP/NIM (Read Only) -->
+        <!-- NIP/NIM -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="nip_nim" value="{{ __('NIP / NIM') }}" />
-            <x-input id="nip_nim" type="text" class="mt-1 block w-full bg-gray-100 dark:bg-gray-700 cursor-not-allowed" value="{{ $this->user->nip_nim ?? '-' }}" disabled />
-            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">NIP/NIM tidak dapat diubah. Hubungi Administrator jika ada kesalahan.</p>
+            @if(auth()->user()->role === 'super_admin')
+                {{-- Super Admin can edit NIP/NIM --}}
+                <x-input id="nip_nim" type="text" class="mt-1 block w-full" wire:model="state.nip_nim" />
+                <x-input-error for="nip_nim" class="mt-2" />
+            @else
+                {{-- Other users cannot edit NIP/NIM --}}
+                <x-input id="nip_nim" type="text" class="mt-1 block w-full bg-gray-100 dark:bg-gray-700 cursor-not-allowed" value="{{ $this->user->nip_nim ?? '-' }}" disabled />
+                <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">NIP/NIM tidak dapat diubah. Hubungi Administrator jika ada kesalahan.</p>
+            @endif
         </div>
 
         <!-- Email -->
