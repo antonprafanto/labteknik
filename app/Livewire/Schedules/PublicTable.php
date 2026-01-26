@@ -55,7 +55,7 @@ class PublicTable extends Component
      */
     public function getTimeSlotsProperty()
     {
-        $slots = $this->getSlots(false);
+        $slots = $this->fetchTimeSlots(false);
         
         if ($slots->isEmpty()) {
             return collect($this->defaultTimeSlots)->map(function ($slot) {
@@ -81,7 +81,7 @@ class PublicTable extends Component
      */
     public function getFridayTimeSlotsProperty()
     {
-        $slots = $this->getSlots(true);
+        $slots = $this->fetchTimeSlots(true);
         
         if ($slots->isEmpty()) {
             return collect($this->defaultFridayTimeSlots)->map(function ($slot, $index) {
@@ -105,7 +105,7 @@ class PublicTable extends Component
     /**
      * Get slots from database
      */
-    public function getSlots($isFriday)
+    protected function fetchTimeSlots($isFriday)
     {
         // First try lab-specific slots
         $slots = TimeSlot::where('laboratory_id', $this->selectedLab)
