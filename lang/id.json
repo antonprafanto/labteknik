@@ -127,6 +127,8 @@
     "Price": "Harga",
     "Save Item": "Simpan Barang",
     "Update Item": "Perbarui Barang",
+    "Delete Item": "Hapus Barang",
+    "Are you sure you want to delete this item? This action cannot be undone.": "Apakah Anda yakin ingin menghapus barang ini? Tindakan ini tidak dapat dibatalkan.",
     "Item Details": "Detail Barang",
     "No Image Available": "Tidak Ada Gambar",
     "Scan for tracking": "Pindai untuk melacak",

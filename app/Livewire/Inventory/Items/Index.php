@@ -16,6 +16,27 @@ class Index extends Component
     public $category_id = '';
     public $laboratory_id = '';
     public $status = '';
+    public $confirmingItemDeletion = false;
+    public $itemToDelete = null;
+
+    public function confirmDelete($itemId)
+    {
+        $this->itemToDelete = $itemId;
+        $this->confirmingItemDeletion = true;
+    }
+
+    public function deleteItem()
+    {
+        if ($this->itemToDelete) {
+            $item = InventoryItem::find($this->itemToDelete);
+            if ($item) {
+                $item->delete();
+            }
+        }
+        
+        $this->confirmingItemDeletion = false;
+        $this->itemToDelete = null;
+    }
 
     public function render()
     {
