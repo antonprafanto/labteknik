@@ -129,6 +129,12 @@
                         </div>
 
                         <div class="space-y-2">
+                            <label class="block text-sm font-bold text-gray-900 dark:text-white">{{ __('Quantity') }} <span class="text-red-500">*</span></label>
+                            <input wire:model="quantity" type="number" min="1" class="w-full px-4 py-3 bg-white border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-xl focus:border-indigo-500 focus:ring-indigo-500 shadow-sm transition-all duration-200 placeholder-gray-400 font-medium" />
+                            @error('quantity') <span class="flex items-center text-red-600 dark:text-red-400 text-sm mt-1 font-medium">{{ $message }}</span> @enderror
+                        </div>
+
+                        <div class="space-y-2">
                             <label class="block text-sm font-bold text-gray-900 dark:text-white">{{ __('Purchase Year') }}</label>
                             <input wire:model="purchase_year" type="number" class="w-full px-4 py-3 bg-white border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-xl focus:border-indigo-500 focus:ring-indigo-500 shadow-sm transition-all duration-200 placeholder-gray-400 font-medium" />
                             @error('purchase_year') <span class="flex items-center text-red-600 dark:text-red-400 text-sm mt-1 font-medium">{{ $message }}</span> @enderror
