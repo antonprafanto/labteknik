@@ -50,6 +50,9 @@
                                 <x-dropdown-link href="{{ route('reports.dashboard') }}">
                                     {{ __('Laporan & Statistik') }}
                                 </x-dropdown-link>
+                                <x-dropdown-link href="{{ route('admin.time-slots.index') }}">
+                                    {{ __('Pengaturan Slot Waktu') }}
+                                </x-dropdown-link>
                                 @if(auth()->user()->hasRole('super_admin'))
                                     <x-dropdown-link href="{{ route('users.index') }}">
                                         {{ __('Manajemen Pengguna') }}
