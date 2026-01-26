@@ -4,6 +4,7 @@ namespace App\Livewire\Schedules;
 
 use App\Models\Laboratory;
 use App\Models\PracticumSchedule;
+use App\Models\TimeSlot;
 use Livewire\Component;
 
 class PublicTable extends Component
@@ -11,8 +12,8 @@ class PublicTable extends Component
     public $selectedLab = '';
     public $laboratories = [];
     
-    // Time slots standar praktikum (Senin - Kamis)
-    public $timeSlots = [
+    // Default time slots (fallback if no slots in database)
+    protected $defaultTimeSlots = [
         '07:30 - 09:00',
         '09:10 - 10:40',
         '10:50 - 12:20',
@@ -20,11 +21,10 @@ class PublicTable extends Component
         '14:40 - 16:00',
     ];
 
-    // Time slots khusus Jumat
-    public $fridayTimeSlots = [
+    protected $defaultFridayTimeSlots = [
         '07:30 - 09:00',
         '09:10 - 10:40',
-        '11:00 - 13:00', // Slot Istirahat / Sholat Jumat placeholder width
+        '11:00 - 13:00',
         '13:30 - 15:00',
         '15:10 - 16:40',
     ];
@@ -50,6 +50,82 @@ class PublicTable extends Component
         $this->selectedLab = $labId;
     }
 
+    /**
+     * Get time slots for regular days (Mon-Thu) from database or fallback
+     */
+    public function getTimeSlotsProperty()
+    {
+        $slots = $this->getSlots(false);
+        
+        if ($slots->isEmpty()) {
+            return collect($this->defaultTimeSlots)->map(function ($slot) {
+                return [
+                    'time_range' => $slot,
+                    'is_break' => false,
+                    'break_label' => null,
+                ];
+            });
+        }
+
+        return $slots->map(function ($slot) {
+            return [
+                'time_range' => $slot->start_time->format('H:i') . ' - ' . $slot->end_time->format('H:i'),
+                'is_break' => $slot->is_break,
+                'break_label' => $slot->break_label,
+            ];
+        });
+    }
+
+    /**
+     * Get time slots for Friday from database or fallback
+     */
+    public function getFridayTimeSlotsProperty()
+    {
+        $slots = $this->getSlots(true);
+        
+        if ($slots->isEmpty()) {
+            return collect($this->defaultFridayTimeSlots)->map(function ($slot, $index) {
+                return [
+                    'time_range' => $slot,
+                    'is_break' => ($index == 2), // Third slot is break by default
+                    'break_label' => ($index == 2) ? 'ISTIRAHAT SHOLAT JUM\'AT' : null,
+                ];
+            });
+        }
+
+        return $slots->map(function ($slot) {
+            return [
+                'time_range' => $slot->start_time->format('H:i') . ' - ' . $slot->end_time->format('H:i'),
+                'is_break' => $slot->is_break,
+                'break_label' => $slot->break_label,
+            ];
+        });
+    }
+
+    /**
+     * Get slots from database
+     */
+    protected function getSlots($isFriday)
+    {
+        // First try lab-specific slots
+        $slots = TimeSlot::where('laboratory_id', $this->selectedLab)
+            ->where('is_friday', $isFriday)
+            ->active()
+            ->ordered()
+            ->get();
+
+        // Fallback to global slots
+        if ($slots->isEmpty()) {
+            $slots = TimeSlot::whereNull('laboratory_id')
+                ->where('is_friday', $isFriday)
+                ->active()
+                ->ordered()
+                ->get();
+        }
+
+        return $slots;
+    }
+
     public function getSchedulesProperty()
     {
         if (!$this->selectedLab) {
@@ -65,7 +141,7 @@ class PublicTable extends Component
             ->groupBy('day_of_week');
     }
 
-    public function getScheduleForSlot($dayNumber, $timeSlot)
+    public function getScheduleForSlot($dayNumber, $timeRange)
     {
         $schedules = $this->schedules;
         
@@ -74,7 +150,7 @@ class PublicTable extends Component
         }
 
         // Parse time slot
-        $times = explode(' - ', $timeSlot);
+        $times = explode(' - ', $timeRange);
         $slotStart = $times[0];
         $slotEnd = $times[1];
 

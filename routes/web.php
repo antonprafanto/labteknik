@@ -90,6 +90,11 @@ Route::middleware([
         Route::get('/schedules/{schedule}/edit', \App\Livewire\Schedules\Edit::class)->name('schedules.edit');
     });
 
+    // Time Slot Management (Super Admin, Head of Lab)
+    Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:super_admin,head_of_lab'])->group(function () {
+        Route::get('/admin/time-slots', \App\Livewire\Admin\TimeSlotManager::class)->name('admin.time-slots.index');
+    });
+
     // Reports & Statistics (Admin, Head of Lab)
     Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:super_admin,head_of_lab'])->group(function () {
         Route::get('/reports', \App\Livewire\Reports\Dashboard::class)->name('reports.dashboard');

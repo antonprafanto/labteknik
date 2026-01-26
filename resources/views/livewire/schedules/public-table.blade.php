@@ -91,13 +91,12 @@
                     <tbody class="divide-y divide-white/10">
                         @foreach($days as $dayNum => $dayName)
                             @php
-                                $currentSlots = ($dayNum == 5) ? $this->fridayTimeSlots : $timeSlots;
+                                $currentSlots = ($dayNum == 5) ? $this->fridayTimeSlots : $this->timeSlots;
                             @endphp
-                            @foreach($currentSlots as $index => $timeSlot)
+                            @foreach($currentSlots as $index => $slot)
                                 @php
-                                    $schedule = $this->getScheduleForSlot($dayNum, $timeSlot);
-                                    // Logic Break Jumat: Slot ke-3 (index 2) di array fridayTimeSlots
-                                    $isBreak = ($dayNum == 5 && $index == 2); 
+                                    $schedule = $this->getScheduleForSlot($dayNum, $slot['time_range']);
+                                    $isBreak = $slot['is_break'] ?? false;
                                 @endphp
                                 <tr class="{{ $index % 2 == 0 ? 'bg-white/5' : 'bg-transparent' }} hover:bg-white/10 transition-colors">
                                     @if($index == 0)
@@ -107,14 +106,14 @@
                                     @endif
                                     @if($isBreak)
                                         <td class="px-4 py-3 text-sm text-gray-300 border-r border-white/10 whitespace-nowrap">
-                                            {{ $timeSlot }}
+                                            {{ $slot['time_range'] }}
                                         </td>
                                         <td colspan="3" class="px-4 py-3 text-center bg-emerald-600/80 text-white font-bold tracking-widest border-r border-white/10">
-                                            🕌 ISTIRAHAT SHOLAT JUM'AT
+                                            🕌 {{ $slot['break_label'] ?? 'ISTIRAHAT' }}
                                         </td>
                                     @else
                                         <td class="px-4 py-3 text-sm text-gray-300 border-r border-white/10 whitespace-nowrap">
-                                            {{ $timeSlot }}
+                                            {{ $slot['time_range'] }}
                                         </td>
                                         @if($schedule)
                                             <td class="px-4 py-3 text-sm text-white border-r border-white/10">
