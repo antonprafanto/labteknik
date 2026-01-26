@@ -10,7 +10,7 @@ class TimeSlotManager extends Component
 {
     public $laboratory_id = null;
     public $is_friday = false;
-    public $slots = [];
+    public $timeSlotsList = [];
     
     // Form fields
     public $editingSlotId = null;
@@ -53,7 +53,7 @@ class TimeSlotManager extends Component
             $query->whereNull('laboratory_id');
         }
 
-        $this->slots = $query->get()->toArray();
+        $this->timeSlotsList = $query->get()->toArray();
     }
 
     public function createSlot()

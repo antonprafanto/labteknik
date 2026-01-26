@@ -41,7 +41,7 @@
                 </div>
 
                 <!-- Copy from Global -->
-                @if($laboratory_id && count($slots) == 0)
+                @if($laboratory_id && count($timeSlotsList) == 0)
                     <div class="mb-6 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg">
                         <p class="text-amber-800 dark:text-amber-300 text-sm mb-2">
                             Lab ini belum punya slot waktu. Anda bisa menyalin dari pengaturan global.
@@ -99,13 +99,13 @@
 
                 <!-- Slots List -->
                 <div class="space-y-2">
-                    @forelse($slots as $index => $slot)
+                    @forelse($timeSlotsList as $index => $slot)
                         <div class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:shadow-md transition-shadow {{ $slot['is_break'] ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-200 dark:border-emerald-800' : '' }}">
                             <div class="flex flex-col gap-1">
                                 <button wire:click="moveUp({{ $slot['id'] }})" class="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 {{ $index == 0 ? 'opacity-30 cursor-not-allowed' : '' }}" {{ $index == 0 ? 'disabled' : '' }}>
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg>
                                 </button>
-                                <button wire:click="moveDown({{ $slot['id'] }})" class="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 {{ $index == count($slots) - 1 ? 'opacity-30 cursor-not-allowed' : '' }}" {{ $index == count($slots) - 1 ? 'disabled' : '' }}>
+                                <button wire:click="moveDown({{ $slot['id'] }})" class="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 {{ $index == count($timeSlotsList) - 1 ? 'opacity-30 cursor-not-allowed' : '' }}" {{ $index == count($timeSlotsList) - 1 ? 'disabled' : '' }}>
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                                 </button>
                             </div>
