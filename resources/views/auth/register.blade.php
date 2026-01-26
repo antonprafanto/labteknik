@@ -34,6 +34,19 @@
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 
+            <div class="mt-4">
+                <x-label for="role" value="{{ __('Peran') }}" />
+                <select id="role" name="role" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" required>
+                    <option value="">-- Pilih Peran --</option>
+                    <option value="student" {{ old('role') == 'student' ? 'selected' : '' }}>Mahasiswa</option>
+                    <option value="lecturer" {{ old('role') == 'lecturer' ? 'selected' : '' }}>Dosen</option>
+                    <option value="lab_assistant" {{ old('role') == 'lab_assistant' ? 'selected' : '' }}>Asisten Lab</option>
+                </select>
+                <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                    Catatan: Peran Kepala Lab dan Super Admin hanya dapat diberikan oleh Administrator.
+                </p>
+            </div>
+
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">
                     <x-label for="terms">

@@ -24,6 +24,7 @@ class CreateNewUser implements CreatesNewUsers
             'nip_nim' => ['required', 'string', 'max:50', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
+            'role' => ['required', 'string', 'in:student,lecturer,lab_assistant'], // Hanya role yang diizinkan
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
@@ -32,7 +33,7 @@ class CreateNewUser implements CreatesNewUsers
             'nip_nim' => $input['nip_nim'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
-            'role' => 'user', // Default role untuk user baru
+            'role' => $input['role'], // Role dari form registrasi
         ]);
     }
 }
