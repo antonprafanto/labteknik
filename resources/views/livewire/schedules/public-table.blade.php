@@ -85,8 +85,7 @@
                             <th class="px-4 py-3 text-left text-sm font-bold text-white uppercase tracking-wider border-r border-white/20">Jam</th>
                             <th class="px-4 py-3 text-left text-sm font-bold text-white uppercase tracking-wider border-r border-white/20">Kelas</th>
                             <th class="px-4 py-3 text-left text-sm font-bold text-white uppercase tracking-wider border-r border-white/20">Angkatan</th>
-                            <th class="px-4 py-3 text-left text-sm font-bold text-white uppercase tracking-wider border-r border-white/20">Ruang</th>
-                            <th class="px-4 py-3 text-left text-sm font-bold text-white uppercase tracking-wider">Praktikum</th>
+                            <th class="px-4 py-3 text-left text-sm font-bold text-white uppercase tracking-wider">Mata Kuliah</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-white/10">
@@ -110,7 +109,7 @@
                                         <td class="px-4 py-3 text-sm text-gray-300 border-r border-white/10 whitespace-nowrap">
                                             {{ $timeSlot }}
                                         </td>
-                                        <td colspan="4" class="px-4 py-3 text-center bg-emerald-600/80 text-white font-bold tracking-widest border-r border-white/10">
+                                        <td colspan="3" class="px-4 py-3 text-center bg-emerald-600/80 text-white font-bold tracking-widest border-r border-white/10">
                                             🕌 ISTIRAHAT SHOLAT JUM'AT
                                         </td>
                                     @else
@@ -124,14 +123,10 @@
                                             <td class="px-4 py-3 text-sm text-white border-r border-white/10">
                                                 {{ $schedule->schedule_date ? $schedule->schedule_date->format('Y') : '-' }}
                                             </td>
-                                            <td class="px-4 py-3 text-sm text-white border-r border-white/10">
-                                                {{ $schedule->laboratory->name ?? '-' }}
-                                            </td>
                                             <td class="px-4 py-3 text-sm text-amber-300 font-medium">
                                                 {{ $schedule->course_name }}
                                             </td>
                                         @else
-                                            <td class="px-4 py-3 text-sm text-gray-500 border-r border-white/10">-</td>
                                             <td class="px-4 py-3 text-sm text-gray-500 border-r border-white/10">-</td>
                                             <td class="px-4 py-3 text-sm text-gray-500 border-r border-white/10">-</td>
                                             <td class="px-4 py-3 text-sm text-gray-500">-</td>
@@ -145,20 +140,12 @@
             </div>
         </div>
 
-        <!-- Legend -->
-        <div class="mt-6 flex flex-wrap gap-4 text-sm text-gray-400">
-            <div class="flex items-center gap-2">
-                <div class="w-4 h-4 bg-amber-400 rounded"></div>
-                <span>Hari</span>
-            </div>
-            <div class="flex items-center gap-2">
-                <div class="w-4 h-4 bg-amber-300 rounded"></div>
-                <span>Nama Praktikum</span>
-            </div>
-            <div class="flex items-center gap-2">
-                <div class="w-4 h-4 bg-red-500 rounded"></div>
-                <span>Waktu Istirahat</span>
-            </div>
+        <!-- Info -->
+        <div class="mt-6 p-4 bg-white/5 rounded-xl border border-white/10">
+            <p class="text-sm text-gray-400">
+                <span class="text-indigo-400 font-medium">ℹ️ Keterangan:</span>
+                Pilih laboratorium di atas untuk melihat jadwal praktikum. Tanda <span class="text-emerald-400 font-medium">hijau</span> pada hari Jumat menunjukkan waktu istirahat untuk Sholat Jum'at.
+            </p>
         </div>
 
         <!-- Footer -->
