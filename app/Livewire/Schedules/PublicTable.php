@@ -105,7 +105,7 @@ class PublicTable extends Component
     /**
      * Get slots from database
      */
-    protected function getSlots($isFriday)
+    public function getSlots($isFriday)
     {
         // First try lab-specific slots
         $slots = TimeSlot::where('laboratory_id', $this->selectedLab)
