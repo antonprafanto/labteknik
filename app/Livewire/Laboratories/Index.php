@@ -11,6 +11,27 @@ class Index extends Component
     use WithPagination;
 
     public $search = '';
+    public $confirmingDeletion = false;
+    public $itemToDelete = null;
+
+    public function confirmDelete($id)
+    {
+        $this->itemToDelete = $id;
+        $this->confirmingDeletion = true;
+    }
+
+    public function deleteItem()
+    {
+        if ($this->itemToDelete) {
+            $laboratory = Laboratory::find($this->itemToDelete);
+            if ($laboratory) {
+                $laboratory->delete();
+            }
+        }
+        
+        $this->confirmingDeletion = false;
+        $this->itemToDelete = null;
+    }
 
     public function render()
     {
