@@ -32,6 +32,7 @@ class CreateNewUser implements CreatesNewUsers
             'nip_nim' => $input['nip_nim'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'role' => 'user', // Default role untuk user baru
         ]);
     }
 }
