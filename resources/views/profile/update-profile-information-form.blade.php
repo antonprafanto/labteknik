@@ -108,15 +108,29 @@
             <x-label for="study_program" value="{{ __('Program Studi') }}" />
             <select id="study_program" wire:model="state.study_program" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
                 <option value="">-- Pilih Program Studi --</option>
-                <option value="Teknik Informatika">Teknik Informatika</option>
-                <option value="Teknik Elektro">Teknik Elektro</option>
-                <option value="Teknik Sipil">Teknik Sipil</option>
-                <option value="Teknik Mesin">Teknik Mesin</option>
-                <option value="Teknik Kimia">Teknik Kimia</option>
-                <option value="Teknik Pertambangan">Teknik Pertambangan</option>
-                <option value="Teknik Geologi">Teknik Geologi</option>
-                <option value="Teknik Lingkungan">Teknik Lingkungan</option>
-                <option value="Arsitektur">Arsitektur</option>
+                <optgroup label="Program Sarjana (S1)">
+                    <option value="S1 - Informatika">S1 - Informatika</option>
+                    <option value="S1 - Sistem Informasi">S1 - Sistem Informasi</option>
+                    <option value="S1 - Teknik Elektro">S1 - Teknik Elektro</option>
+                    <option value="S1 - Teknik Sipil">S1 - Teknik Sipil</option>
+                    <option value="S1 - Teknik Lingkungan">S1 - Teknik Lingkungan</option>
+                    <option value="S1 - Teknik Industri">S1 - Teknik Industri</option>
+                    <option value="S1 - Teknik Geologi">S1 - Teknik Geologi</option>
+                    <option value="S1 - Teknik Kimia">S1 - Teknik Kimia</option>
+                    <option value="S1 - Teknik Pertambangan">S1 - Teknik Pertambangan</option>
+                    <option value="S1 - Arsitektur">S1 - Arsitektur</option>
+                </optgroup>
+                <optgroup label="Program Magister (S2)">
+                    <option value="S2 - Informatika">S2 - Informatika</option>
+                    <option value="S2 - Teknik Sipil">S2 - Teknik Sipil</option>
+                </optgroup>
+                <optgroup label="Program Profesi">
+                    <option value="Profesi Insinyur">Profesi Insinyur</option>
+                </optgroup>
+                <optgroup label="Lainnya">
+                    <option value="Tenaga Kependidikan">Tenaga Kependidikan (Tendik)</option>
+                    <option value="Dosen">Dosen</option>
+                </optgroup>
             </select>
             <x-input-error for="study_program" class="mt-2" />
         </div>
