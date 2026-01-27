@@ -70,15 +70,15 @@ Route::middleware([
         Route::get('/borrowings/{item}', \App\Livewire\Borrowings\Show::class)->name('borrowings.show');
 
         // Print Borrowing Letter
-        Route::get('/borrowings/{borrowingRequest}/print', function ($id) {
-            $borrowingRequest = \App\Models\BorrowingRequest::with(['user', 'items.inventoryItem'])
-                ->findOrFail($id);
+        Route::get('/borrowings/{borrowingRequest}/print', function ($borrowingRequest) {
+            $request = \App\Models\BorrowingRequest::with(['user', 'items.inventoryItem'])
+                ->findOrFail($borrowingRequest);
                 
             // Ensure user is authorized to view this
-            if (auth()->user()->id !== $borrowingRequest->user_id && !auth()->user()->hasRole(['super_admin', 'head_of_lab', 'lab_assistant'])) {
+            if (auth()->user()->id !== $request->user_id && !auth()->user()->hasRole(['super_admin', 'head_of_lab', 'lab_assistant'])) {
                 abort(403);
             }
-            return view('borrowings.print', ['request' => $borrowingRequest]);
+            return view('borrowings.print', ['request' => $request]);
         })->name('borrowings.print');
 
         // Download/View Borrowing Proof Document
