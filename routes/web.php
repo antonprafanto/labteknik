@@ -70,7 +70,10 @@ Route::middleware([
         Route::get('/borrowings/{item}', \App\Livewire\Borrowings\Show::class)->name('borrowings.show');
 
         // Print Borrowing Letter
-        Route::get('/borrowings/{borrowingRequest}/print', function (\App\Models\BorrowingRequest $borrowingRequest) {
+        Route::get('/borrowings/{borrowingRequest}/print', function ($id) {
+            $borrowingRequest = \App\Models\BorrowingRequest::with(['user', 'items.inventoryItem'])
+                ->findOrFail($id);
+                
             // Ensure user is authorized to view this
             if (auth()->user()->id !== $borrowingRequest->user_id && !auth()->user()->hasRole(['super_admin', 'head_of_lab', 'lab_assistant'])) {
                 abort(403);
