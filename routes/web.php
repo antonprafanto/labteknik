@@ -78,6 +78,26 @@ Route::middleware([
             return view('borrowings.print', ['request' => $borrowingRequest]);
         })->name('borrowings.print');
 
+        // Download/View Borrowing Proof Document
+        Route::get('/borrowings/{borrowingRequest}/document', function (\App\Models\BorrowingRequest $borrowingRequest) {
+            // Ensure user is authorized to view this
+            if (auth()->user()->id !== $borrowingRequest->user_id && !auth()->user()->hasRole(['super_admin', 'head_of_lab', 'lab_assistant'])) {
+                abort(403);
+            }
+            
+            if (!$borrowingRequest->proof_document) {
+                abort(404, 'Document not found');
+            }
+            
+            $path = storage_path('app/public/' . $borrowingRequest->proof_document);
+            
+            if (!file_exists($path)) {
+                abort(404, 'File not found');
+            }
+            
+            return response()->file($path);
+        })->name('borrowings.document');
+
         // Schedules
         Route::get('/schedules', \App\Livewire\Schedules\Index::class)->name('schedules.index');
         Route::get('/schedules/calendar', \App\Livewire\Schedules\Calendar::class)->name('schedules.calendar');

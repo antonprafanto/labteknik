@@ -24,6 +24,7 @@ class BorrowingRequest extends Model
         'approved_by',
         'completed_at',
         'notes',
+        'proof_document',
     ];
 
     protected $casts = [

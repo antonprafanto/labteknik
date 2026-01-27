@@ -71,6 +71,39 @@
                                 </div>
                             </div>
 
+                            <!-- Proof Document Upload -->
+                            <div class="space-y-2">
+                                <label class="block font-bold text-sm text-gray-900 dark:text-white">{{ __('Bukti Surat Peminjaman') }} <span class="text-red-500">*</span></label>
+                                <div class="relative">
+                                    <input wire:model="proof_document" type="file" accept=".pdf" id="proof_document" class="hidden" />
+                                    <label for="proof_document" class="flex items-center justify-center w-full px-4 py-4 bg-white border-2 border-dashed border-gray-300 dark:border-gray-600 dark:bg-gray-900 text-gray-700 dark:text-gray-300 rounded-xl cursor-pointer hover:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all duration-200">
+                                        <div wire:loading.remove wire:target="proof_document" class="flex flex-col items-center">
+                                            @if($proof_document)
+                                                <svg class="w-8 h-8 text-emerald-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                                </svg>
+                                                <span class="font-medium text-emerald-600 dark:text-emerald-400">{{ $proof_document->getClientOriginalName() }}</span>
+                                                <span class="text-xs text-gray-500 dark:text-gray-400 mt-1">{{ number_format($proof_document->getSize() / 1024, 1) }} KB - Klik untuk ganti file</span>
+                                            @else
+                                                <svg class="w-8 h-8 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                                                </svg>
+                                                <span class="font-medium">Klik untuk upload file PDF</span>
+                                                <span class="text-xs text-gray-500 dark:text-gray-400 mt-1">Maksimal 2MB</span>
+                                            @endif
+                                        </div>
+                                        <div wire:loading wire:target="proof_document" class="flex flex-col items-center">
+                                            <svg class="animate-spin w-8 h-8 text-indigo-500 mb-2" fill="none" viewBox="0 0 24 24">
+                                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                            </svg>
+                                            <span class="font-medium text-indigo-600">Mengupload...</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                @error('proof_document') <span class="flex items-center text-red-600 dark:text-red-400 text-sm mt-1 font-medium">{{ $message }}</span> @enderror
+                            </div>
+
                             <!-- Selected Items List -->
                             <div>
                                 <h4 class="font-bold text-gray-900 dark:text-white mb-4 flex items-center text-lg">

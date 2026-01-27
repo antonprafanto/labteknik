@@ -8,15 +8,20 @@ use App\Models\InventoryItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Create extends Component
 {
+    use WithFileUploads;
+
     public $borrow_date;
     public $return_date;
     public $purpose;
     public $participants = 0;
     public $phone;
     public $address;
+    public $proof_document;
+    public $search = '';
     public $selectedItems = [];
 
     protected $rules = [
@@ -26,9 +31,16 @@ class Create extends Component
         'participants' => 'required|integer|min:0',
         'phone' => 'required|string|max:20',
         'address' => 'required|string',
+        'proof_document' => 'required|file|mimes:pdf|max:2048',
         'selectedItems' => 'required|array|min:1',
         'selectedItems.*.id' => 'required|exists:inventory_items,id',
         'selectedItems.*.quantity' => 'required|integer|min:1',
+    ];
+
+    protected $messages = [
+        'proof_document.required' => 'Bukti surat peminjaman wajib diupload.',
+        'proof_document.mimes' => 'File harus berformat PDF.',
+        'proof_document.max' => 'Ukuran file maksimal 2MB.',
     ];
 
     public function addItem($itemId)
@@ -65,6 +77,9 @@ class Create extends Component
 
         $requestNumber = 'BR-' . date('Ymd') . '-' . Str::upper(Str::random(5));
 
+        // Store the proof document
+        $proofDocumentPath = $this->proof_document->store('borrowing_documents', 'public');
+
         $borrowing = BorrowingRequest::create([
             'request_number' => $requestNumber,
             'user_id' => Auth::id(),
@@ -74,6 +89,7 @@ class Create extends Component
             'participants' => $this->participants,
             'phone' => $this->phone,
             'address' => $this->address,
+            'proof_document' => $proofDocumentPath,
             'status' => 'pending',
         ]);
 
@@ -95,12 +111,11 @@ class Create extends Component
 
     public function render()
     {
-        $search = request('search');
         $availableItems = InventoryItem::where('status', 'available')
             ->where('available_quantity', '>', 0)
-            ->when($search, function($query) use ($search) {
-                $query->where('name', 'like', "%{$search}%")
-                      ->orWhere('code', 'like', "%{$search}%");
+            ->when($this->search, function($query) {
+                $query->where('name', 'like', "%{$this->search}%")
+                      ->orWhere('code', 'like', "%{$this->search}%");
             })
             ->take(10)
             ->get();
