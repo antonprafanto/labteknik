@@ -46,6 +46,9 @@
                                 <x-dropdown-link href="{{ route('admin.inventory.categories.index') }}">
                                     {{ __('Kategori') }}
                                 </x-dropdown-link>
+                                <x-dropdown-link href="{{ route('admin.rooms.index') }}">
+                                    {{ __('Ruangan') }}
+                                </x-dropdown-link>
                                 <div class="border-t border-gray-200 dark:border-gray-600"></div>
                                 <x-dropdown-link href="{{ route('reports.dashboard') }}">
                                     {{ __('Laporan & Statistik') }}
@@ -86,6 +89,15 @@
                             @if(auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('head_of_lab') || auth()->user()->hasRole('lab_assistant'))
                                 <x-dropdown-link href="{{ route('borrowings.approval') }}">
                                     {{ __('Persetujuan') }}
+                                </x-dropdown-link>
+                            @endif
+                            <div class="border-t border-gray-200 dark:border-gray-600"></div>
+                            <x-dropdown-link href="{{ route('room-borrowings.index') }}">
+                                {{ __('Peminjaman Ruangan') }}
+                            </x-dropdown-link>
+                            @if(auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('head_of_lab') || auth()->user()->hasRole('lab_assistant'))
+                                <x-dropdown-link href="{{ route('room-borrowings.approval') }}">
+                                    {{ __('Approval Ruangan') }}
                                 </x-dropdown-link>
                             @endif
                             <div class="border-t border-gray-200 dark:border-gray-600"></div>

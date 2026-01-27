@@ -57,6 +57,11 @@ Route::middleware([
         Route::get('/inventory/items/create', \App\Livewire\Inventory\Items\Create::class)->name('inventory.items.create');
         Route::get('/inventory/items/{item}', \App\Livewire\Inventory\Items\Show::class)->name('inventory.items.show');
         Route::get('/inventory/items/{item}/edit', \App\Livewire\Inventory\Items\Edit::class)->name('inventory.items.edit');
+
+        // Rooms
+        Route::get('/rooms', \App\Livewire\Rooms\Index::class)->name('rooms.index');
+        Route::get('/rooms/create', \App\Livewire\Rooms\Create::class)->name('rooms.create');
+        Route::get('/rooms/{room}/edit', \App\Livewire\Rooms\Edit::class)->name('rooms.edit');
     });
 
     // General User Routes (Authenticated)
@@ -68,6 +73,16 @@ Route::middleware([
         Route::get('/borrowings/approvals', \App\Livewire\Borrowings\Approval::class)->name('borrowings.approval');
 
         Route::get('/borrowings/{item}', \App\Livewire\Borrowings\Show::class)->name('borrowings.show');
+
+        // Room Borrowings
+        Route::get('/room-borrowings', \App\Livewire\RoomBorrowings\Index::class)->name('room-borrowings.index');
+        Route::get('/room-borrowings/create', \App\Livewire\RoomBorrowings\Create::class)->name('room-borrowings.create');
+        Route::get('/room-borrowings/{roomBorrowing}/edit', \App\Livewire\RoomBorrowings\Edit::class)->name('room-borrowings.edit');
+
+        // Room Borrowing Approvals (Admin/Laboran only)
+        Route::middleware(['role:super_admin,head_of_lab,lab_assistant'])->group(function () {
+            Route::get('/room-borrowings/approvals', \App\Livewire\RoomBorrowings\Approval::class)->name('room-borrowings.approval');
+        });
 
         // Print Borrowing Letter
         Route::get('/borrowings/{borrowingRequest}/print', function ($borrowingRequest) {
