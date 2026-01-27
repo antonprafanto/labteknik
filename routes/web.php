@@ -75,7 +75,11 @@ Route::middleware([
                 ->findOrFail($borrowingRequest);
                 
             // Ensure user is authorized to view this
-            if (auth()->user()->id !== $request->user_id && !auth()->user()->hasRole(['super_admin', 'head_of_lab', 'lab_assistant'])) {
+            $user = auth()->user();
+            if ($user->id !== $request->user_id && 
+                !$user->hasRole('super_admin') && 
+                !$user->hasRole('head_of_lab') && 
+                !$user->hasRole('lab_assistant')) {
                 abort(403);
             }
             return view('borrowings.print', ['request' => $request]);
@@ -84,7 +88,11 @@ Route::middleware([
         // Download/View Borrowing Proof Document
         Route::get('/borrowings/{borrowingRequest}/document', function (\App\Models\BorrowingRequest $borrowingRequest) {
             // Ensure user is authorized to view this
-            if (auth()->user()->id !== $borrowingRequest->user_id && !auth()->user()->hasRole(['super_admin', 'head_of_lab', 'lab_assistant'])) {
+            $user = auth()->user();
+            if ($user->id !== $borrowingRequest->user_id && 
+                !$user->hasRole('super_admin') && 
+                !$user->hasRole('head_of_lab') && 
+                !$user->hasRole('lab_assistant')) {
                 abort(403);
             }
             
