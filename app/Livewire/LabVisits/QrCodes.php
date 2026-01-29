@@ -17,7 +17,7 @@ class QrCodes extends Component
 
     public function mount()
     {
-        $this->laboratories = Laboratory::where('status', 'active')->orderBy('name')->get();
+        $this->laboratories = Laboratory::where('status', 'Aktif')->orderBy('name')->get();
     }
 
     public function selectLab($labId)

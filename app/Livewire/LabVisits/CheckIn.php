@@ -46,7 +46,7 @@ class CheckIn extends Component
 
     public function mount(?Laboratory $laboratory = null)
     {
-        $this->laboratories = Laboratory::where('status', 'active')->orderBy('name')->get();
+        $this->laboratories = Laboratory::where('status', 'Aktif')->orderBy('name')->get();
         
         if ($laboratory && $laboratory->exists) {
             $this->laboratory = $laboratory;
