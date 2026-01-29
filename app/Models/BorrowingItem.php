@@ -17,6 +17,9 @@ class BorrowingItem extends Model
         'condition_after',
         'returned_at',
         'notes',
+        'return_photo',
+        'returned_by',
+        'return_condition',
     ];
 
     protected $casts = [
@@ -31,5 +34,10 @@ class BorrowingItem extends Model
     public function inventoryItem()
     {
         return $this->belongsTo(InventoryItem::class);
+    }
+
+    public function returnedByUser()
+    {
+        return $this->belongsTo(User::class, 'returned_by');
     }
 }

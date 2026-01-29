@@ -11,6 +11,7 @@
                         <select wire:model.live="statusFilter" class="border-gray-200 dark:border-gray-600 dark:bg-gray-800 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
                             <option value="pending">{{ __('Pending') }}</option>
                             <option value="approved">{{ __('Approved') }}</option>
+                            <option value="returned">{{ __('Returned') }}</option>
                             <option value="rejected">{{ __('Rejected') }}</option>
                             <option value="completed">{{ __('Completed') }}</option>
                             <option value="">{{ __('All Status') }}</option>
@@ -112,8 +113,21 @@
                                             {{ __('Reject') }}
                                         </button>
                                     </div>
+                                @elseif($request->status === 'approved')
+                                    <a href="{{ route('borrowings.return', $request) }}" class="inline-flex items-center px-3 py-1.5 bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 hover:bg-teal-200 dark:hover:bg-teal-900/50 rounded-lg text-sm font-medium transition-colors">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        {{ __('Proses Pengembalian') }}
+                                    </a>
                                 @else
-                                    <span class="text-gray-400 dark:text-gray-500">{{ __('No actions') }}</span>
+                                    <a href="{{ route('borrowings.show', $request) }}" class="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 text-sm font-medium">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                        </svg>
+                                        {{ __('Lihat') }}
+                                    </a>
                                 @endif
                             </td>
                         </tr>

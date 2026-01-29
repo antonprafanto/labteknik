@@ -81,6 +81,11 @@ Route::middleware([
 
         Route::get('/borrowings/{item}', \App\Livewire\Borrowings\Show::class)->name('borrowings.show');
 
+        // Return Borrowing Items (Admin/Laboran only)
+        Route::middleware(['role:super_admin,head_of_lab,lab_assistant'])->group(function () {
+            Route::get('/borrowings/{borrowingRequest}/return', \App\Livewire\Borrowings\ReturnItems::class)->name('borrowings.return');
+        });
+
         // Room Borrowings
         Route::get('/room-borrowings', \App\Livewire\RoomBorrowings\Index::class)->name('room-borrowings.index');
         Route::get('/room-borrowings/create', \App\Livewire\RoomBorrowings\Create::class)->name('room-borrowings.create');
