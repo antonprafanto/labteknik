@@ -1,0 +1,48 @@
+<?php
+
+namespace App\Livewire\LabVisits;
+
+use App\Models\Laboratory;
+use Livewire\Component;
+use BaconQrCode\Renderer\Image\SvgImageBackEnd;
+use BaconQrCode\Renderer\ImageRenderer;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Writer;
+
+class QrCodes extends Component
+{
+    public $laboratories = [];
+    public $selectedLab = null;
+    public $qrCode = null;
+
+    public function mount()
+    {
+        $this->laboratories = Laboratory::where('status', 'active')->orderBy('name')->get();
+    }
+
+    public function selectLab($labId)
+    {
+        $this->selectedLab = Laboratory::find($labId);
+        $this->generateQr();
+    }
+
+    public function generateQr()
+    {
+        if (!$this->selectedLab) return;
+
+        $url = route('lab-visits.check-in', ['laboratory' => $this->selectedLab->id]);
+
+        $renderer = new ImageRenderer(
+            new RendererStyle(300),
+            new SvgImageBackEnd()
+        );
+
+        $writer = new Writer($renderer);
+        $this->qrCode = $writer->writeString($url);
+    }
+
+    public function render()
+    {
+        return view('livewire.lab-visits.qr-codes')->layout('layouts.app');
+    }
+}

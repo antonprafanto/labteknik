@@ -55,6 +55,12 @@
                                 <x-dropdown-link href="{{ route('reports.dashboard') }}">
                                     {{ __('Laporan & Statistik') }}
                                 </x-dropdown-link>
+                                <x-dropdown-link href="{{ route('lab-visits.index') }}">
+                                    {{ __('Kunjungan Lab') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link href="{{ route('surveys.index') }}">
+                                    {{ __('Survey Kepuasan') }}
+                                </x-dropdown-link>
                                 <x-dropdown-link href="{{ route('admin.time-slots.index') }}">
                                     {{ __('Pengaturan Slot Waktu') }}
                                 </x-dropdown-link>
@@ -282,6 +288,12 @@
                 @if(auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('head_of_lab'))
                     <x-responsive-nav-link href="{{ route('reports.dashboard') }}" :active="request()->routeIs('reports.dashboard')">
                         {{ __('Reports & Stats') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('lab-visits.index') }}" :active="request()->routeIs('lab-visits.*')">
+                        {{ __('Kunjungan Lab') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('surveys.index') }}" :active="request()->routeIs('surveys.*')">
+                        {{ __('Survey Kepuasan') }}
                     </x-responsive-nav-link>
                 @endif
                 @if(auth()->user()->hasRole('super_admin'))

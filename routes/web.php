@@ -32,6 +32,13 @@ Route::get('/', function () {
 // Public Schedule Table
 Route::get('/jadwal-praktikum', \App\Livewire\Schedules\PublicTable::class)->name('schedules.public');
 
+// Public Lab Visits (No Auth Required)
+Route::get('/lab-visit/check-in/{laboratory?}', \App\Livewire\LabVisits\CheckIn::class)->name('lab-visits.check-in');
+Route::get('/lab-visit/check-out', \App\Livewire\LabVisits\CheckOut::class)->name('lab-visits.check-out');
+
+// Public Survey (No Auth Required)
+Route::get('/survey/{laboratory}/{token?}', \App\Livewire\Surveys\Create::class)->name('surveys.create');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -157,7 +164,16 @@ Route::middleware([
     Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:super_admin,head_of_lab'])->group(function () {
         Route::get('/reports', \App\Livewire\Reports\Dashboard::class)->name('reports.dashboard');
         Route::get('/reports/export', [\App\Http\Controllers\ReportController::class, 'exportPdf'])->name('reports.export');
+        
+        // Lab Visits Management
+        Route::get('/lab-visits', \App\Livewire\LabVisits\Index::class)->name('lab-visits.index');
+        Route::get('/lab-visits/qr-codes', \App\Livewire\LabVisits\QrCodes::class)->name('lab-visits.qr-codes');
+        
+        // Surveys Management
+        Route::get('/surveys', \App\Livewire\Surveys\Index::class)->name('surveys.index');
+        Route::get('/surveys/dashboard', \App\Livewire\Surveys\Dashboard::class)->name('surveys.dashboard');
     });
+
 
     // User Management (Super Admin)
     Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:super_admin'])->group(function () {

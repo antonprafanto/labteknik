@@ -49,4 +49,14 @@ class Laboratory extends Model
     {
         return $this->hasMany(User::class)->where('role', 'lab_assistant');
     }
+
+    public function labVisits()
+    {
+        return $this->hasMany(LabVisit::class);
+    }
+
+    public function satisfactionSurveys()
+    {
+        return $this->hasMany(LabSatisfactionSurvey::class);
+    }
 }

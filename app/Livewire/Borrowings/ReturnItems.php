@@ -180,6 +180,16 @@ class ReturnItems extends Component
         }
 
         session()->flash('message', 'Pengembalian berhasil diproses.');
+        
+        // Redirect to survey if laboratory exists
+        $laboratory = $this->borrowingRequest->items->first()?->inventoryItem?->laboratory;
+        if ($laboratory) {
+            return redirect()->route('surveys.create', [
+                'laboratory' => $laboratory->id,
+                'token' => $this->borrowingRequest->id
+            ]);
+        }
+        
         return redirect()->route('borrowings.approval');
     }
 
