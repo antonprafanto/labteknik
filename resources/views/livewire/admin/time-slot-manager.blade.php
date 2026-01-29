@@ -54,28 +54,26 @@
 
                 <!-- Add/Edit Form -->
                 <div class="mb-6 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-gray-200 dark:border-gray-600">
+                    <!-- Inline Style to force Dark Mode Time Icon Visibility immediately -->
+                    <style>
+                        .dark input[type="time"]::-webkit-calendar-picker-indicator {
+                            filter: invert(1) brightness(100%);
+                            cursor: pointer;
+                        }
+                    </style>
+
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                         {{ $editingSlotId ? '✏️ Edit Slot' : '➕ Tambah Slot Baru' }}
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Jam Mulai</label>
-                            <div class="relative">
-                                <input type="time" wire:model="start_time" class="custom-time-input w-full px-3 py-2 pr-10 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-indigo-500 focus:border-indigo-500">
-                                <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-300 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                            </div>
+                            <input type="time" wire:model="start_time" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-indigo-500 focus:border-indigo-500">
                             @error('start_time') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Jam Selesai</label>
-                            <div class="relative">
-                                <input type="time" wire:model="end_time" class="custom-time-input w-full px-3 py-2 pr-10 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-indigo-500 focus:border-indigo-500">
-                                <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-300 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                            </div>
+                            <input type="time" wire:model="end_time" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-indigo-500 focus:border-indigo-500">
                             @error('end_time') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
                         <div class="flex items-center gap-4">
