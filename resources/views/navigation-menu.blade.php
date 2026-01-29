@@ -43,9 +43,11 @@
                                 <x-dropdown-link href="{{ route('admin.inventory.items.index') }}">
                                     {{ __('Data Barang') }}
                                 </x-dropdown-link>
+                                @if(auth()->user()->hasRole('super_admin'))
                                 <x-dropdown-link href="{{ route('admin.inventory.categories.index') }}">
                                     {{ __('Kategori') }}
                                 </x-dropdown-link>
+                                @endif
                                 <x-dropdown-link href="{{ route('admin.rooms.index') }}">
                                     {{ __('Ruangan') }}
                                 </x-dropdown-link>
@@ -269,9 +271,11 @@
             </x-responsive-nav-link>
             
             @if(auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('head_of_lab') || auth()->user()->hasRole('lab_assistant'))
+                @if(auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('head_of_lab'))
                 <x-responsive-nav-link href="{{ route('admin.laboratories.index') }}" :active="request()->routeIs('admin.laboratories.*')">
                     {{ __('Laboratories') }}
                 </x-responsive-nav-link>
+                @endif
                 <x-responsive-nav-link href="{{ route('admin.inventory.items.index') }}" :active="request()->routeIs('admin.inventory.*')">
                     {{ __('Inventory') }}
                 </x-responsive-nav-link>

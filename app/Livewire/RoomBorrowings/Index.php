@@ -44,9 +44,16 @@ class Index extends Component
         $user = Auth::user();
         $query = RoomBorrowing::with(['room', 'user', 'approver']);
 
-        // User can see only their bookings, admin/lab staff can see all
+        // User can see only their bookings, admin/lab staff can see all/filtered
         if (!in_array($user->role, ['super_admin', 'head_of_lab', 'lab_assistant'])) {
             $query->where('user_id', $user->id);
+        } else {
+            // Kepala lab only sees room borrowings for rooms in their lab
+            if ($user->role === 'head_of_lab' && $user->laboratory_id) {
+                $query->whereHas('room', function($q) use ($user) {
+                    $q->where('laboratory_id', $user->laboratory_id);
+                });
+            }
         }
 
         if ($this->search) {

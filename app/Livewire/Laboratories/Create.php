@@ -39,7 +39,7 @@ class Create extends Component
 
         $path = $this->floor_plan ? $this->floor_plan->store('floor_plans', 'public') : null;
 
-        Laboratory::create([
+        $lab = Laboratory::create([
             'name' => $this->name,
             'location' => $this->location,
             'room_number' => $this->room_number,
@@ -51,13 +51,23 @@ class Create extends Component
             'floor_plan_path' => $path,
         ]);
 
+        // Sync: Update laboratory_id for the assigned head
+        if ($this->head_lab_id) {
+            User::where('id', $this->head_lab_id)->update(['laboratory_id' => $lab->id]);
+        }
+
+        session()->flash('message', 'Laboratorium berhasil dibuat.');
+
         return redirect()->route('admin.laboratories.index');
     }
 
     public function render()
     {
         return view('livewire.laboratories.create', [
-            'heads' => User::where('role', 'head_of_lab')->get(),
+            // Only show head_of_lab users not already assigned to another lab
+            'heads' => User::where('role', 'head_of_lab')
+                ->whereNull('laboratory_id')
+                ->get(),
         ])->layout('layouts.app');
     }
 }

@@ -54,6 +54,9 @@ class Edit extends Component
     {
         $this->validate();
 
+        // Store old head_lab_id for comparison
+        $oldHeadId = $this->laboratory->head_lab_id;
+
         if ($this->floor_plan) {
             $path = $this->floor_plan->store('floor_plans', 'public');
         } else {
@@ -72,13 +75,34 @@ class Edit extends Component
             'floor_plan_path' => $path,
         ]);
 
+        // Sync: Handle head changes
+        // Clear old head's laboratory_id if head changed
+        if ($oldHeadId && $oldHeadId != $this->head_lab_id) {
+            User::where('id', $oldHeadId)
+                ->where('laboratory_id', $this->laboratory->id)
+                ->update(['laboratory_id' => null]);
+        }
+
+        // Set new head's laboratory_id
+        if ($this->head_lab_id) {
+            User::where('id', $this->head_lab_id)->update(['laboratory_id' => $this->laboratory->id]);
+        }
+
+        session()->flash('message', 'Laboratorium berhasil diperbarui.');
+
         return redirect()->route('admin.laboratories.index');
     }
 
     public function render()
     {
         return view('livewire.laboratories.edit', [
-            'heads' => User::where('role', 'head_of_lab')->get(),
+            // Show head_of_lab users: unassigned OR currently assigned to this lab
+            'heads' => User::where('role', 'head_of_lab')
+                ->where(function ($query) {
+                    $query->whereNull('laboratory_id')
+                          ->orWhere('laboratory_id', $this->laboratory->id);
+                })
+                ->get(),
         ])->layout('layouts.app');
     }
 }

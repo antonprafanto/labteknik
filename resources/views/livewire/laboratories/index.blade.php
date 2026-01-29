@@ -7,12 +7,14 @@
                         <h2 class="text-xl font-bold text-gray-800 dark:text-white">{{ __('Laboratory Management') }}</h2>
                         <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{{ __('Manage laboratory facilities and staff assignments.') }}</p>
                     </div>
+                    @if(auth()->user()->hasRole('super_admin'))
                     <a href="{{ route('admin.laboratories.create') }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg shadow-sm transition-colors duration-200">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                         </svg>
                         {{ __('Add New Laboratory') }}
                     </a>
+                    @endif
                 </div>
             </div>
 
@@ -82,6 +84,7 @@
                                 </span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                @if(auth()->user()->hasRole('super_admin'))
                                 <div class="flex items-center space-x-2">
                                     <a href="{{ route('admin.laboratories.edit', $lab) }}" class="inline-flex items-center px-3 py-1.5 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 hover:bg-indigo-200 dark:hover:bg-indigo-900/50 rounded-lg text-sm font-medium transition-colors">
                                         <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -96,6 +99,9 @@
                                         {{ __('Delete') }}
                                     </button>
                                 </div>
+                                @else
+                                <span class="text-gray-400 text-sm">{{ __('View Only') }}</span>
+                                @endif
                             </td>
                         </tr>
                         @empty

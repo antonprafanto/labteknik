@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Users;
 
+use App\Models\Laboratory;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -38,8 +39,12 @@ class Index extends Component
             return;
         }
 
+        // Clear head_lab_id if this user was a head of lab
+        // Note: DB has nullOnDelete but we do this explicitly for clarity
+        Laboratory::where('head_lab_id', $user->id)->update(['head_lab_id' => null]);
+
         $user->delete();
-        session()->flash('message', 'User deleted successfully.');
+        session()->flash('message', 'User berhasil dihapus.');
     }
 
     public function render()

@@ -19,7 +19,19 @@ class Approval extends Component
 
     public function approve($requestId)
     {
-        $request = BorrowingRequest::find($requestId);
+        $request = BorrowingRequest::with('items.inventoryItem')->find($requestId);
+        
+        // Authorization check for head_of_lab
+        $user = Auth::user();
+        if ($user->role === 'head_of_lab' && $user->laboratory_id) {
+            $hasItemsFromLab = $request->items->contains(function ($item) use ($user) {
+                return $item->inventoryItem && $item->inventoryItem->laboratory_id === $user->laboratory_id;
+            });
+            if (!$hasItemsFromLab) {
+                session()->flash('error', 'Anda tidak memiliki akses untuk menyetujui peminjaman ini.');
+                return;
+            }
+        }
         
         // Decrement stock for each item
         foreach ($request->items as $item) {
@@ -57,7 +69,19 @@ class Approval extends Component
 
     public function reject($requestId)
     {
-        $request = BorrowingRequest::find($requestId);
+        $request = BorrowingRequest::with('items.inventoryItem')->find($requestId);
+
+        // Authorization check for head_of_lab
+        $user = Auth::user();
+        if ($user->role === 'head_of_lab' && $user->laboratory_id) {
+            $hasItemsFromLab = $request->items->contains(function ($item) use ($user) {
+                return $item->inventoryItem && $item->inventoryItem->laboratory_id === $user->laboratory_id;
+            });
+            if (!$hasItemsFromLab) {
+                session()->flash('error', 'Anda tidak memiliki akses untuk menolak peminjaman ini.');
+                return;
+            }
+        }
 
         $oldStatus = $request->status;
 
@@ -81,12 +105,21 @@ class Approval extends Component
 
     public function render()
     {
-        $requests = BorrowingRequest::with(['user', 'items'])
+        $user = Auth::user();
+        
+        $query = BorrowingRequest::with(['user', 'items'])
             ->when($this->statusFilter, function($query) {
                 return $query->where('status', $this->statusFilter);
-            })
-            ->latest()
-            ->paginate(10);
+            });
+
+        // Kepala lab only sees borrowing requests with items from their lab
+        if ($user->role === 'head_of_lab' && $user->laboratory_id) {
+            $query->whereHas('items.inventoryItem', function($q) use ($user) {
+                $q->where('laboratory_id', $user->laboratory_id);
+            });
+        }
+        
+        $requests = $query->latest()->paginate(10);
 
         return view('livewire.borrowings.approval', [
             'requests' => $requests,

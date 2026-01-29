@@ -24,6 +24,14 @@ class Approval extends Component
         $this->selectedBorrowing = RoomBorrowing::with(['room', 'user'])->find($id);
         
         if ($this->selectedBorrowing && $this->selectedBorrowing->status === 'pending') {
+            // Check authorization for head_of_lab
+            $user = Auth::user();
+            if ($user->role === 'head_of_lab' && $user->laboratory_id) {
+                if ($this->selectedBorrowing->room->laboratory_id !== $user->laboratory_id) {
+                    session()->flash('error', 'Anda tidak memiliki akses untuk menyetujui peminjaman ini.');
+                    return;
+                }
+            }
             $this->showApprovalModal = true;
         }
     }
@@ -60,6 +68,14 @@ class Approval extends Component
         $this->selectedBorrowing = RoomBorrowing::with(['room', 'user'])->find($id);
         
         if ($this->selectedBorrowing && $this->selectedBorrowing->status === 'pending') {
+            // Check authorization for head_of_lab
+            $user = Auth::user();
+            if ($user->role === 'head_of_lab' && $user->laboratory_id) {
+                if ($this->selectedBorrowing->room->laboratory_id !== $user->laboratory_id) {
+                    session()->flash('error', 'Anda tidak memiliki akses untuk menolak peminjaman ini.');
+                    return;
+                }
+            }
             $this->showRejectionModal = true;
         }
     }
@@ -105,7 +121,15 @@ class Approval extends Component
 
     public function render()
     {
+        $user = Auth::user();
         $query = RoomBorrowing::with(['room', 'user'])->where('status', 'pending');
+
+        // Kepala lab only sees room borrowings for rooms in their lab
+        if ($user->role === 'head_of_lab' && $user->laboratory_id) {
+            $query->whereHas('room', function($q) use ($user) {
+                $q->where('laboratory_id', $user->laboratory_id);
+            });
+        }
 
         if ($this->search) {
             $query->where(function($q) {

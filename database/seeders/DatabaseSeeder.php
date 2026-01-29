@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             'is_active' => true,
         ]);
 
-        User::create([
+        $kepalaLab = User::create([
             'name' => 'Kepala Lab',
             'email' => 'kalab@admin.com',
             'password' => Hash::make('password'),
@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
             'is_active' => true,
         ]);
 
-        User::create([
+        $laboran = User::create([
             'name' => 'Laboran',
             'email' => 'laboran@admin.com',
             'password' => Hash::make('password'),
@@ -69,15 +69,20 @@ class DatabaseSeeder extends Seeder
             InventoryCategory::create($category);
         }
 
-        // Create Laboratories
-        Laboratory::create([
+        // Create Laboratories with head assignments
+        $lab1 = Laboratory::create([
             'name' => 'Laboratorium Rekayasa Perangkat Lunak',
             'location' => 'Gedung C Lantai 2',
             'room_number' => 'C201',
             'capacity' => 30,
             'status' => 'aktif',
             'description' => 'Lab untuk praktikum pemrograman dan rekayasa perangkat lunak.',
+            'head_lab_id' => $kepalaLab->id,
         ]);
+
+        // Sync: Update kepala lab's laboratory_id
+        $kepalaLab->update(['laboratory_id' => $lab1->id]);
+        $laboran->update(['laboratory_id' => $lab1->id]);
 
         Laboratory::create([
             'name' => 'Laboratorium Jaringan Komputer',
@@ -87,6 +92,7 @@ class DatabaseSeeder extends Seeder
             'status' => 'aktif',
             'description' => 'Lab untuk praktikum jaringan dan keamanan siber.',
         ]);
+
 
         // Seed Inventory Items
         $lab = Laboratory::first();

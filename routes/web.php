@@ -41,15 +41,22 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::middleware(['role:super_admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::middleware(['role:super_admin,head_of_lab'])->prefix('admin')->name('admin.')->group(function () {
+        // Laboratories - Index accessible by head_of_lab (filtered in component)
         Route::get('/laboratories', \App\Livewire\Laboratories\Index::class)->name('laboratories.index');
-        Route::get('/laboratories/create', \App\Livewire\Laboratories\Create::class)->name('laboratories.create');
-        Route::get('/laboratories/{laboratory}/edit', \App\Livewire\Laboratories\Edit::class)->name('laboratories.edit');
+        
+        // Laboratories Create/Edit - Super admin only
+        Route::middleware(['role:super_admin'])->group(function () {
+            Route::get('/laboratories/create', \App\Livewire\Laboratories\Create::class)->name('laboratories.create');
+            Route::get('/laboratories/{laboratory}/edit', \App\Livewire\Laboratories\Edit::class)->name('laboratories.edit');
+        });
 
-        // Inventory Categories
-        Route::get('/inventory/categories', \App\Livewire\Inventory\Categories\Index::class)->name('inventory.categories.index');
-        Route::get('/inventory/categories/create', \App\Livewire\Inventory\Categories\Create::class)->name('inventory.categories.create');
-        Route::get('/inventory/categories/{category}/edit', \App\Livewire\Inventory\Categories\Edit::class)->name('inventory.categories.edit');
+        // Inventory Categories - Super admin only
+        Route::middleware(['role:super_admin'])->group(function () {
+            Route::get('/inventory/categories', \App\Livewire\Inventory\Categories\Index::class)->name('inventory.categories.index');
+            Route::get('/inventory/categories/create', \App\Livewire\Inventory\Categories\Create::class)->name('inventory.categories.create');
+            Route::get('/inventory/categories/{category}/edit', \App\Livewire\Inventory\Categories\Edit::class)->name('inventory.categories.edit');
+        });
 
         // Inventory Items
         Route::get('/inventory/items/scan', \App\Livewire\Inventory\Scan::class)->name('inventory.items.scan');
