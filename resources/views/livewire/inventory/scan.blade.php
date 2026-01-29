@@ -34,7 +34,7 @@
                         <div class="flex-grow">
                             <label for="scannedCode" class="sr-only">{{ __('Kode Barang') }}</label>
                             <input type="text" id="scannedCode" wire:model.live="scannedCode" 
-                                class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm py-3" 
+                                class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm py-3" 
                                 placeholder="Contoh: INV-2024-001">
                         </div>
                         <button wire:click="handleScan($wire.scannedCode)" 

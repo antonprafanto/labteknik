@@ -20,7 +20,7 @@
                         <input wire:model.live="search" type="text" placeholder="{{ __('Cari barang...') }}" class="w-full px-4 py-2 border-gray-200 dark:border-gray-700 dark:bg-gray-900 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm placeholder-gray-400">
                     </div>
                     <div>
-                        <select wire:model.live="category_id" class="w-full border-gray-200 dark:border-gray-700 dark:bg-gray-900 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
+                        <select wire:model.live="category_id" class="w-full border-gray-200 dark:border-gray-700 dark:bg-gray-900 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
                             <option value="">{{ __('Semua Kategori') }}</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -28,7 +28,7 @@
                         </select>
                     </div>
                     <div>
-                        <select wire:model.live="laboratory_id" class="w-full border-gray-200 dark:border-gray-700 dark:bg-gray-900 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
+                        <select wire:model.live="laboratory_id" class="w-full border-gray-200 dark:border-gray-700 dark:bg-gray-900 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
                             <option value="">{{ __('Semua Laboratorium') }}</option>
                             @foreach($laboratories as $lab)
                                 <option value="{{ $lab->id }}">{{ $lab->name }}</option>
@@ -36,7 +36,7 @@
                         </select>
                     </div>
                     <div>
-                        <select wire:model.live="status" class="w-full border-gray-200 dark:border-gray-700 dark:bg-gray-900 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
+                        <select wire:model.live="status" class="w-full border-gray-200 dark:border-gray-700 dark:bg-gray-900 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
                             <option value="">{{ __('Semua Status') }}</option>
                             <option value="available">{{ __('Tersedia') }}</option>
                             <option value="borrowed">{{ __('Dipinjam') }}</option>

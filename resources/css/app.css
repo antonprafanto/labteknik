@@ -22,3 +22,14 @@
         @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-200 to-white;
     }
 }
+
+/* Fix dropdown/select options visibility in dark mode */
+.dark select option {
+    background-color: #1f2937; /* gray-800 */
+    color: #f9fafb; /* gray-50 */
+}
+
+select option {
+    background-color: #ffffff;
+    color: #111827; /* gray-900 */
+}

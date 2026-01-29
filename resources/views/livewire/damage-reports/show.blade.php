@@ -137,7 +137,7 @@
                                     <div class="space-y-4">
                                         <div>
                                             <label for="status" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('Status') }}</label>
-                                            <select id="status" wire:model="status" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-800 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
+                                            <select id="status" wire:model="status" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-800 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
                                                 <option value="reported">{{ __('Reported') }}</option>
                                                 <option value="in_progress">{{ __('In Progress (Under Repair)') }}</option>
                                                 <option value="completed">{{ __('Completed (Repaired)') }}</option>

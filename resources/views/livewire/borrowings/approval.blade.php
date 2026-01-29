@@ -8,7 +8,7 @@
                         <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{{ __('Review and process borrowing requests.') }}</p>
                     </div>
                     <div>
-                        <select wire:model.live="statusFilter" class="border-gray-200 dark:border-gray-600 dark:bg-gray-800 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
+                        <select wire:model.live="statusFilter" class="border-gray-200 dark:border-gray-600 dark:bg-gray-800 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
                             <option value="pending">{{ __('Pending') }}</option>
                             <option value="approved">{{ __('Approved') }}</option>
                             <option value="rejected">{{ __('Rejected') }}</option>

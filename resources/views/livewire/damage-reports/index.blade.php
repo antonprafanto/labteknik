@@ -20,7 +20,7 @@
                         <input wire:model.live="search" type="text" placeholder="{{ __('Search Item Name or Code...') }}" class="w-full px-4 py-2 border-gray-200 dark:border-gray-600 dark:bg-gray-800 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm placeholder-gray-400">
                     </div>
                     <div>
-                        <select wire:model.live="statusFilter" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-800 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
+                        <select wire:model.live="statusFilter" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-800 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
                             <option value="">{{ __('All Statuses') }}</option>
                             <option value="reported">{{ __('Reported') }}</option>
                             <option value="in_progress">{{ __('In Progress') }}</option>

@@ -254,7 +254,7 @@
             <div class="grid grid-cols-1 gap-6">
                 <div>
                     <x-label for="maintenance_type" value="{{ __('Type') }}" class="dark:text-gray-300" />
-                    <select id="maintenance_type" wire:model="maintenance_type" class="block mt-1 w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
+                    <select id="maintenance_type" wire:model="maintenance_type" class="block mt-1 w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
                         <option value="routine_check">{{ __('Routine Check') }}</option>
                         <option value="cleaning">{{ __('Cleaning') }}</option>
                         <option value="calibration">{{ __('Calibration') }}</option>

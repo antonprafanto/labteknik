@@ -88,7 +88,7 @@
                     </div>
                     
                     <div class="flex items-center gap-3">
-                        <select wire:model.live="laboratory_id" class="border-gray-200 dark:border-gray-600 dark:bg-gray-800 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
+                        <select wire:model.live="laboratory_id" class="border-gray-200 dark:border-gray-600 dark:bg-gray-800 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
                             <option value="">{{ __('All Laboratories') }}</option>
                             @foreach($laboratories as $lab)
                                 <option value="{{ $lab->id }}">{{ $lab->name }}</option>
