@@ -61,3 +61,13 @@ input[type="datetime-local"] {
 .dark input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
     opacity: 1;
 }
+
+/* Hide native time picker icons when using custom icon wrapper */
+.custom-time-input::-webkit-calendar-picker-indicator {
+    display: none !important;
+    -webkit-appearance: none;
+}
+
+.custom-time-input::-webkit-inner-spin-button {
+    display: none;
+}
