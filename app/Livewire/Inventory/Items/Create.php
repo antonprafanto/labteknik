@@ -7,7 +7,9 @@ use App\Models\InventoryItem;
 use App\Models\Laboratory;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\On;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class Create extends Component
 {
@@ -25,6 +27,7 @@ class Create extends Component
     public $category_id;
     public $price;
     public $image;
+    public $capturedImage; // Base64 image from camera
     public $specifications = [];
 
     protected $rules = [
@@ -42,11 +45,48 @@ class Create extends Component
         'image' => 'nullable|image|max:2048',
     ];
 
+    #[On('photo-captured')]
+    public function setCapturedImage($data)
+    {
+        $this->capturedImage = is_array($data) ? $data[0] : $data;
+        $this->image = null; // Clear file upload when camera is used
+    }
+
+    #[On('photo-cleared')]
+    public function clearCapturedImage()
+    {
+        $this->capturedImage = null;
+    }
+
+    protected function saveCapturedImage()
+    {
+        if (!$this->capturedImage) {
+            return null;
+        }
+
+        // Remove data URL prefix if present
+        $base64 = preg_replace('/^data:image\/\w+;base64,/', '', $this->capturedImage);
+        $imageData = base64_decode($base64);
+
+        // Generate unique filename
+        $filename = 'inventory_items/' . Str::random(20) . '.jpg';
+        Storage::disk('public')->put($filename, $imageData);
+
+        return $filename;
+    }
+
     public function save()
     {
         $this->validate();
 
-        $path = $this->image ? $this->image->store('inventory_items', 'public') : null;
+        // Priority: captured image > uploaded file
+        if ($this->capturedImage) {
+            $path = $this->saveCapturedImage();
+        } elseif ($this->image) {
+            $path = $this->image->store('inventory_items', 'public');
+        } else {
+            $path = null;
+        }
 
         // Generate a unique code based on category and random string
         $categoryCode = Str::upper(Str::substr(InventoryCategory::find($this->category_id)->name, 0, 3));
@@ -81,3 +121,4 @@ class Create extends Component
         ])->layout('layouts.app');
     }
 }
+

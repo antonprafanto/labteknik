@@ -7,6 +7,9 @@ use App\Models\InventoryItem;
 use App\Models\Laboratory;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\On;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class Edit extends Component
 {
@@ -27,6 +30,7 @@ class Edit extends Component
     public $price;
     public $image;
     public $current_image;
+    public $capturedImage; // Base64 image from camera
 
     protected $rules = [
         'name' => 'required|string|max:255',
@@ -60,11 +64,44 @@ class Edit extends Component
         $this->current_image = $item->image_path;
     }
 
+    #[On('photo-captured')]
+    public function setCapturedImage($data)
+    {
+        $this->capturedImage = is_array($data) ? $data[0] : $data;
+        $this->image = null; // Clear file upload when camera is used
+    }
+
+    #[On('photo-cleared')]
+    public function clearCapturedImage()
+    {
+        $this->capturedImage = null;
+    }
+
+    protected function saveCapturedImage()
+    {
+        if (!$this->capturedImage) {
+            return null;
+        }
+
+        // Remove data URL prefix if present
+        $base64 = preg_replace('/^data:image\/\w+;base64,/', '', $this->capturedImage);
+        $imageData = base64_decode($base64);
+
+        // Generate unique filename
+        $filename = 'inventory_items/' . Str::random(20) . '.jpg';
+        Storage::disk('public')->put($filename, $imageData);
+
+        return $filename;
+    }
+
     public function save()
     {
         $this->validate();
 
-        if ($this->image) {
+        // Priority: captured image > uploaded file > existing image
+        if ($this->capturedImage) {
+            $path = $this->saveCapturedImage();
+        } elseif ($this->image) {
             $path = $this->image->store('inventory_items', 'public');
         } else {
             $path = $this->item->image_path;
@@ -97,3 +134,4 @@ class Edit extends Component
         ])->layout('layouts.app');
     }
 }
+
