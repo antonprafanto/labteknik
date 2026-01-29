@@ -33,3 +33,16 @@ select option {
     background-color: #ffffff;
     color: #111827; /* gray-900 */
 }
+
+/* Fix time/date input icons visibility in dark mode */
+.dark input[type="time"],
+.dark input[type="date"],
+.dark input[type="datetime-local"] {
+    color-scheme: dark;
+}
+
+input[type="time"],
+input[type="date"],
+input[type="datetime-local"] {
+    color-scheme: light;
+}
