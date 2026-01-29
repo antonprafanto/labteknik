@@ -149,19 +149,19 @@
 
                                         <div>
                                             <label for="repair_date" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('Repair Date') }}</label>
-                                            <input type="date" id="repair_date" wire:model="repair_date" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-800 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
+                                            <input type="date" id="repair_date" wire:model="repair_date" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-800 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
                                             @error('repair_date') <span class="text-red-500 dark:text-red-400 text-sm mt-1">{{ $message }}</span> @enderror
                                         </div>
 
                                         <div>
                                             <label for="repair_cost" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('Repair Cost (Rp)') }}</label>
-                                            <input type="number" id="repair_cost" wire:model="repair_cost" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-800 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
+                                            <input type="number" id="repair_cost" wire:model="repair_cost" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-800 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm">
                                             @error('repair_cost') <span class="text-red-500 dark:text-red-400 text-sm mt-1">{{ $message }}</span> @enderror
                                         </div>
 
                                         <div>
                                             <label for="repair_notes" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('Repair Notes / Technical Analysis') }}</label>
-                                            <textarea id="repair_notes" wire:model="repair_notes" rows="4" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-800 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm"></textarea>
+                                            <textarea id="repair_notes" wire:model="repair_notes" rows="4" class="w-full border-gray-200 dark:border-gray-600 dark:bg-gray-800 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm"></textarea>
                                             @error('repair_notes') <span class="text-red-500 dark:text-red-400 text-sm mt-1">{{ $message }}</span> @enderror
                                         </div>
 

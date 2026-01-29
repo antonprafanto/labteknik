@@ -267,7 +267,7 @@
 
                 <div>
                     <x-label for="description" value="{{ __('Description') }}" class="dark:text-gray-300" />
-                    <textarea id="description" wire:model="description" rows="3" class="block mt-1 w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm"></textarea>
+                    <textarea id="description" wire:model="description" rows="3" class="block mt-1 w-full border-gray-200 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm text-sm"></textarea>
                     <x-input-error for="description" class="mt-2" />
                 </div>
 
