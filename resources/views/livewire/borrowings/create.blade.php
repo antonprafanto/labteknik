@@ -143,6 +143,32 @@
                                 @error('selectedItems') <span class="flex items-center text-red-600 dark:text-red-400 text-sm mt-2 font-medium">{{ $message }}</span> @enderror
                             </div>
 
+                            <!-- Disclaimer -->
+                            <div class="bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-200 dark:border-amber-800 rounded-xl p-5 mb-6">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <svg class="w-6 h-6 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h4 class="text-sm font-bold text-amber-800 dark:text-amber-300 mb-2">⚠️ PERHATIAN - Syarat & Ketentuan Peminjaman</h4>
+                                        <div class="text-xs text-amber-700 dark:text-amber-400 space-y-2">
+                                            <p>Dengan mengajukan permohonan peminjaman ini, Anda <strong>menyatakan setuju</strong> dan <strong>bertanggung jawab penuh</strong> atas hal-hal berikut:</p>
+                                            <ul class="list-disc list-inside space-y-1 ml-2">
+                                                <li><strong>Kerusakan:</strong> Segala bentuk kerusakan yang terjadi pada barang/peralatan selama masa peminjaman akan menjadi <strong>tanggung jawab peminjam</strong> sepenuhnya.</li>
+                                                <li><strong>Kehilangan:</strong> Jika barang hilang atau tidak dapat dikembalikan, peminjam <strong>wajib mengganti</strong> dengan barang yang sama atau senilai dengan harga barang tersebut.</li>
+                                                <li><strong>Perawatan:</strong> Peminjam wajib <strong>menjaga dan merawat</strong> barang dengan baik selama masa peminjaman.</li>
+                                                <li><strong>Pengembalian:</strong> Barang harus dikembalikan dalam <strong>kondisi baik</strong> dan <strong>tepat waktu</strong> sesuai tanggal yang disepakati.</li>
+                                                <li><strong>Keterlambatan:</strong> Keterlambatan pengembalian dapat dikenakan <strong>sanksi administratif</strong> sesuai peraturan yang berlaku.</li>
+                                                <li><strong>Penggunaan:</strong> Barang hanya boleh digunakan sesuai dengan <strong>tujuan peminjaman</strong> yang tercantum.</li>
+                                            </ul>
+                                            <p class="mt-3 font-semibold border-t border-amber-300 dark:border-amber-700 pt-2">📋 Peminjam dianggap telah membaca, memahami, dan menyetujui seluruh ketentuan di atas.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="flex items-center justify-end gap-4 pt-6 border-t border-gray-200 dark:border-gray-700">
                                 <a href="{{ route('borrowings.index') }}" class="px-6 py-3 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 font-bold rounded-xl transition-all duration-200">{{ __('Cancel') }}</a>
                                 <button type="submit" class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200">

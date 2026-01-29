@@ -114,7 +114,36 @@
                     </div>
                 </div>
 
-                <div class="flex items-center justify-end mt-10 pt-6 border-t border-gray-200 dark:border-gray-700">
+                <div class="border-t border-gray-200 dark:border-gray-700 my-8"></div>
+
+                <!-- Disclaimer -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-200 dark:border-amber-800 rounded-xl p-5 mb-6">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <svg class="w-6 h-6 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                            </svg>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-sm font-bold text-amber-800 dark:text-amber-300 mb-2">⚠️ PERHATIAN - Syarat & Ketentuan Peminjaman Ruangan</h4>
+                            <div class="text-xs text-amber-700 dark:text-amber-400 space-y-2">
+                                <p>Dengan mengajukan permohonan peminjaman ruangan ini, Anda <strong>menyatakan setuju</strong> dan <strong>bertanggung jawab penuh</strong> atas hal-hal berikut:</p>
+                                <ul class="list-disc list-inside space-y-1 ml-2">
+                                    <li><strong>Kerusakan Fasilitas:</strong> Segala bentuk kerusakan yang terjadi pada ruangan, peralatan, dan fasilitas di dalamnya selama masa peminjaman menjadi <strong>tanggung jawab peminjam</strong> sepenuhnya.</li>
+                                    <li><strong>Kehilangan Inventaris:</strong> Jika terdapat kehilangan inventaris ruangan, peminjam <strong>wajib mengganti</strong> sesuai dengan nilai barang tersebut.</li>
+                                    <li><strong>Kebersihan:</strong> Peminjam wajib <strong>menjaga kebersihan ruangan</strong> dan mengembalikan ruangan dalam kondisi bersih dan rapi.</li>
+                                    <li><strong>Waktu Penggunaan:</strong> Ruangan hanya boleh digunakan sesuai dengan <strong>jadwal yang disetujui</strong>. Penggunaan di luar jadwal tidak diperkenankan.</li>
+                                    <li><strong>Keterlambatan:</strong> Keterlambatan mengosongkan ruangan dapat mengganggu pengguna berikutnya dan dapat dikenakan <strong>sanksi administratif</strong>.</li>
+                                    <li><strong>Larangan:</strong> Dilarang membawa makanan/minuman berat, merokok, atau melakukan aktivitas yang dapat merusak fasilitas ruangan.</li>
+                                    <li><strong>Pengawasan:</strong> Peminjam bertanggung jawab atas semua orang yang berada di dalam ruangan selama masa peminjaman.</li>
+                                </ul>
+                                <p class="mt-3 font-semibold border-t border-amber-300 dark:border-amber-700 pt-2">📋 Peminjam dianggap telah membaca, memahami, dan menyetujui seluruh ketentuan di atas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-end pt-6 border-t border-gray-200 dark:border-gray-700">
                     <a href="{{ route('room-borrowings.index') }}" class="mr-6 px-6 py-3 text-sm font-bold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-all duration-200">Batal</a>
                     <button type="submit" class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-sm font-bold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
