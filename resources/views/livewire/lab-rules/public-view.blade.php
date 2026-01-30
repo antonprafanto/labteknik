@@ -70,7 +70,7 @@
     </nav>
 
     <!-- Content -->
-    <main class="pt-36 pb-16">
+    <main class="pt-48 pb-16">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             @if($rule)
                 <!-- Header -->
