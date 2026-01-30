@@ -61,6 +61,6 @@ class Gallery extends Component
             'activities' => $activities,
             'categories' => LabActivityCategory::all(),
             'laboratories' => Laboratory::all(),
-        ]);
+        ])->layout('layouts.blank', ['title' => 'Galeri Kegiatan Laboratorium']);
     }
 }

@@ -1,21 +1,6 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Galeri Kegiatan Laboratorium - {{ config('app.name', 'LabTeknik') }}</title>
-    <meta name="description" content="Galeri dokumentasi kegiatan laboratorium Fakultas Teknik Universitas Mulawarman.">
-    
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
-    <style>
-        [x-cloak] { display: none !important; }
-    </style>
-</head>
-<body class="antialiased bg-slate-950 font-sans text-slate-200">
-
+<div>
     <!-- Background Effects -->
-    <div class="fixed inset-0 z-[-1]">
+    <div class="fixed inset-0 z-[-1] bg-slate-950">
         <div class="absolute top-0 -left-4 w-96 h-96 bg-indigo-600/30 rounded-full blur-3xl"></div>
         <div class="absolute top-0 -right-4 w-96 h-96 bg-purple-600/30 rounded-full blur-3xl"></div>
         <div class="absolute bottom-0 left-1/2 w-96 h-96 bg-teal-600/20 rounded-full blur-3xl"></div>
@@ -47,7 +32,7 @@
     </nav>
 
     <!-- Content -->
-    <main class="py-16">
+    <main class="py-16 min-h-screen">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Header -->
             <div class="text-center mb-12">
@@ -187,6 +172,4 @@
             &copy; {{ date('Y') }} LabTeknik - Fakultas Teknik Universitas Mulawarman
         </div>
     </footer>
-
-</body>
-</html>
+</div>

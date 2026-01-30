@@ -16,6 +16,7 @@ class PublicView extends Component
 
     public function render()
     {
-        return view('livewire.lab-rules.public-view');
+        return view('livewire.lab-rules.public-view')
+            ->layout('layouts.blank', ['title' => 'Tata Tertib Laboratorium']);
     }
 }
