@@ -82,13 +82,16 @@
                 <!-- Content Card -->
                 <div class="bg-slate-900/50 backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden">
                     <div class="p-8 md:p-12">
-                        <div class="prose prose-lg prose-invert max-w-none 
-                            prose-headings:text-white prose-headings:font-bold
-                            prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4 prose-h2:border-b prose-h2:border-slate-700 prose-h2:pb-2
-                            prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-3 prose-h3:text-indigo-400
-                            prose-p:text-slate-300 prose-p:leading-relaxed
-                            prose-ol:text-slate-300 prose-ul:text-slate-300
-                            prose-li:my-2">
+                        <div class="tata-tertib-content text-slate-200 text-lg leading-relaxed
+                            [&_h1]:text-3xl [&_h1]:font-bold [&_h1]:text-white [&_h1]:mb-6
+                            [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-white [&_h2]:mt-8 [&_h2]:mb-4 [&_h2]:border-b [&_h2]:border-slate-600 [&_h2]:pb-3
+                            [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-indigo-300 [&_h3]:mt-6 [&_h3]:mb-3
+                            [&_p]:text-slate-200 [&_p]:my-4 [&_p]:leading-relaxed
+                            [&_ol]:text-slate-200 [&_ol]:pl-6 [&_ol]:my-4 [&_ol]:list-decimal
+                            [&_ul]:text-slate-200 [&_ul]:pl-6 [&_ul]:my-4 [&_ul]:list-disc
+                            [&_li]:my-2 [&_li]:text-slate-200
+                            [&_strong]:text-white [&_strong]:font-semibold
+                            [&_a]:text-indigo-400 [&_a]:underline">
                             {!! $rule->content !!}
                         </div>
                     </div>
