@@ -116,13 +116,50 @@
                         </div>
                     </div>
                     <div class="p-8">
-                        <div class="prose prose-invert prose-lg max-w-none
-                            prose-headings:text-white prose-headings:font-bold
-                            prose-p:text-slate-300 prose-p:leading-relaxed
-                            prose-li:text-slate-300 prose-li:leading-relaxed
-                            prose-strong:text-white prose-strong:font-semibold
-                            prose-ul:space-y-2 prose-ol:space-y-2
-                            prose-li:marker:text-indigo-400">
+                        <style>
+                            .rules-content h1, .rules-content h2, .rules-content h3, .rules-content h4 {
+                                color: #fff;
+                                font-weight: 700;
+                                margin-top: 1.5rem;
+                                margin-bottom: 0.75rem;
+                            }
+                            .rules-content h1 { font-size: 1.5rem; }
+                            .rules-content h2 { font-size: 1.25rem; }
+                            .rules-content h3 { font-size: 1.125rem; }
+                            .rules-content p {
+                                color: #e2e8f0;
+                                line-height: 1.75;
+                                margin-bottom: 0.75rem;
+                            }
+                            .rules-content ul, .rules-content ol {
+                                margin-top: 0.5rem;
+                                margin-bottom: 1rem;
+                                padding-left: 0;
+                                list-style: none;
+                            }
+                            .rules-content li {
+                                color: #e2e8f0;
+                                line-height: 1.75;
+                                padding: 0.75rem 1rem;
+                                margin-bottom: 0.5rem;
+                                background: rgba(255, 255, 255, 0.05);
+                                border-radius: 0.75rem;
+                                border-left: 3px solid #818cf8;
+                                transition: background 0.2s;
+                            }
+                            .rules-content li:hover {
+                                background: rgba(255, 255, 255, 0.1);
+                            }
+                            .rules-content strong {
+                                color: #fff;
+                                font-weight: 600;
+                            }
+                            .rules-content a {
+                                color: #818cf8;
+                                text-decoration: underline;
+                            }
+                        </style>
+                        <div class="rules-content">
                             {!! $rule->content !!}
                         </div>
                     </div>
