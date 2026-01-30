@@ -101,117 +101,29 @@
                 </div>
 
                 <!-- Rules Content -->
-                <div class="grid gap-8">
-                    <!-- Section A: Ketentuan Umum -->
-                    <div class="group relative bg-gradient-to-br from-slate-900/80 to-slate-800/50 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden hover:border-indigo-500/30 transition-all duration-300">
-                        <!-- Section Header -->
-                        <div class="bg-gradient-to-r from-indigo-600/20 to-purple-600/20 px-8 py-6 border-b border-white/5">
-                            <div class="flex items-center gap-4">
-                                <div class="w-14 h-14 flex items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg shadow-indigo-500/25">
-                                    <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <span class="text-xs font-bold uppercase tracking-widest text-indigo-400">Bagian A</span>
-                                    <h2 class="text-2xl font-bold text-white">Ketentuan Umum</h2>
-                                </div>
+                <div class="group relative bg-gradient-to-br from-slate-900/80 to-slate-800/50 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden">
+                    <div class="bg-gradient-to-r from-indigo-600/20 to-purple-600/20 px-8 py-6 border-b border-white/5">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 flex items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg shadow-indigo-500/25">
+                                <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+                                </svg>
                             </div>
-                        </div>
-                        <!-- Section Content -->
-                        <div class="p-8">
-                            <div class="space-y-4">
-                                <div class="flex gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
-                                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-indigo-500/20 text-indigo-400 font-bold text-sm">1</div>
-                                    <p class="text-slate-300 leading-relaxed">Setiap pengguna laboratorium wajib mematuhi peraturan yang berlaku.</p>
-                                </div>
-                                <div class="flex gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
-                                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-indigo-500/20 text-indigo-400 font-bold text-sm">2</div>
-                                    <p class="text-slate-300 leading-relaxed">Pengguna wajib mengisi buku kunjungan/absensi sebelum menggunakan laboratorium.</p>
-                                </div>
-                                <div class="flex gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
-                                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-indigo-500/20 text-indigo-400 font-bold text-sm">3</div>
-                                    <p class="text-slate-300 leading-relaxed">Dilarang membawa makanan dan minuman ke dalam laboratorium.</p>
-                                </div>
-                                <div class="flex gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
-                                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-indigo-500/20 text-indigo-400 font-bold text-sm">4</div>
-                                    <p class="text-slate-300 leading-relaxed">Dilarang merokok di dalam dan sekitar area laboratorium.</p>
-                                </div>
-                                <div class="flex gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
-                                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-indigo-500/20 text-indigo-400 font-bold text-sm">5</div>
-                                    <p class="text-slate-300 leading-relaxed">Menjaga kebersihan dan kerapian laboratorium.</p>
-                                </div>
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-indigo-400">Peraturan Laboratorium</span>
+                                <h2 class="text-2xl font-bold text-white">Ketentuan yang Berlaku</h2>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Section B: Ketentuan Khusus -->
-                    <div class="group relative bg-gradient-to-br from-slate-900/80 to-slate-800/50 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden hover:border-amber-500/30 transition-all duration-300">
-                        <!-- Section Header -->
-                        <div class="bg-gradient-to-r from-amber-600/20 to-orange-600/20 px-8 py-6 border-b border-white/5">
-                            <div class="flex items-center gap-4">
-                                <div class="w-14 h-14 flex items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 shadow-lg shadow-amber-500/25">
-                                    <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Bagian B</span>
-                                    <h2 class="text-2xl font-bold text-white">Ketentuan Khusus</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Section Content -->
-                        <div class="p-8">
-                            <div class="space-y-4">
-                                <div class="flex gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
-                                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-amber-500/20 text-amber-400 font-bold text-sm">1</div>
-                                    <p class="text-slate-300 leading-relaxed">Pengguna wajib menggunakan peralatan sesuai prosedur yang telah ditetapkan.</p>
-                                </div>
-                                <div class="flex gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
-                                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-amber-500/20 text-amber-400 font-bold text-sm">2</div>
-                                    <p class="text-slate-300 leading-relaxed">Segala kerusakan yang disebabkan oleh kelalaian pengguna menjadi tanggung jawab pengguna.</p>
-                                </div>
-                                <div class="flex gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
-                                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-amber-500/20 text-amber-400 font-bold text-sm">3</div>
-                                    <p class="text-slate-300 leading-relaxed">Peralatan yang dipinjam harus dikembalikan dalam kondisi baik.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Section C: Sanksi -->
-                    <div class="group relative bg-gradient-to-br from-slate-900/80 to-slate-800/50 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden hover:border-rose-500/30 transition-all duration-300">
-                        <!-- Section Header -->
-                        <div class="bg-gradient-to-r from-rose-600/20 to-pink-600/20 px-8 py-6 border-b border-white/5">
-                            <div class="flex items-center gap-4">
-                                <div class="w-14 h-14 flex items-center justify-center rounded-2xl bg-gradient-to-br from-rose-500 to-pink-600 shadow-lg shadow-rose-500/25">
-                                    <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <span class="text-xs font-bold uppercase tracking-widest text-rose-400">Bagian C</span>
-                                    <h2 class="text-2xl font-bold text-white">Sanksi Pelanggaran</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Section Content -->
-                        <div class="p-8">
-                            <div class="space-y-4">
-                                <div class="flex gap-4 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20">
-                                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-rose-500/20 text-rose-400 font-bold text-sm">!</div>
-                                    <p class="text-slate-300 leading-relaxed">Pelanggaran ringan akan diberikan peringatan lisan.</p>
-                                </div>
-                                <div class="flex gap-4 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20">
-                                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-rose-500/20 text-rose-400 font-bold text-sm">!!</div>
-                                    <p class="text-slate-300 leading-relaxed">Pelanggaran berulang akan diberikan peringatan tertulis.</p>
-                                </div>
-                                <div class="flex gap-4 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20">
-                                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-rose-500/20 text-rose-400 font-bold text-sm">!!!</div>
-                                    <p class="text-slate-300 leading-relaxed">Pelanggaran berat dapat dikenakan sanksi pencabutan hak akses laboratorium.</p>
-                                </div>
-                            </div>
+                    <div class="p-8">
+                        <div class="prose prose-invert prose-lg max-w-none
+                            prose-headings:text-white prose-headings:font-bold
+                            prose-p:text-slate-300 prose-p:leading-relaxed
+                            prose-li:text-slate-300 prose-li:leading-relaxed
+                            prose-strong:text-white prose-strong:font-semibold
+                            prose-ul:space-y-2 prose-ol:space-y-2
+                            prose-li:marker:text-indigo-400">
+                            {!! $rule->content !!}
                         </div>
                     </div>
                 </div>
