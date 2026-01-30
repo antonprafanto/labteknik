@@ -7,16 +7,34 @@
                         <h2 class="text-xl font-bold text-gray-800 dark:text-white">{{ __('Practicum Schedules') }}</h2>
                         <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{{ __('Manage laboratory session schedules.') }}</p>
                     </div>
-                    @auth
-                        @if(auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('head_of_lab'))
-                            <a href="{{ route('schedules.create') }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg shadow-sm transition-colors duration-200">
-                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                    <div class="flex items-center gap-3">
+                        <!-- View Mode Toggle -->
+                        <div class="flex items-center bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
+                            <button wire:click="setViewMode('list')" class="px-3 py-1.5 text-sm font-medium rounded-md transition-colors {{ $viewMode === 'list' ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm' : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300' }}">
+                                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
                                 </svg>
-                                {{ __('Add Schedule') }}
-                            </a>
-                        @endif
-                    @endauth
+                                List
+                            </button>
+                            <button wire:click="setViewMode('grid')" class="px-3 py-1.5 text-sm font-medium rounded-md transition-colors {{ $viewMode === 'grid' ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm' : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300' }}">
+                                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zM14 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"/>
+                                </svg>
+                                Grid
+                            </button>
+                        </div>
+                        
+                        @auth
+                            @if(auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('head_of_lab'))
+                                <a href="{{ route('schedules.create') }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg shadow-sm transition-colors duration-200">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                                    </svg>
+                                    {{ __('Add Schedule') }}
+                                </a>
+                            @endif
+                        @endauth
+                    </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
@@ -52,6 +70,61 @@
                 </div>
             @endif
 
+            @if($viewMode === 'grid')
+            <!-- Grid View - Schedule Availability -->
+            <div class="p-6">
+                <div class="mb-4 flex items-center gap-4 text-sm">
+                    <div class="flex items-center gap-2">
+                        <div class="w-4 h-4 rounded bg-emerald-100 dark:bg-emerald-900/50 border border-emerald-300 dark:border-emerald-700"></div>
+                        <span class="text-gray-600 dark:text-gray-400">Tersedia</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-4 h-4 rounded bg-red-100 dark:bg-red-900/50 border border-red-300 dark:border-red-700"></div>
+                        <span class="text-gray-600 dark:text-gray-400">Terisi</span>
+                    </div>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse">
+                        <thead>
+                            <tr>
+                                <th class="p-2 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50 w-20">Jam</th>
+                                @foreach($days as $dayNum => $dayName)
+                                    <th class="p-2 text-center text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50">{{ $dayName }}</th>
+                                @endforeach
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($slotGrid as $row)
+                                <tr>
+                                    <td class="p-2 text-sm font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50">{{ $row['time'] }}</td>
+                                    @foreach($days as $dayNum => $dayName)
+                                        @php $slot = $row['days'][$dayNum]; @endphp
+                                        <td class="p-1 border border-gray-200 dark:border-gray-700 {{ $slot['available'] ? 'bg-emerald-50 dark:bg-emerald-900/20' : 'bg-red-50 dark:bg-red-900/20' }}" title="{{ $slot['available'] ? 'Tersedia' : collect($slot['schedules'])->pluck('course')->join(', ') }}">
+                                            @if(!$slot['available'])
+                                                @foreach($slot['schedules'] as $schedule)
+                                                    <div class="text-xs p-1.5 rounded bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300 mb-1 last:mb-0 cursor-pointer hover:bg-red-200 dark:hover:bg-red-800/50 transition-colors" title="{{ $schedule['course'] }} ({{ $schedule['class'] }})&#10;Dosen: {{ $schedule['lecturer'] }}&#10;Lab: {{ $schedule['lab'] }}&#10;Waktu: {{ $schedule['time'] }}">
+                                                        <div class="font-medium truncate max-w-24">{{ $schedule['course'] }}</div>
+                                                        <div class="text-red-600 dark:text-red-400 text-[10px]">{{ $schedule['class'] }}</div>
+                                                    </div>
+                                                @endforeach
+                                            @else
+                                                <div class="h-8 flex items-center justify-center">
+                                                    <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                    </svg>
+                                                </div>
+                                            @endif
+                                        </td>
+                                    @endforeach
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            @else
+            <!-- List View -->
             <div class="overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-100 dark:divide-gray-700">
                     <thead class="bg-gray-50/50 dark:bg-gray-900/50">
@@ -140,6 +213,7 @@
             <div class="px-6 py-4 border-t border-gray-100 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-900/50">
                 {{ $schedules->links() }}
             </div>
+            @endif
             @endif
         </div>
     </div>
