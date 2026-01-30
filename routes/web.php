@@ -166,8 +166,8 @@ Route::middleware([
         Route::get('/schedules/create', \App\Livewire\Schedules\Create::class)->name('schedules.create');
     });
 
-    // Schedule Management (Admin, Head of Lab, Lecturer)
-    Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:super_admin,head_of_lab,lecturer'])->group(function () {
+    // Schedule Management (Admin, Head of Lab ONLY - no lecturer)
+    Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:super_admin,head_of_lab'])->group(function () {
         Route::get('/schedules/create', \App\Livewire\Schedules\Create::class)->name('schedules.create');
         Route::get('/schedules/{schedule}/edit', \App\Livewire\Schedules\Edit::class)->name('schedules.edit');
     });

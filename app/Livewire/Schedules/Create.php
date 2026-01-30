@@ -24,7 +24,7 @@ class Create extends Component
         'lecturer_id' => 'required|exists:users,id',
         'course_name' => 'required|string|max:255',
         'class_name' => 'required|string|max:100',
-        'day_of_week' => 'required|integer|min:1|max:5',
+        'day_of_week' => 'required|integer|min:1|max:7',
         'start_time' => 'required|date_format:H:i',
         'end_time' => 'required|date_format:H:i|after:start_time',
         'participants' => 'required|integer|min:1',
@@ -33,7 +33,11 @@ class Create extends Component
 
     public function mount()
     {
-        // Set default values if needed
+        // Only super_admin and head_of_lab can create schedules
+        $user = auth()->user();
+        if (!$user->hasRole('super_admin') && !$user->hasRole('head_of_lab')) {
+            abort(403, 'Unauthorized: Hanya Kepala Lab dan Super Admin yang dapat membuat jadwal.');
+        }
     }
 
     public function save()

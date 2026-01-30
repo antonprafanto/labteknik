@@ -8,7 +8,7 @@
                         <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{{ __('Manage laboratory session schedules.') }}</p>
                     </div>
                     @auth
-                        @if(auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('head_of_lab') || auth()->user()->hasRole('lecturer'))
+                        @if(auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('head_of_lab'))
                             <a href="{{ route('schedules.create') }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg shadow-sm transition-colors duration-200">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
@@ -39,6 +39,8 @@
                             <option value="3">Rabu</option>
                             <option value="4">Kamis</option>
                             <option value="5">Jumat</option>
+                            <option value="6">Sabtu</option>
+                            <option value="7">Minggu</option>
                         </select>
                     </div>
                 </div>
@@ -99,7 +101,7 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     @auth
-                                        @if(auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('head_of_lab') || auth()->id() == $schedule->created_by)
+                                        @if(auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('head_of_lab'))
                                             <div class="flex items-center justify-end gap-2">
                                                 <a href="{{ route('schedules.edit', $schedule) }}" class="p-2 text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 rounded-lg transition-colors" title="{{ __('Edit') }}">
                                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

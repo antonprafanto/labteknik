@@ -67,6 +67,8 @@
                             <option value="3">Rabu</option>
                             <option value="4">Kamis</option>
                             <option value="5">Jumat</option>
+                            <option value="6">Sabtu</option>
+                            <option value="7">Minggu</option>
                         </select>
                         @error('day_of_week') <span class="flex items-center text-red-600 dark:text-red-400 text-sm mt-1 font-medium">{{ $message }}</span> @enderror
                     </div>
