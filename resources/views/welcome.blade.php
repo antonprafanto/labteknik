@@ -39,7 +39,8 @@
                 <div class="hidden md:flex items-center gap-8">
                     <a href="#fitur" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Fitur</a>
                     <a href="{{ route('schedules.public') }}" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Jadwal</a>
-                    <a href="#statistik" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Statistik</a>
+                    <a href="{{ route('lab-rules.public') }}" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Tata Tertib</a>
+                    <a href="{{ route('kegiatan-lab.gallery') }}" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Galeri</a>
                     <div class="w-px h-6 bg-slate-700 mx-2"></div>
                     @auth
                         <a href="{{ url('/dashboard') }}" class="px-5 py-2.5 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-full transition-all shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:-translate-y-0.5">
@@ -62,12 +63,12 @@
             </div>
         </div>
 
-        <!-- Mobile Menu Panel -->
         <div id="mobileMenu" class="hidden md:hidden glass border-t border-white/5 absolute w-full left-0 top-20">
             <div class="px-4 py-6 space-y-4">
                 <a href="#fitur" class="block text-slate-300 hover:text-white font-medium">Fitur</a>
                 <a href="{{ route('schedules.public') }}" class="block text-slate-300 hover:text-white font-medium">Jadwal Praktikum</a>
-                <a href="#statistik" class="block text-slate-300 hover:text-white font-medium">Statistik</a>
+                <a href="{{ route('lab-rules.public') }}" class="block text-slate-300 hover:text-white font-medium">Tata Tertib</a>
+                <a href="{{ route('kegiatan-lab.gallery') }}" class="block text-slate-300 hover:text-white font-medium">Galeri Kegiatan</a>
                 <div class="border-t border-white/10 pt-4 mt-4 grid grid-cols-2 gap-4">
                     @auth
                         <a href="{{ url('/dashboard') }}" class="col-span-2 text-center py-2.5 bg-indigo-600 text-white rounded-lg font-semibold">Dashboard</a>

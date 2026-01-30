@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Galeri Kegiatan Laboratorium - {{ config('app.name', 'LabTeknik') }}</title>
+    <meta name="description" content="Galeri dokumentasi kegiatan laboratorium Fakultas Teknik Universitas Mulawarman.">
+    
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body class="antialiased bg-slate-950 font-sans text-slate-200">
+
+    <!-- Background Effects -->
+    <div class="fixed inset-0 z-[-1]">
+        <div class="absolute top-0 -left-4 w-96 h-96 bg-indigo-600/30 rounded-full blur-3xl"></div>
+        <div class="absolute top-0 -right-4 w-96 h-96 bg-purple-600/30 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-1/2 w-96 h-96 bg-teal-600/20 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="bg-slate-950/80 backdrop-blur-lg border-b border-white/5 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="{{ url('/') }}" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl shadow-lg shadow-indigo-500/25">
+                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold text-white">LabTeknik</span>
+                </a>
+                <div class="flex items-center gap-4">
+                    <a href="{{ url('/') }}" class="text-sm text-slate-400 hover:text-white transition-colors">Beranda</a>
+                    <a href="{{ route('lab-rules.public') }}" class="text-sm text-slate-400 hover:text-white transition-colors">Tata Tertib</a>
+                    @auth
+                        <a href="{{ route('dashboard') }}" class="px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-full transition-all">Dashboard</a>
+                    @else
+                        <a href="{{ route('login') }}" class="px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-full transition-all">Masuk</a>
+                    @endauth
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <main class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-white mb-4">Galeri Kegiatan Laboratorium</h1>
+                <p class="text-slate-400 max-w-2xl mx-auto">Dokumentasi berbagai kegiatan yang berlangsung di laboratorium Fakultas Teknik</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="mb-10 flex flex-wrap justify-center gap-4">
+                <select wire:model.live="categoryFilter" class="px-4 py-2 bg-slate-900/50 border border-white/10 rounded-xl text-white text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                    <option value="">Semua Kategori</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+                <select wire:model.live="laboratoryFilter" class="px-4 py-2 bg-slate-900/50 border border-white/10 rounded-xl text-white text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                    <option value="">Semua Laboratorium</option>
+                    @foreach($laboratories as $lab)
+                        <option value="{{ $lab->id }}">{{ $lab->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <!-- Gallery Grid -->
+            @if($activities->count() > 0)
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    @foreach($activities as $activity)
+                        <div wire:click="viewActivity({{ $activity->id }})" class="group cursor-pointer bg-slate-900/50 backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-500/10">
+                            <!-- Image -->
+                            <div class="aspect-[4/3] relative overflow-hidden">
+                                @if($activity->photo_path)
+                                    <img src="{{ Storage::url($activity->photo_path) }}" alt="{{ $activity->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60"></div>
+                                @else
+                                    <div class="w-full h-full bg-slate-800 flex items-center justify-center">
+                                        <svg class="w-12 h-12 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                        </svg>
+                                    </div>
+                                @endif
+                                <!-- Category Badge -->
+                                @if($activity->category)
+                                    <div class="absolute top-3 left-3">
+                                        <span class="px-3 py-1 text-xs font-medium rounded-full text-white shadow-lg" style="background-color: {{ $activity->category->color }}">
+                                            {{ $activity->category->name }}
+                                        </span>
+                                    </div>
+                                @endif
+                                <!-- View Icon -->
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <div class="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Content -->
+                            <div class="p-4">
+                                <h3 class="font-semibold text-white line-clamp-1">{{ $activity->title }}</h3>
+                                @if($activity->laboratory)
+                                    <p class="text-sm text-slate-400 mt-1">{{ $activity->laboratory->name }}</p>
+                                @endif
+                                <p class="text-xs text-slate-500 mt-1">{{ $activity->activity_date->format('d F Y') }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <!-- Pagination -->
+                <div class="mt-12">
+                    {{ $activities->links() }}
+                </div>
+            @else
+                <!-- Empty State -->
+                <div class="text-center py-24">
+                    <svg class="mx-auto h-16 w-16 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    <h2 class="mt-6 text-2xl font-bold text-white">Belum Ada Kegiatan</h2>
+                    <p class="mt-2 text-slate-400">Dokumentasi kegiatan laboratorium akan ditampilkan di sini.</p>
+                </div>
+            @endif
+        </div>
+    </main>
+
+    <!-- Image Modal / Lightbox -->
+    @if($showModal && $selectedActivity)
+        <div class="fixed inset-0 z-50 overflow-hidden" x-data="{ show: true }" x-show="show" x-transition>
+            <!-- Backdrop -->
+            <div class="absolute inset-0 bg-slate-950/95 backdrop-blur-sm" wire:click="closeModal"></div>
+            
+            <!-- Modal Content -->
+            <div class="absolute inset-0 flex items-center justify-center p-4">
+                <div class="relative max-w-4xl w-full bg-slate-900 rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
+                    <!-- Close Button -->
+                    <button wire:click="closeModal" class="absolute top-4 right-4 z-10 w-10 h-10 bg-slate-800/80 backdrop-blur-md hover:bg-slate-700 text-white rounded-full flex items-center justify-center transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                    
+                    <!-- Image -->
+                    @if($selectedActivity->photo_path)
+                        <img src="{{ Storage::url($selectedActivity->photo_path) }}" alt="{{ $selectedActivity->title }}" class="w-full max-h-[60vh] object-contain bg-slate-950">
+                    @endif
+                    
+                    <!-- Info -->
+                    <div class="p-6">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <h2 class="text-xl font-bold text-white">{{ $selectedActivity->title }}</h2>
+                                @if($selectedActivity->laboratory)
+                                    <p class="text-slate-400 mt-1">{{ $selectedActivity->laboratory->name }}</p>
+                                @endif
+                            </div>
+                            @if($selectedActivity->category)
+                                <span class="px-3 py-1 text-sm font-medium rounded-full text-white shrink-0" style="background-color: {{ $selectedActivity->category->color }}">
+                                    {{ $selectedActivity->category->name }}
+                                </span>
+                            @endif
+                        </div>
+                        @if($selectedActivity->description)
+                            <p class="text-slate-300 mt-4">{{ $selectedActivity->description }}</p>
+                        @endif
+                        <p class="text-sm text-slate-500 mt-4">{{ $selectedActivity->activity_date->format('d F Y') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 text-center text-sm text-slate-600">
+            &copy; {{ date('Y') }} LabTeknik - Fakultas Teknik Universitas Mulawarman
+        </div>
+    </footer>
+
+</body>
+</html>

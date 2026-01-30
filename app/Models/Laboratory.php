@@ -59,4 +59,9 @@ class Laboratory extends Model
     {
         return $this->hasMany(LabSatisfactionSurvey::class);
     }
+
+    public function activities()
+    {
+        return $this->hasMany(LabActivity::class);
+    }
 }

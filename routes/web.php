@@ -39,6 +39,12 @@ Route::get('/lab-visit/check-out', \App\Livewire\LabVisits\CheckOut::class)->nam
 // Public Survey (No Auth Required)
 Route::get('/survey/{laboratory}/{token?}', \App\Livewire\Surveys\Create::class)->name('surveys.create');
 
+// Public Lab Rules (Tata Tertib)
+Route::get('/tata-tertib', \App\Livewire\LabRules\PublicView::class)->name('lab-rules.public');
+
+// Public Lab Activities Gallery (Kegiatan Lab)
+Route::get('/kegiatan-lab', \App\Livewire\LabActivities\Gallery::class)->name('kegiatan-lab.gallery');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -76,6 +82,17 @@ Route::middleware([
         Route::get('/rooms', \App\Livewire\Rooms\Index::class)->name('rooms.index');
         Route::get('/rooms/create', \App\Livewire\Rooms\Create::class)->name('rooms.create');
         Route::get('/rooms/{room}/edit', \App\Livewire\Rooms\Edit::class)->name('rooms.edit');
+
+        // Lab Rules (Tata Tertib) - Admin only (super_admin, head_of_lab)
+        Route::get('/lab-rules', \App\Livewire\LabRules\Index::class)->name('lab-rules.index');
+        Route::get('/lab-rules/edit', \App\Livewire\LabRules\Edit::class)->name('lab-rules.edit');
+    });
+
+    // Lab Activities (Kegiatan Lab) - Allow lab_assistant access
+    Route::middleware(['role:super_admin,head_of_lab,lab_assistant'])->prefix('admin')->name('admin.')->group(function () {
+        Route::get('/lab-activities', \App\Livewire\LabActivities\Index::class)->name('lab-activities.index');
+        Route::get('/lab-activities/create', \App\Livewire\LabActivities\Create::class)->name('lab-activities.create');
+        Route::get('/lab-activities/{id}/edit', \App\Livewire\LabActivities\Edit::class)->name('lab-activities.edit');
     });
 
     // General User Routes (Authenticated)

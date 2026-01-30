@@ -64,6 +64,13 @@
                                 <x-dropdown-link href="{{ route('admin.time-slots.index') }}">
                                     {{ __('Pengaturan Slot Waktu') }}
                                 </x-dropdown-link>
+                                <div class="border-t border-gray-200 dark:border-gray-600"></div>
+                                <x-dropdown-link href="{{ route('admin.lab-rules.index') }}">
+                                    {{ __('Tata Tertib Lab') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link href="{{ route('admin.lab-activities.index') }}">
+                                    {{ __('Kegiatan Lab') }}
+                                </x-dropdown-link>
                                 @if(auth()->user()->hasRole('super_admin'))
                                     <x-dropdown-link href="{{ route('users.index') }}">
                                         {{ __('Manajemen Pengguna') }}
@@ -112,6 +119,12 @@
                             <x-dropdown-link href="{{ route('damage-reports.index') }}">
                                 {{ __('Laporan Kerusakan') }}
                             </x-dropdown-link>
+                            @if(auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('head_of_lab') || auth()->user()->hasRole('lab_assistant'))
+                                <div class="border-t border-gray-200 dark:border-gray-600"></div>
+                                <x-dropdown-link href="{{ route('admin.lab-activities.index') }}">
+                                    {{ __('Kegiatan Lab') }}
+                                </x-dropdown-link>
+                            @endif
                         </x-slot>
                     </x-dropdown>
                 </div>
@@ -294,6 +307,14 @@
                     </x-responsive-nav-link>
                     <x-responsive-nav-link href="{{ route('surveys.index') }}" :active="request()->routeIs('surveys.*')">
                         {{ __('Survey Kepuasan') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('admin.lab-rules.index') }}" :active="request()->routeIs('admin.lab-rules.*')">
+                        {{ __('Tata Tertib Lab') }}
+                    </x-responsive-nav-link>
+                @endif
+                @if(auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('head_of_lab') || auth()->user()->hasRole('lab_assistant'))
+                    <x-responsive-nav-link href="{{ route('admin.lab-activities.index') }}" :active="request()->routeIs('admin.lab-activities.*')">
+                        {{ __('Kegiatan Lab') }}
                     </x-responsive-nav-link>
                 @endif
                 @if(auth()->user()->hasRole('super_admin'))
