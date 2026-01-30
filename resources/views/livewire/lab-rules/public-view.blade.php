@@ -1,29 +1,68 @@
-<div>
+<div class="min-h-screen bg-slate-950 text-slate-200">
     <!-- Background Effects -->
-    <div class="fixed inset-0 z-[-1] bg-slate-950">
+    <div class="fixed inset-0 z-[-1]">
         <div class="absolute top-0 -left-4 w-96 h-96 bg-indigo-600/30 rounded-full blur-3xl"></div>
         <div class="absolute top-0 -right-4 w-96 h-96 bg-purple-600/30 rounded-full blur-3xl"></div>
     </div>
 
-    <!-- Navbar -->
-    <nav class="bg-slate-950/80 backdrop-blur-lg border-b border-white/5 sticky top-0 z-50">
+    <!-- Navbar (Same as Landing Page) -->
+    <nav class="fixed w-full z-50 bg-slate-950/80 backdrop-blur-lg border-b border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
                 <a href="{{ url('/') }}" class="flex items-center gap-3 group">
-                    <div class="w-10 h-10 flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl shadow-lg shadow-indigo-500/25">
+                    <div class="relative w-10 h-10 flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-indigo-500/25">
                         <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                         </svg>
                     </div>
-                    <span class="text-xl font-bold text-white">LabTeknik</span>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-bold text-white tracking-tight leading-none group-hover:text-indigo-300 transition-colors">LabTeknik</span>
+                        <span class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">FT Unmul</span>
+                    </div>
                 </a>
-                <div class="flex items-center gap-4">
-                    <a href="{{ url('/') }}" class="text-sm text-slate-400 hover:text-white transition-colors">Beranda</a>
-                    <a href="{{ route('kegiatan-lab.gallery') }}" class="text-sm text-slate-400 hover:text-white transition-colors">Galeri Kegiatan</a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="{{ url('/') }}#fitur" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Fitur</a>
+                    <a href="{{ route('schedules.public') }}" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Jadwal</a>
+                    <a href="{{ route('lab-rules.public') }}" class="text-sm font-medium text-white transition-colors">Tata Tertib</a>
+                    <a href="{{ route('kegiatan-lab.gallery') }}" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Galeri</a>
+                    <div class="w-px h-6 bg-slate-700 mx-2"></div>
                     @auth
-                        <a href="{{ route('dashboard') }}" class="px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-full transition-all">Dashboard</a>
+                        <a href="{{ url('/dashboard') }}" class="px-5 py-2.5 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-full transition-all shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:-translate-y-0.5">
+                            Dashboard
+                        </a>
                     @else
-                        <a href="{{ route('login') }}" class="px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-full transition-all">Masuk</a>
+                        <a href="{{ route('login') }}" class="text-sm font-semibold text-white hover:text-indigo-300 transition-colors">Masuk</a>
+                        <a href="{{ route('register') }}" class="px-5 py-2.5 text-sm font-semibold text-slate-900 bg-white hover:bg-slate-50 rounded-full transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                            Daftar
+                        </a>
+                    @endauth
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="document.getElementById('mobileMenuTatatertib').classList.toggle('hidden')" class="md:hidden p-2 text-slate-300 hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenuTatatertib" class="hidden md:hidden bg-slate-950/95 backdrop-blur-lg border-t border-white/5">
+            <div class="px-4 py-6 space-y-4">
+                <a href="{{ url('/') }}#fitur" class="block text-slate-300 hover:text-white font-medium">Fitur</a>
+                <a href="{{ route('schedules.public') }}" class="block text-slate-300 hover:text-white font-medium">Jadwal Praktikum</a>
+                <a href="{{ route('lab-rules.public') }}" class="block text-white font-medium">Tata Tertib</a>
+                <a href="{{ route('kegiatan-lab.gallery') }}" class="block text-slate-300 hover:text-white font-medium">Galeri Kegiatan</a>
+                <div class="border-t border-white/10 pt-4 mt-4 grid grid-cols-2 gap-4">
+                    @auth
+                        <a href="{{ url('/dashboard') }}" class="col-span-2 text-center py-2.5 bg-indigo-600 text-white rounded-lg font-semibold">Dashboard</a>
+                    @else
+                        <a href="{{ route('login') }}" class="text-center py-2.5 text-slate-300 hover:text-white font-semibold">Masuk</a>
+                        <a href="{{ route('register') }}" class="text-center py-2.5 bg-white text-slate-900 rounded-lg font-semibold">Daftar</a>
                     @endauth
                 </div>
             </div>
@@ -31,7 +70,7 @@
     </nav>
 
     <!-- Content -->
-    <main class="py-16 min-h-screen">
+    <main class="pt-28 pb-16">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             @if($rule)
                 <!-- Header -->
