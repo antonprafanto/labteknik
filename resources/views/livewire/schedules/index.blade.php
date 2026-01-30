@@ -9,15 +9,15 @@
                     </div>
                     <div class="flex items-center gap-3">
                         <!-- View Mode Toggle -->
-                        <div class="flex items-center bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
-                            <button wire:click="setViewMode('list')" class="px-3 py-1.5 text-sm font-medium rounded-md transition-colors {{ $viewMode === 'list' ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm' : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300' }}">
-                                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="flex items-center bg-gray-200 dark:bg-gray-700 rounded-lg p-1">
+                            <button wire:click="setViewMode('list')" class="px-3 py-1.5 text-sm font-medium rounded-md transition-colors flex items-center {{ $viewMode === 'list' ? 'bg-indigo-600 text-white shadow-sm' : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200' }}">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
                                 </svg>
                                 List
                             </button>
-                            <button wire:click="setViewMode('grid')" class="px-3 py-1.5 text-sm font-medium rounded-md transition-colors {{ $viewMode === 'grid' ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm' : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300' }}">
-                                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <button wire:click="setViewMode('grid')" class="px-3 py-1.5 text-sm font-medium rounded-md transition-colors flex items-center {{ $viewMode === 'grid' ? 'bg-indigo-600 text-white shadow-sm' : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200' }}">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zM14 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"/>
                                 </svg>
                                 Grid
