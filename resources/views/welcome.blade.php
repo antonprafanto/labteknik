@@ -40,7 +40,7 @@
                     <a href="#fitur" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Fitur</a>
                     <a href="{{ route('schedules.public') }}" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Jadwal</a>
                     <a href="{{ route('lab-rules.public') }}" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Tata Tertib</a>
-                    <a href="{{ route('kegiatan-lab.gallery') }}" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Galeri</a>
+                    <a href="{{ route('kegiatan-lab.gallery') }}" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Kegiatan</a>
                     
                     <!-- Kunjungan Lab Dropdown -->
                     <div class="relative group">
@@ -96,7 +96,7 @@
                 <a href="#fitur" class="block text-slate-300 hover:text-white font-medium">Fitur</a>
                 <a href="{{ route('schedules.public') }}" class="block text-slate-300 hover:text-white font-medium">Jadwal Praktikum</a>
                 <a href="{{ route('lab-rules.public') }}" class="block text-slate-300 hover:text-white font-medium">Tata Tertib</a>
-                <a href="{{ route('kegiatan-lab.gallery') }}" class="block text-slate-300 hover:text-white font-medium">Galeri Kegiatan</a>
+                <a href="{{ route('kegiatan-lab.gallery') }}" class="block text-slate-300 hover:text-white font-medium">Kegiatan</a>
                 
                 <!-- Kunjungan Lab Mobile -->
                 <div class="pt-3 border-t border-white/10">
