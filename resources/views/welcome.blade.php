@@ -406,7 +406,7 @@
                         <li class="flex gap-3">
                             <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                             <div class="flex flex-col">
-                                <a href="mailto:anton.prafanto@unmul.ac.id" class="hover:text-indigo-400 transition-colors">anton.prafanto@unmul.ac.id</a>
+                                <a href="mailto:antonprafanto@unmul.ac.id" class="hover:text-indigo-400 transition-colors">antonprafanto@unmul.ac.id</a>
                                 <a href="mailto:slamat.heriady@gmail.com" class="hover:text-indigo-400 transition-colors">slamat.heriady@gmail.com</a>
                             </div>
                         </li>
@@ -423,7 +423,7 @@
                     <p>Dikembangkan oleh <span class="text-indigo-400 font-medium">Anton & Jack</span> — Informatika UNMUL</p>
                     <span class="hidden md:inline text-slate-700">|</span>
                     <div class="flex items-center gap-3">
-                        <a href="mailto:anton.prafanto@unmul.ac.id" class="flex items-center gap-1.5 text-indigo-400 hover:text-indigo-300 transition-colors">
+                        <a href="mailto:antonprafanto@unmul.ac.id" class="flex items-center gap-1.5 text-indigo-400 hover:text-indigo-300 transition-colors">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                             Email
                         </a>
