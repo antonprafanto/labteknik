@@ -70,33 +70,33 @@
     </nav>
 
     <!-- Content -->
-    <main class="pt-28 pb-16">
+    <main class="pt-36 pb-16">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             @if($rule)
                 <!-- Header -->
                 <div class="text-center mb-12">
-                    <h1 class="text-4xl font-bold text-white mb-4">{{ $rule->title }}</h1>
-                    <p class="text-slate-400">Fakultas Teknik - Universitas Mulawarman</p>
+                    <h1 class="text-4xl font-bold text-white mb-4 drop-shadow-lg">{{ $rule->title }}</h1>
+                    <p class="text-slate-300 font-medium tracking-wide">Fakultas Teknik - Universitas Mulawarman</p>
                 </div>
 
                 <!-- Content Card -->
-                <div class="bg-slate-900/50 backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden">
+                <div class="bg-slate-900/80 backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden shadow-2xl ring-1 ring-white/5">
                     <div class="p-8 md:p-12">
                         <div class="tata-tertib-content text-slate-200 text-lg leading-relaxed
-                            [&_h1]:text-3xl [&_h1]:font-bold [&_h1]:text-white [&_h1]:mb-6
-                            [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-white [&_h2]:mt-8 [&_h2]:mb-4 [&_h2]:border-b [&_h2]:border-slate-600 [&_h2]:pb-3
-                            [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-indigo-300 [&_h3]:mt-6 [&_h3]:mb-3
-                            [&_p]:text-slate-200 [&_p]:my-4 [&_p]:leading-relaxed
-                            [&_ol]:text-slate-200 [&_ol]:pl-6 [&_ol]:my-4 [&_ol]:list-decimal
-                            [&_ul]:text-slate-200 [&_ul]:pl-6 [&_ul]:my-4 [&_ul]:list-disc
-                            [&_li]:my-2 [&_li]:text-slate-200
-                            [&_strong]:text-white [&_strong]:font-semibold
+                            [&_h1]:text-3xl [&_h1]:font-bold [&_h1]:text-white!important [&_h1]:mb-6
+                            [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-white!important [&_h2]:mt-8 [&_h2]:mb-4 [&_h2]:border-b [&_h2]:border-slate-600 [&_h2]:pb-3
+                            [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-indigo-300!important [&_h3]:mt-6 [&_h3]:mb-3
+                            [&_p]:text-slate-200!important [&_p]:my-4 [&_p]:leading-relaxed
+                            [&_ol]:text-slate-200!important [&_ol]:pl-6 [&_ol]:my-4 [&_ol]:list-decimal
+                            [&_ul]:text-slate-200!important [&_ul]:pl-6 [&_ul]:my-4 [&_ul]:list-disc
+                            [&_li]:my-2 [&_li]:text-slate-200!important
+                            [&_strong]:text-white!important [&_strong]:font-semibold
                             [&_a]:text-indigo-400 [&_a]:underline">
                             {!! $rule->content !!}
                         </div>
                     </div>
-                    <div class="px-8 pb-8 md:px-12 md:pb-12">
-                        <p class="text-sm text-slate-500">
+                    <div class="px-8 pb-8 md:px-12 md:pb-12 border-t border-white/5 pt-6">
+                        <p class="text-sm text-slate-400">
                             Terakhir diperbarui: {{ $rule->updated_at->format('d F Y') }}
                         </p>
                     </div>
