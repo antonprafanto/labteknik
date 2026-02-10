@@ -5,6 +5,7 @@ namespace App\Livewire\Borrowings;
 use App\Models\BorrowingRequest;
 use App\Models\BorrowingItem;
 use App\Models\InventoryItem;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -13,6 +14,11 @@ use Livewire\WithFileUploads;
 class Create extends Component
 {
     use WithFileUploads;
+
+    // Borrower fields
+    public $borrower_type = 'registered'; // 'registered' or 'manual'
+    public $selected_user_id; // For registered users
+    public $borrower_name; // For manual entry
 
     public $borrow_date;
     public $return_date;
@@ -25,6 +31,9 @@ class Create extends Component
     public $selectedItems = [];
 
     protected $rules = [
+        'borrower_type' => 'required|in:registered,manual',
+        'selected_user_id' => 'required_if:borrower_type,registered|nullable|exists:users,id',
+        'borrower_name' => 'required_if:borrower_type,manual|nullable|string|max:255',
         'borrow_date' => 'required|date|after_or_equal:today',
         'return_date' => 'required|date|after_or_equal:borrow_date',
         'purpose' => 'required|string',
@@ -82,7 +91,8 @@ class Create extends Component
 
         $borrowing = BorrowingRequest::create([
             'request_number' => $requestNumber,
-            'user_id' => Auth::id(),
+            'user_id' => $this->borrower_type === 'registered' ? $this->selected_user_id : null,
+            'borrower_name' => $this->borrower_type === 'manual' ? $this->borrower_name : null,
             'borrow_date' => $this->borrow_date,
             'return_date' => $this->return_date,
             'purpose' => $this->purpose,
@@ -121,7 +131,8 @@ class Create extends Component
             ->get();
 
         return view('livewire.borrowings.create', [
-            'availableItems' => $availableItems
+            'availableItems' => $availableItems,
+            'users' => User::where('role', '!=', 'super_admin')->orderBy('name')->get(),
         ])->layout('layouts.app');
     }
 }

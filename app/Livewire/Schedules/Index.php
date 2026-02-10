@@ -109,7 +109,7 @@ class Index extends Component
                             'class' => $s->class_name,
                             'year_batch' => $s->year_batch ?? '-',
                             'lab' => $s->laboratory->name ?? '-',
-                            'lecturer' => $s->lecturer->name ?? '-',
+                            'lecturer' => $s->lecturer_name ?? '-',
                             'time' => \Carbon\Carbon::parse($s->start_time)->format('H:i') . '-' . \Carbon\Carbon::parse($s->end_time)->format('H:i'),
                         ];
                     })->values()->all(),

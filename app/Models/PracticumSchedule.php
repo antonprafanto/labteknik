@@ -11,7 +11,7 @@ class PracticumSchedule extends Model
 
     protected $fillable = [
         'laboratory_id',
-        'lecturer_id',
+        'lecturer_name',
         'course_name',
         'class_name',
         'year_batch',
@@ -52,10 +52,7 @@ class PracticumSchedule extends Model
         return $this->belongsTo(Laboratory::class);
     }
 
-    public function lecturer()
-    {
-        return $this->belongsTo(User::class, 'lecturer_id');
-    }
+
 
     public function creator()
     {

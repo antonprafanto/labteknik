@@ -12,6 +12,7 @@ class BorrowingRequest extends Model
     protected $fillable = [
         'request_number',
         'user_id',
+        'borrower_name',
         'borrow_date',
         'return_date',
         'purpose',
@@ -33,6 +34,17 @@ class BorrowingRequest extends Model
         'approved_at' => 'datetime',
         'completed_at' => 'datetime',
     ];
+
+    /**
+     * Get the borrower display name (prioritizes borrower_name over user->name)
+     */
+    public function getBorrowerDisplayNameAttribute()
+    {
+        if ($this->borrower_name) {
+            return $this->borrower_name;
+        }
+        return $this->user ? $this->user->name : '-';
+    }
 
     public function user()
     {

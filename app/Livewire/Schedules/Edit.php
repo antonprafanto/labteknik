@@ -12,7 +12,7 @@ class Edit extends Component
     public PracticumSchedule $schedule;
 
     public $laboratory_id;
-    public $lecturer_id;
+    public $lecturer_name;
     public $course_name;
     public $class_name;
     public $year_batch;
@@ -25,7 +25,7 @@ class Edit extends Component
 
     protected $rules = [
         'laboratory_id' => 'required|exists:laboratories,id',
-        'lecturer_id' => 'required|exists:users,id',
+        'lecturer_name' => 'required|string|max:255',
         'course_name' => 'required|string|max:255',
         'class_name' => 'required|string|max:100',
         'year_batch' => 'nullable|string|max:50',
@@ -47,7 +47,7 @@ class Edit extends Component
 
         $this->schedule = $schedule;
         $this->laboratory_id = $schedule->laboratory_id;
-        $this->lecturer_id = $schedule->lecturer_id;
+        $this->lecturer_name = $schedule->lecturer_name;
         $this->course_name = $schedule->course_name;
         $this->class_name = $schedule->class_name;
         $this->year_batch = $schedule->year_batch;
@@ -78,7 +78,7 @@ class Edit extends Component
 
         $this->schedule->update([
             'laboratory_id' => $this->laboratory_id,
-            'lecturer_id' => $this->lecturer_id,
+            'lecturer_name' => $this->lecturer_name,
             'course_name' => $this->course_name,
             'class_name' => $this->class_name,
             'year_batch' => $this->year_batch,
@@ -99,7 +99,6 @@ class Edit extends Component
     {
         return view('livewire.schedules.edit', [
             'laboratories' => Laboratory::all(),
-            'lecturers' => User::where('role', 'lecturer')->get(),
         ]);
     }
 }

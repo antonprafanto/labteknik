@@ -10,7 +10,7 @@ use Livewire\Component;
 class Create extends Component
 {
     public $laboratory_id;
-    public $lecturer_id;
+    public $lecturer_name;
     public $course_name;
     public $class_name;
     public $year_batch;
@@ -22,7 +22,7 @@ class Create extends Component
 
     protected $rules = [
         'laboratory_id' => 'required|exists:laboratories,id',
-        'lecturer_id' => 'required|exists:users,id',
+        'lecturer_name' => 'required|string|max:255',
         'course_name' => 'required|string|max:255',
         'class_name' => 'required|string|max:100',
         'year_batch' => 'nullable|string|max:50',
@@ -59,7 +59,7 @@ class Create extends Component
 
         PracticumSchedule::create([
             'laboratory_id' => $this->laboratory_id,
-            'lecturer_id' => $this->lecturer_id,
+            'lecturer_name' => $this->lecturer_name,
             'course_name' => $this->course_name,
             'class_name' => $this->class_name,
             'year_batch' => $this->year_batch,
@@ -81,7 +81,6 @@ class Create extends Component
     {
         return view('livewire.schedules.create', [
             'laboratories' => Laboratory::all(),
-            'lecturers' => User::where('role', 'lecturer')->get(),
         ]);
     }
 }

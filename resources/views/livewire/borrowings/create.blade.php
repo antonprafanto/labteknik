@@ -30,7 +30,37 @@
                             {{ __('Request Details') }}
                         </h3>
                         
+                        
                         <form wire:submit.prevent="save" class="space-y-6">
+                            <!-- Borrower Name Selection -->
+                            <div class="space-y-4 pb-6 border-b-2 border-gray-200 dark:border-gray-700">
+                                <label class="block font-bold text-sm text-gray-900 dark:text-white">{{ __('Nama') }} <span class="text-red-500">*</span></label>
+                                
+                                <div class="flex items-center gap-6 mb-3">
+                                    <label class="inline-flex items-center cursor-pointer">
+                                        <input type="radio" wire:model.live="borrower_type" value="registered" class="form-radio text-indigo-600 focus:ring-indigo-500">
+                                        <span class="ml-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Pilih dari Daftar Pengguna') }}</span>
+                                    </label>
+                                    <label class="inline-flex items-center cursor-pointer">
+                                        <input type="radio" wire:model.live="borrower_type" value="manual" class="form-radio text-indigo-600 focus:ring-indigo-500">
+                                        <span class="ml-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Input Manual') }}</span>
+                                    </label>
+                                </div>
+
+                                @if($borrower_type === 'registered')
+                                    <select wire:model="selected_user_id" class="w-full px-4 py-3 bg-white border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-white rounded-xl focus:border-indigo-500 focus:ring-indigo-500 shadow-sm transition-all duration-200 font-medium">
+                                        <option value="">{{ __('Pilih Pengguna') }}</option>
+                                        @foreach($users as $user)
+                                            <option value="{{ $user->id }}">{{ $user->name }} ({{ $user->email }})</option>
+                                        @endforeach
+                                    </select>
+                                    @error('selected_user_id') <span class="flex items-center text-red-600 dark:text-red-400 text-sm mt-1 font-medium">{{ $message }}</span> @enderror
+                                @else
+                                    <input type="text" wire:model="borrower_name" placeholder="{{ __('Masukkan nama peminjam') }}" class="w-full px-4 py-3 bg-white border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-white rounded-xl focus:border-indigo-500 focus:ring-indigo-500 shadow-sm transition-all duration-200 placeholder-gray-400 font-medium">
+                                    @error('borrower_name') <span class="flex items-center text-red-600 dark:text-red-400 text-sm mt-1 font-medium">{{ $message }}</span> @enderror
+                                @endif
+                            </div>
+
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div class="space-y-2">
                                     <label class="block font-bold text-sm text-gray-900 dark:text-white">{{ __('Borrow Date') }}</label>
