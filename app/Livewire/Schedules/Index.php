@@ -73,7 +73,7 @@ class Index extends Component
         ];
 
         // Get all schedules for selected lab (or all labs)
-        $schedulesQuery = PracticumSchedule::with(['laboratory', 'lecturer'])
+        $schedulesQuery = PracticumSchedule::with(['laboratory'])
             ->where('status', '!=', 'cancelled');
 
         if ($this->selectedLab) {
@@ -124,7 +124,7 @@ class Index extends Component
 
     public function render()
     {
-        $schedules = PracticumSchedule::with(['laboratory', 'lecturer'])
+        $schedules = PracticumSchedule::with(['laboratory'])
             ->when($this->search, function ($query) {
                 $query->where('course_name', 'like', '%' . $this->search . '%')
                       ->orWhere('class_name', 'like', '%' . $this->search . '%');
