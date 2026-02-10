@@ -14,6 +14,7 @@ class PracticumSchedule extends Model
         'lecturer_id',
         'course_name',
         'class_name',
+        'year_batch',
         'day_of_week', // Added
         'schedule_date', // Kept for legacy reference or specific dates if needed
         'start_time',

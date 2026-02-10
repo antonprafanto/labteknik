@@ -13,6 +13,7 @@ class Create extends Component
     public $lecturer_id;
     public $course_name;
     public $class_name;
+    public $year_batch;
     public $day_of_week;
     public $start_time;
     public $end_time;
@@ -24,6 +25,7 @@ class Create extends Component
         'lecturer_id' => 'required|exists:users,id',
         'course_name' => 'required|string|max:255',
         'class_name' => 'required|string|max:100',
+        'year_batch' => 'nullable|string|max:50',
         'day_of_week' => 'required|integer|min:1|max:7',
         'start_time' => 'required|date_format:H:i',
         'end_time' => 'required|date_format:H:i|after:start_time',
@@ -60,6 +62,7 @@ class Create extends Component
             'lecturer_id' => $this->lecturer_id,
             'course_name' => $this->course_name,
             'class_name' => $this->class_name,
+            'year_batch' => $this->year_batch,
             'day_of_week' => $this->day_of_week,
             'start_time' => $this->start_time,
             'end_time' => $this->end_time,

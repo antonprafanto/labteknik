@@ -35,6 +35,8 @@ class ScheduleManagementTest extends TestCase
             ->set('lecturer_id', $lecturer->id)
             ->set('course_name', 'Test Course')
             ->set('class_name', 'Test Class')
+            ->set('year_batch', '2024')
+            ->set('day_of_week', 1)
             ->set('schedule_date', now()->addDay()->format('Y-m-d'))
             ->set('start_time', '08:00')
             ->set('end_time', '10:00')
@@ -73,6 +75,8 @@ class ScheduleManagementTest extends TestCase
             'lecturer_id' => $lecturer->id,
             'course_name' => 'Existing Course',
             'class_name' => 'A',
+            'year_batch' => '2024',
+            'day_of_week' => 1,
             'schedule_date' => $date,
             'start_time' => '08:00',
             'end_time' => '10:00',
@@ -88,6 +92,8 @@ class ScheduleManagementTest extends TestCase
             ->set('lecturer_id', $lecturer->id)
             ->set('course_name', 'New Course')
             ->set('class_name', 'B')
+            ->set('year_batch', '2025')
+            ->set('day_of_week', 1)
             ->set('schedule_date', $date)
             ->set('start_time', '09:00') // Overlaps
             ->set('end_time' , '11:00')

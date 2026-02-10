@@ -15,6 +15,7 @@ class Edit extends Component
     public $lecturer_id;
     public $course_name;
     public $class_name;
+    public $year_batch;
     public $day_of_week;
     public $start_time;
     public $end_time;
@@ -27,6 +28,7 @@ class Edit extends Component
         'lecturer_id' => 'required|exists:users,id',
         'course_name' => 'required|string|max:255',
         'class_name' => 'required|string|max:100',
+        'year_batch' => 'nullable|string|max:50',
         'day_of_week' => 'required|integer|min:1|max:7',
         'start_time' => 'required|date_format:H:i',
         'end_time' => 'required|date_format:H:i|after:start_time',
@@ -48,6 +50,7 @@ class Edit extends Component
         $this->lecturer_id = $schedule->lecturer_id;
         $this->course_name = $schedule->course_name;
         $this->class_name = $schedule->class_name;
+        $this->year_batch = $schedule->year_batch;
         $this->day_of_week = $schedule->day_of_week;
         // Handle time format, might need H:i
         $this->start_time = \Carbon\Carbon::parse($schedule->start_time)->format('H:i');
@@ -78,6 +81,7 @@ class Edit extends Component
             'lecturer_id' => $this->lecturer_id,
             'course_name' => $this->course_name,
             'class_name' => $this->class_name,
+            'year_batch' => $this->year_batch,
             'day_of_week' => $this->day_of_week,
             'start_time' => $this->start_time,
             'end_time' => $this->end_time,

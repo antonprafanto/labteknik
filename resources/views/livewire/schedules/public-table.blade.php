@@ -120,7 +120,7 @@
                                                 {{ $schedule->class_name }}
                                             </td>
                                             <td class="px-4 py-3 text-sm text-white border-r border-white/10">
-                                                {{ $schedule->schedule_date ? $schedule->schedule_date->format('Y') : '-' }}
+                                                {{ $schedule->year_batch ?? '-' }}
                                             </td>
                                             <td class="px-4 py-3 text-sm text-amber-300 font-medium">
                                                 {{ $schedule->course_name }}

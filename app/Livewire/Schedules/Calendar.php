@@ -51,6 +51,7 @@ class Calendar extends Component
                     'laboratory' => $schedule->laboratory->name,
                     'lecturer' => $schedule->lecturer->name ?? '-',
                     'participants' => $schedule->participants,
+                    'year_batch' => $schedule->year_batch ?? '-',
                 ],
             ];
         });

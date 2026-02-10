@@ -159,6 +159,8 @@ class LaboratorySystemTest extends TestCase
             'lecturer_id' => $lecturer->id,
             'course_name' => 'Physics 101',
             'class_name' => 'A',
+            'year_batch' => '2024',
+            'day_of_week' => 1,
             'schedule_date' => Carbon::now()->addDay()->format('Y-m-d'),
             'start_time' => '08:00:00',
             'end_time' => '10:00:00',
@@ -176,6 +178,8 @@ class LaboratorySystemTest extends TestCase
             ->set('lecturer_id', $lecturer->id)
             ->set('course_name', 'Chemistry 101')
             ->set('class_name', 'B')
+            ->set('year_batch', '2025')
+            ->set('day_of_week', 1)
             ->set('schedule_date', Carbon::now()->addDay()->format('Y-m-d'))
             ->set('start_time', '08:00') // Exact overlap
             ->set('end_time', '10:00')

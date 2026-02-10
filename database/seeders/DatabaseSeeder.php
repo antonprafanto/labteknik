@@ -139,7 +139,9 @@ class DatabaseSeeder extends Seeder
                 'laboratory_id' => $lab->id,
                 'lecturer_id' => $lecturer->id,
                 'course_name' => 'Dasar Pemrograman',
-                'class_name' => 'Informatika A 2024',
+                'class_name' => 'Informatika A',
+                'year_batch' => '2024',
+                'day_of_week' => 1, // Monday
                 'schedule_date' => now()->addDays(2),
                 'start_time' => '08:00',
                 'end_time' => '10:00',

@@ -166,6 +166,12 @@
                             </svg>
                             <span x-text="event.participants"></span> {{ __('participants') }}
                         </div>
+                        <div class="flex items-center text-gray-600 dark:text-gray-300">
+                            <svg class="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            Angkatan: <span x-text="event.year_batch"></span>
+                        </div>
                     </div>
                 </div>
                 <div class="bg-gray-50 dark:bg-gray-900/50 px-6 py-4 flex justify-end gap-3">
@@ -216,7 +222,8 @@
                             end: endTime,
                             laboratory: props.laboratory,
                             lecturer: props.lecturer,
-                            participants: props.participants
+                            participants: props.participants,
+                            year_batch: props.year_batch
                         }
                     }));
                 }

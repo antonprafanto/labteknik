@@ -57,6 +57,13 @@
                         @error('class_name') <span class="flex items-center text-red-600 dark:text-red-400 text-sm mt-1 font-medium">{{ $message }}</span> @enderror
                     </div>
 
+                    <!-- Angkatan -->
+                    <div>
+                        <label for="year_batch" class="block font-bold text-sm text-gray-900 dark:text-white mb-2">{{ __('Angkatan') }}</label>
+                        <input type="text" id="year_batch" wire:model="year_batch" placeholder="{{ __('e.g. 2023, 2024, 2025') }}" class="w-full px-4 py-3 bg-white border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-white rounded-xl focus:border-indigo-500 focus:ring-indigo-500 shadow-sm transition-all duration-200 placeholder-gray-400 font-medium">
+                        @error('year_batch') <span class="flex items-center text-red-600 dark:text-red-400 text-sm mt-1 font-medium">{{ $message }}</span> @enderror
+                    </div>
+
                     <!-- Hari -->
                     <div>
                         <label for="day_of_week" class="block font-bold text-sm text-gray-900 dark:text-white mb-2">{{ __('Hari') }}</label>
