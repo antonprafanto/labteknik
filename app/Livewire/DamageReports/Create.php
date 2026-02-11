@@ -14,8 +14,6 @@ class Create extends Component
 {
     use WithFileUploads;
 
-    public $searchItem = '';
-    public $selectedItem = null;
     public $inventory_item_id;
     public $damage_type;
     public $description;
@@ -27,18 +25,6 @@ class Create extends Component
         'description' => 'required|string|min:10',
         'image' => 'nullable|image|max:2048', // 2MB Max
     ];
-
-    public function updatedSearchItem()
-    {
-        $this->selectedItem = null;
-    }
-
-    public function selectItem($id)
-    {
-        $this->inventory_item_id = $id;
-        $this->selectedItem = InventoryItem::find($id);
-        $this->searchItem = $this->selectedItem->name . ' (' . $this->selectedItem->code . ')';
-    }
 
     public function save()
     {
@@ -76,13 +62,7 @@ class Create extends Component
 
     public function render()
     {
-        $items = [];
-        if (strlen($this->searchItem) >= 2) {
-            $items = InventoryItem::where('name', 'like', '%' . $this->searchItem . '%')
-                ->orWhere('code', 'like', '%' . $this->searchItem . '%')
-                ->take(10)
-                ->get();
-        }
+        $items = InventoryItem::orderBy('name')->get();
 
         return view('livewire.damage-reports.create', [
             'items' => $items,

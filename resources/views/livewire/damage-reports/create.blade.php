@@ -19,35 +19,15 @@
 
             <form wire:submit.prevent="save" class="p-8 bg-white dark:bg-gray-800">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Item Search -->
+                    <!-- Item Dropdown -->
                     <div class="col-span-1 md:col-span-2">
-                        <label for="searchItem" class="block font-bold text-sm text-gray-900 dark:text-white mb-2">{{ __('Search Item (Name or Code)') }}</label>
-                        <div class="relative">
-                            <input type="text" wire:model.live="searchItem" placeholder="{{ __('Type to search...') }}" class="w-full px-4 py-3 bg-white border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-white rounded-xl focus:border-red-500 focus:ring-red-500 shadow-sm transition-all duration-200 font-medium placeholder-gray-400" autocomplete="off">
-                            
-                            @if(!empty($items) && !$selectedItem)
-                                <div class="absolute z-10 w-full bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 mt-2 rounded-xl shadow-xl max-h-60 overflow-y-auto">
-                                    @foreach($items as $item)
-                                        <div wire:click="selectItem({{ $item->id }})" class="cursor-pointer hover:bg-red-50 dark:hover:bg-red-900/20 p-4 border-b border-gray-100 dark:border-gray-700 last:border-0 transition-colors">
-                                            <div class="font-bold text-gray-900 dark:text-white">{{ $item->name }}</div>
-                                            <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 mt-1">{{ $item->code }} - {{ $item->brand }}</div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @endif
-                        </div>
-                        @if($selectedItem)
-                            <div class="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl text-sm text-red-700 dark:text-red-300 flex items-center shadow-sm">
-                                <div class="bg-red-100 dark:bg-red-800 p-2 rounded-lg mr-3">
-                                    <svg class="w-5 h-5 text-red-600 dark:text-red-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <span class="font-bold">{{ __('Selected') }}:</span> <strong class="ml-1 text-gray-900 dark:text-white">{{ $selectedItem->name }}</strong> <span class="ml-1 text-red-600 dark:text-red-400 font-mono">({{ $selectedItem->code }})</span>
-                                </div>
-                            </div>
-                        @endif
+                        <label for="inventory_item_id" class="block font-bold text-sm text-gray-900 dark:text-white mb-2">{{ __('Select Item') }}</label>
+                        <select id="inventory_item_id" wire:model="inventory_item_id" class="w-full px-4 py-3 bg-white border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-900 text-gray-900 dark:text-white rounded-xl focus:border-red-500 focus:ring-red-500 shadow-sm transition-all duration-200 font-medium">
+                            <option value="">{{ __('-- Select Item --') }}</option>
+                            @foreach($items as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }} ({{ $item->code }}) - {{ $item->brand }}</option>
+                            @endforeach
+                        </select>
                         @error('inventory_item_id') <span class="flex items-center text-red-600 dark:text-red-400 text-sm mt-2 font-medium">{{ __('Please select a valid item.') }}</span> @enderror
                     </div>
 
@@ -64,10 +44,10 @@
                         @error('damage_type') <span class="flex items-center text-red-600 dark:text-red-400 text-sm mt-1 font-medium">{{ $message }}</span> @enderror
                     </div>
 
-                    <!-- Image -->
+                    <!-- Image (Camera) -->
                     <div>
                         <label for="image" class="block font-bold text-sm text-gray-900 dark:text-white mb-2">{{ __('Photo Evidence (Optional)') }}</label>
-                        <input type="file" id="image" wire:model="image" class="w-full text-sm text-gray-700 dark:text-gray-300 file:mr-4 file:py-3 file:px-6 file:rounded-xl file:border-0 file:text-sm file:font-bold file:bg-red-50 dark:file:bg-red-900/30 file:text-red-700 dark:file:text-red-300 hover:file:bg-red-100 dark:hover:file:bg-red-900/50 file:transition-colors cursor-pointer bg-gray-50 dark:bg-gray-900 rounded-xl border-2 border-gray-300 dark:border-gray-600">
+                        <input type="file" id="image" wire:model="image" accept="image/*" capture="environment" class="w-full text-sm text-gray-700 dark:text-gray-300 file:mr-4 file:py-3 file:px-6 file:rounded-xl file:border-0 file:text-sm file:font-bold file:bg-red-50 dark:file:bg-red-900/30 file:text-red-700 dark:file:text-red-300 hover:file:bg-red-100 dark:hover:file:bg-red-900/50 file:transition-colors cursor-pointer bg-gray-50 dark:bg-gray-900 rounded-xl border-2 border-gray-300 dark:border-gray-600">
                         @error('image') <span class="flex items-center text-red-600 dark:text-red-400 text-sm mt-1 font-medium">{{ $message }}</span> @enderror
                         
                         <div wire:loading wire:target="image" class="text-sm text-gray-500 dark:text-gray-400 mt-2 flex items-center font-medium">
