@@ -106,6 +106,7 @@
                                                     <div class="text-xs p-1.5 rounded bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300 mb-1 last:mb-0 cursor-pointer hover:bg-red-200 dark:hover:bg-red-800/50 transition-colors" title="{{ $schedule['course'] }} ({{ $schedule['class'] }})&#10;Angkatan: {{ $schedule['year_batch'] }}&#10;Pengajar atau PIC: {{ $schedule['lecturer'] }}&#10;Lab: {{ $schedule['lab'] }}&#10;Waktu: {{ $schedule['time'] }}">
                                                         <div class="font-medium truncate max-w-24">{{ $schedule['course'] }}</div>
                                                         <div class="text-red-600 dark:text-red-400 text-[10px]">{{ $schedule['class'] }}</div>
+                                                        <div class="text-red-700 dark:text-red-500 text-[9px] truncate max-w-24 mt-0.5">{{ $schedule['lecturer'] }}</div>
                                                     </div>
                                                 @endforeach
                                             @else
