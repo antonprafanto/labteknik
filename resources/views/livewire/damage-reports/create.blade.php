@@ -136,18 +136,38 @@
                             this.preview = null;
                             @this.set('image', null);
                             this.openCamera();
+                        },
+                        chooseFile() {
+                            this.$refs.fileInput.click();
+                        },
+                        onFileSelected() {
+                            const file = this.$refs.fileInput.files[0];
+                            if (file) {
+                                this.preview = URL.createObjectURL(file);
+                            }
+                        },
+                        reset() {
+                            this.preview = null;
+                            @this.set('image', null);
+                            this.$refs.fileInput.value = '';
                         }
                     }" x-on:livewire:navigating.window="stopCamera()">
                         <label class="block font-bold text-sm text-gray-900 dark:text-white mb-2">{{ __('Photo Evidence (Optional)') }}</label>
 
-                        <input type="file" x-ref="fileInput" wire:model="image" accept="image/*" class="hidden">
+                        <input type="file" x-ref="fileInput" wire:model="image" accept="image/*" @change="onFileSelected()" class="hidden">
 
-                        <!-- Camera Actions -->
+                        <!-- Action Buttons: Take Photo & Choose File -->
                         <template x-if="!showCamera && !preview">
-                            <button type="button" @click="openCamera()" class="inline-flex items-center px-6 py-3 bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 font-bold rounded-xl border-2 border-red-200 dark:border-red-800 hover:bg-red-100 dark:hover:bg-red-900/50 transition-all duration-200">
-                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                                {{ __('Take Photo') }}
-                            </button>
+                            <div class="flex flex-wrap gap-3">
+                                <button type="button" @click="openCamera()" class="inline-flex items-center px-6 py-3 bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 font-bold rounded-xl border-2 border-red-200 dark:border-red-800 hover:bg-red-100 dark:hover:bg-red-900/50 transition-all duration-200">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                    {{ __('Take Photo') }}
+                                </button>
+                                <button type="button" @click="chooseFile()" class="inline-flex items-center px-6 py-3 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-bold rounded-xl border-2 border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 transition-all duration-200">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                    {{ __('Choose File') }}
+                                </button>
+                            </div>
                         </template>
 
                         <!-- Camera View -->
@@ -175,10 +195,20 @@
                                 <div class="relative rounded-xl overflow-hidden border-2 border-green-300 dark:border-green-700">
                                     <img :src="preview" class="w-full rounded-xl" alt="Preview">
                                 </div>
-                                <button type="button" @click="retake()" class="inline-flex items-center px-6 py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-bold rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-200">
-                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-                                    {{ __('Retake') }}
-                                </button>
+                                <div class="flex flex-wrap gap-3">
+                                    <button type="button" @click="retake()" class="inline-flex items-center px-5 py-2.5 bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 font-bold rounded-xl border border-red-200 dark:border-red-800 hover:bg-red-100 dark:hover:bg-red-900/50 transition-all duration-200 text-sm">
+                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                        {{ __('Retake') }}
+                                    </button>
+                                    <button type="button" @click="reset(); chooseFile();" class="inline-flex items-center px-5 py-2.5 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-bold rounded-xl border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 transition-all duration-200 text-sm">
+                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                        {{ __('Change File') }}
+                                    </button>
+                                    <button type="button" @click="reset()" class="inline-flex items-center px-5 py-2.5 text-gray-500 dark:text-gray-400 hover:text-red-500 font-bold rounded-xl transition-all duration-200 text-sm">
+                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                                        {{ __('Remove') }}
+                                    </button>
+                                </div>
                             </div>
                         </template>
 
