@@ -37,6 +37,7 @@ Route::get('/lab-visit/check-in/{laboratory?}', \App\Livewire\LabVisits\CheckIn:
 Route::get('/lab-visit/check-out', \App\Livewire\LabVisits\CheckOut::class)->name('lab-visits.check-out');
 
 // Public Survey (No Auth Required)
+Route::get('/survey', \App\Livewire\Surveys\SurveySelector::class)->name('surveys.selector');
 Route::get('/survey/{laboratory}/{token?}', \App\Livewire\Surveys\Create::class)->name('surveys.create');
 
 // Public Lab Rules (Tata Tertib)

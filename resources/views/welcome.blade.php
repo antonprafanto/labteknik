@@ -41,6 +41,7 @@
                     <a href="{{ route('schedules.public') }}" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Jadwal</a>
                     <a href="{{ route('lab-rules.public') }}" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Tata Tertib</a>
                     <a href="{{ route('kegiatan-lab.gallery') }}" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Kegiatan</a>
+                    <a href="{{ route('surveys.selector') }}" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Survey</a>
                     
                     <!-- Kunjungan Lab Dropdown -->
                     <div class="relative group">
@@ -65,6 +66,12 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
                                 </svg>
                                 Check-out Lab
+                            </a>
+                            <a href="{{ route('surveys.selector') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition-colors border-t border-white/5">
+                                <svg class="w-5 h-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                                </svg>
+                                Isi Survey Kepuasan
                             </a>
                         </div>
                     </div>
@@ -97,6 +104,7 @@
                 <a href="{{ route('schedules.public') }}" class="block text-slate-300 hover:text-white font-medium">Jadwal Praktikum</a>
                 <a href="{{ route('lab-rules.public') }}" class="block text-slate-300 hover:text-white font-medium">Tata Tertib</a>
                 <a href="{{ route('kegiatan-lab.gallery') }}" class="block text-slate-300 hover:text-white font-medium">Kegiatan</a>
+                <a href="{{ route('surveys.selector') }}" class="block text-slate-300 hover:text-white font-medium">Survey Kepuasan</a>
                 
                 <!-- Kunjungan Lab Mobile -->
                 <div class="pt-3 border-t border-white/10">
@@ -115,6 +123,12 @@
                             Check-out
                         </a>
                     </div>
+                    <a href="{{ route('surveys.selector') }}" class="flex items-center justify-center gap-2 py-3 bg-yellow-500/20 border border-yellow-500/30 rounded-xl text-yellow-400 font-semibold text-sm hover:bg-yellow-500/30 transition-colors mt-3">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                        </svg>
+                        Isi Survey
+                    </a>
                 </div>
                 
                 <div class="border-t border-white/10 pt-4 mt-4 grid grid-cols-2 gap-4">
@@ -398,6 +412,126 @@
         </div>
     </section>
 
+    <!-- Feedback Section -->
+    <section class="py-24 bg-gradient-to-br from-slate-950 via-indigo-950/30 to-slate-950 relative overflow-hidden">
+        <!-- Background effects -->
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/30 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/30 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full mb-6">
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <span class="text-sm font-semibold text-yellow-400">Suara Anda Penting</span>
+                    </div>
+
+                    <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+                        Bantu Kami <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-amber-400 to-orange-400">
+                            Meningkatkan Layanan
+                        </span>
+                    </h2>
+
+                    <p class="text-lg text-slate-300 mb-8 leading-relaxed">
+                        Berikan feedback Anda tentang layanan laboratorium. Setiap masukan sangat berharga untuk membuat pengalaman praktikum Anda lebih baik.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="{{ route('surveys.selector') }}" class="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-slate-900 font-bold rounded-2xl transition-all hover:-translate-y-1 shadow-xl shadow-yellow-500/30 hover:shadow-yellow-500/50 overflow-hidden">
+                            <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                            <svg class="w-6 h-6 relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                            </svg>
+                            <span class="relative z-10">Isi Survey Sekarang</span>
+                            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Benefits -->
+                    <div class="mt-12 grid grid-cols-2 gap-6 text-left">
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 bg-emerald-500/10 rounded-lg flex items-center justify-center shrink-0">
+                                <svg class="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Cepat & Mudah</h4>
+                                <p class="text-sm text-slate-400">Hanya 2-3 menit</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 bg-indigo-500/10 rounded-lg flex items-center justify-center shrink-0">
+                                <svg class="w-5 h-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Anonim</h4>
+                                <p class="text-sm text-slate-400">100% rahasia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Visual -->
+                <div class="hidden lg:block">
+                    <div class="relative">
+                        <!-- Main card -->
+                        <div class="bg-slate-900/80 backdrop-blur-xl rounded-3xl p-8 border border-slate-700/50 shadow-2xl">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-xl font-bold text-white">Survey Kepuasan</h3>
+                                <div class="flex items-center gap-1">
+                                    @for($i = 0; $i < 5; $i++)
+                                        <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                        </svg>
+                                    @endfor
+                                </div>
+                            </div>
+
+                            <div class="space-y-4">
+                                @foreach(['Kebersihan', 'Pelayanan', 'Fasilitas', 'Peralatan'] as $index => $item)
+                                    <div class="bg-slate-800/50 rounded-xl p-4">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <span class="text-sm font-medium text-slate-300">{{ $item }}</span>
+                                            <div class="flex items-center gap-1">
+                                                @for($i = 0; $i < 5; $i++)
+                                                    <svg class="w-4 h-4 {{ $i < (5 - $index) ? 'text-yellow-400' : 'text-slate-600' }}" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                                    </svg>
+                                                @endfor
+                                            </div>
+                                        </div>
+                                        <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                                            <div class="h-full bg-gradient-to-r from-yellow-400 to-amber-500" style="width: {{ (5 - $index) * 20 }}%"></div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+
+                            <div class="mt-6 p-4 bg-indigo-500/10 border border-indigo-500/30 rounded-xl">
+                                <p class="text-sm text-indigo-300 italic">"Feedback Anda membantu ribuan mahasiswa mendapatkan pengalaman praktikum yang lebih baik."</p>
+                            </div>
+                        </div>
+
+                        <!-- Floating elements -->
+                        <div class="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-2xl rotate-12 blur-sm opacity-40 animate-pulse-slow"></div>
+                        <div class="absolute -bottom-4 -left-4 w-20 h-20 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full blur-xl opacity-30 animate-float"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="py-20 relative">
         <div class="absolute inset-0 bg-indigo-600/10"></div>
@@ -438,6 +572,7 @@
                     <ul class="space-y-3 text-slate-400 text-sm">
                         <li><a href="#fitur" class="hover:text-white transition-colors">Fitur</a></li>
                         <li><a href="{{ route('schedules.public') }}" class="hover:text-white transition-colors">Jadwal Praktikum</a></li>
+                        <li><a href="{{ route('surveys.selector') }}" class="hover:text-white transition-colors">Survey Kepuasan</a></li>
                         <li><a href="#statistik" class="hover:text-white transition-colors">Statistik Lab</a></li>
                         @guest
                         <li><a href="{{ route('login') }}" class="hover:text-white transition-colors">Login Staff</a></li>
