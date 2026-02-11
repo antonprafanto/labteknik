@@ -132,7 +132,7 @@ class PublicTable extends Component
             return collect();
         }
 
-        return PracticumSchedule::with(['laboratory', 'lecturer'])
+        return PracticumSchedule::with(['laboratory'])
             ->where('laboratory_id', $this->selectedLab)
             ->where('status', '!=', 'cancelled')
             ->orderBy('day_of_week')
