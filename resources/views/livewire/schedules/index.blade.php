@@ -103,10 +103,18 @@
                                         <td class="p-1 border border-gray-200 dark:border-gray-700 {{ $slot['available'] ? 'bg-emerald-50 dark:bg-emerald-900/20' : 'bg-red-50 dark:bg-red-900/20' }}" title="{{ $slot['available'] ? 'Tersedia' : collect($slot['schedules'])->pluck('course')->join(', ') }}">
                                             @if(!$slot['available'])
                                                 @foreach($slot['schedules'] as $schedule)
-                                                    <div class="text-xs p-1.5 rounded bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300 mb-1 last:mb-0 cursor-pointer hover:bg-red-200 dark:hover:bg-red-800/50 transition-colors" title="{{ $schedule['course'] }} ({{ $schedule['class'] }})&#10;Angkatan: {{ $schedule['year_batch'] }}&#10;Pengajar atau PIC: {{ $schedule['lecturer'] }}&#10;Lab: {{ $schedule['lab'] }}&#10;Waktu: {{ $schedule['time'] }}">
-                                                        <div class="font-medium truncate max-w-24">{{ $schedule['course'] }}</div>
-                                                        <div class="text-red-600 dark:text-red-400 text-[10px]">{{ $schedule['class'] }}</div>
-                                                        <div class="text-red-700 dark:text-red-500 text-[9px] truncate max-w-24 mt-0.5">{{ $schedule['lecturer'] }}</div>
+                                                    <div class="group text-xs p-2 rounded-r bg-white dark:bg-gray-800 border-l-2 border-red-500 shadow-sm mb-1.5 last:mb-0 cursor-pointer hover:shadow-md hover:-translate-y-0.5 transition-all duration-200" title="{{ $schedule['course'] }} ({{ $schedule['class'] }})&#10;Angkatan: {{ $schedule['year_batch'] }}&#10;Pengajar atau PIC: {{ $schedule['lecturer'] }}&#10;Lab: {{ $schedule['lab'] }}&#10;Waktu: {{ $schedule['time'] }}">
+                                                        <div class="font-bold text-gray-800 dark:text-gray-100 truncate w-full">{{ $schedule['course'] }}</div>
+                                                        <div class="text-gray-500 dark:text-gray-400 text-[10px] mt-0.5 flex justify-between items-center">
+                                                            <span>{{ $schedule['class'] }}</span>
+                                                            <span class="text-[9px] px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">{{ $schedule['year_batch'] }}</span>
+                                                        </div>
+                                                        <div class="text-indigo-600 dark:text-indigo-400 text-[9px] truncate w-full mt-1 flex items-center gap-1 group-hover:text-indigo-700 dark:group-hover:text-indigo-300">
+                                                            <svg class="w-2.5 h-2.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                                            </svg>
+                                                            {{ $schedule['lecturer'] }}
+                                                        </div>
                                                     </div>
                                                 @endforeach
                                             @else
