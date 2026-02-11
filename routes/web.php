@@ -190,6 +190,7 @@ Route::middleware([
         // Surveys Management
         Route::get('/surveys', \App\Livewire\Surveys\Index::class)->name('surveys.index');
         Route::get('/surveys/dashboard', \App\Livewire\Surveys\Dashboard::class)->name('surveys.dashboard');
+        Route::get('/surveys/qr-codes', \App\Livewire\Surveys\QrCodes::class)->name('surveys.qr-codes');
     });
 
 
