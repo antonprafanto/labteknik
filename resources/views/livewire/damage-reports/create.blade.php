@@ -157,37 +157,33 @@
                         <input type="file" x-ref="fileInput" wire:model="image" accept="image/*" @change="onFileSelected()" class="hidden">
 
                         <!-- Action Buttons: Take Photo & Choose File -->
-                        <template x-if="!showCamera && !preview">
-                            <div class="flex flex-wrap gap-3">
-                                <button type="button" @click="openCamera()" class="inline-flex items-center px-6 py-3 bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 font-bold rounded-xl border-2 border-red-200 dark:border-red-800 hover:bg-red-100 dark:hover:bg-red-900/50 transition-all duration-200">
-                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                                    {{ __('Take Photo') }}
-                                </button>
-                                <button type="button" @click="chooseFile()" class="inline-flex items-center px-6 py-3 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-bold rounded-xl border-2 border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 transition-all duration-200">
-                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                                    {{ __('Choose File') }}
-                                </button>
-                            </div>
-                        </template>
+                        <div x-show="!showCamera && !preview" class="flex flex-wrap gap-3">
+                            <button type="button" @click="openCamera()" class="inline-flex items-center px-6 py-3 bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 font-bold rounded-xl border-2 border-red-200 dark:border-red-800 hover:bg-red-100 dark:hover:bg-red-900/50 transition-all duration-200">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                {{ __('Take Photo') }}
+                            </button>
+                            <button type="button" @click="chooseFile()" class="inline-flex items-center px-6 py-3 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-bold rounded-xl border-2 border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 transition-all duration-200">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                {{ __('Choose File') }}
+                            </button>
+                        </div>
 
                         <!-- Camera View -->
-                        <template x-if="showCamera">
-                            <div class="space-y-3">
-                                <div class="relative rounded-xl overflow-hidden border-2 border-red-300 dark:border-red-700">
-                                    <video x-ref="video" autoplay playsinline class="w-full rounded-xl"></video>
-                                </div>
-                                <div class="flex gap-3">
-                                    <button type="button" @click="capture()" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-red-600 to-orange-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200">
-                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                                        {{ __('Capture') }}
-                                    </button>
-                                    <button type="button" @click="stopCamera()" class="px-6 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 font-bold rounded-xl transition-all duration-200">
-                                        {{ __('Cancel') }}
-                                    </button>
-                                </div>
-                                <canvas x-ref="canvas" class="hidden"></canvas>
+                        <div x-show="showCamera" class="space-y-3">
+                            <div class="relative rounded-xl overflow-hidden border-2 border-red-300 dark:border-red-700">
+                                <video x-ref="video" autoplay playsinline muted class="w-full rounded-xl"></video>
                             </div>
-                        </template>
+                            <div class="flex gap-3">
+                                <button type="button" @click="capture()" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-red-600 to-orange-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                    {{ __('Capture') }}
+                                </button>
+                                <button type="button" @click="stopCamera()" class="px-6 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 font-bold rounded-xl transition-all duration-200">
+                                    {{ __('Cancel') }}
+                                </button>
+                            </div>
+                        </div>
+                        <canvas x-ref="canvas" class="hidden"></canvas>
 
                         <!-- Preview -->
                         <template x-if="preview">
