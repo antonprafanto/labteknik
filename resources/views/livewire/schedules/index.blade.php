@@ -109,10 +109,7 @@
                                                             <span>{{ $schedule['class'] }}</span>
                                                             <span class="text-[9px] px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">{{ $schedule['year_batch'] }}</span>
                                                         </div>
-                                                        <div class="text-indigo-600 dark:text-indigo-400 text-[9px] truncate w-full mt-1 flex items-center gap-1 group-hover:text-indigo-700 dark:group-hover:text-indigo-300">
-                                                            <svg class="w-2.5 h-2.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                                            </svg>
+                                                        <div class="text-indigo-600 dark:text-indigo-400 text-[9px] truncate w-full mt-1 group-hover:text-indigo-700 dark:group-hover:text-indigo-300">
                                                             {{ $schedule['lecturer'] }}
                                                         </div>
                                                     </div>
