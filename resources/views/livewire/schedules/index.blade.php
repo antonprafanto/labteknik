@@ -103,7 +103,7 @@
                                         <td class="p-1 border border-gray-200 dark:border-gray-700 {{ $slot['available'] ? 'bg-emerald-50 dark:bg-emerald-900/20' : 'bg-red-50 dark:bg-red-900/20' }}" title="{{ $slot['available'] ? 'Tersedia' : collect($slot['schedules'])->pluck('course')->join(', ') }}">
                                             @if(!$slot['available'])
                                                 @foreach($slot['schedules'] as $schedule)
-                                                    <div class="text-xs p-1.5 rounded bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300 mb-1 last:mb-0 cursor-pointer hover:bg-red-200 dark:hover:bg-red-800/50 transition-colors" title="{{ $schedule['course'] }} ({{ $schedule['class'] }})&#10;Angkatan: {{ $schedule['year_batch'] }}&#10;Dosen: {{ $schedule['lecturer'] }}&#10;Lab: {{ $schedule['lab'] }}&#10;Waktu: {{ $schedule['time'] }}">
+                                                    <div class="text-xs p-1.5 rounded bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300 mb-1 last:mb-0 cursor-pointer hover:bg-red-200 dark:hover:bg-red-800/50 transition-colors" title="{{ $schedule['course'] }} ({{ $schedule['class'] }})&#10;Angkatan: {{ $schedule['year_batch'] }}&#10;Pengajar atau PIC: {{ $schedule['lecturer'] }}&#10;Lab: {{ $schedule['lab'] }}&#10;Waktu: {{ $schedule['time'] }}">
                                                         <div class="font-medium truncate max-w-24">{{ $schedule['course'] }}</div>
                                                         <div class="text-red-600 dark:text-red-400 text-[10px]">{{ $schedule['class'] }}</div>
                                                     </div>
@@ -132,7 +132,7 @@
                             <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Day & Time') }}</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Laboratory') }}</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Course Info') }}</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Lecturer') }}</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Pengajar atau PIC</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Status') }}</th>
                             <th scope="col" class="px-6 py-3 text-right text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Actions') }}</th>
                         </tr>
