@@ -76,10 +76,10 @@
                                 <div class="flex flex-wrap gap-1">
                                     @if($room->facilities)
                                         @foreach(array_slice($room->facilities, 0, 3) as $facility)
-                                            <span class="px-2 py-1 text-xs font-medium bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-md border border-blue-100 dark:border-blue-800">{{ ucwords($facility) }}</span>
+                                            <span class="px-2 py-1 text-xs font-medium bg-blue-50 dark:bg-blue-900/40 text-blue-700 dark:text-white rounded-md border border-blue-100 dark:border-blue-700 shadow-sm">{{ ucwords($facility) }}</span>
                                         @endforeach
                                         @if(count($room->facilities) > 3)
-                                            <span class="px-2 py-1 text-xs font-medium bg-gray-50 dark:bg-gray-700/50 text-gray-600 dark:text-gray-400 rounded-md border border-gray-200 dark:border-gray-600 cursor-help" title="{{ implode(', ', array_map('ucwords', array_slice($room->facilities, 3))) }}">+{{ count($room->facilities) - 3 }}</span>
+                                            <span class="px-2 py-1 text-xs font-medium bg-gray-50 dark:bg-gray-700 text-gray-600 dark:text-white rounded-md border border-gray-200 dark:border-gray-600 cursor-help shadow-sm" title="{{ implode(', ', array_map('ucwords', array_slice($room->facilities, 3))) }}">+{{ count($room->facilities) - 3 }}</span>
                                         @endif
                                     @else
                                         <span class="text-sm text-gray-400 dark:text-gray-500">-</span>
